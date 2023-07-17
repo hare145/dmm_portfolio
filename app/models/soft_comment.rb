@@ -1,0 +1,2 @@
+class SoftComment < ApplicationRecord
+end
