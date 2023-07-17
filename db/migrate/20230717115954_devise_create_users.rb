@@ -31,7 +31,30 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
       # t.integer  :failed_attempts, default: 0, null: false # Only if lock strategy is :failed_attempts
       # t.string   :unlock_token # Only if unlock strategy is :email or :both
       # t.datetime :locked_at
-
+      t.integer :name,                    null: false
+      t.string :employee,                 null: false, default: ""
+      t.integer :tag
+      t.integer :service_id
+      t.string  :account_soft,            default: "会計使用ソフト"
+      t.text    :account_reason,          default: "そのソフトを使用している理由"
+      t.string  :accounting_soft,         default: "経理使用ソフト"
+      t.text    :accounting_reason,       default: "そのソフトを使用している理由"
+      t.string  :other_soft,              default: 'その他会計・経理使用ソフト'
+      t.text    :other_reason,            default: 'そのソフトを使用している理由'
+      t.string  :salary_soft,             default: "給料計算使用ソフト"
+      t.text    :salary_reason,           default: "そのソフトを使用している理由"
+      t.string  :working_hours_soft,      default: "出退勤管理使用ソフト"
+      t.text    :working_hours_reason,    default: "そのソフトを使用している理由"
+      t.string  :communication_soft,      default: "法人内コミュニケーションツール"
+      t.text    :communication_reason,    default: "そのツールを使用している理由"
+      t.string  :customer_info_soft,      default: "利用者情報管理ソフト"
+      t.text    :customer_info_reason,    default: "そのソフトを使用している理由"
+      t.string  :customer_deposit_soft,   default: "利用者預り金管理ソフト"
+      t.text    :customer_deposit_reason, default: "そのソフトを使用している理由"
+      t.string  :customer_billing_soft,   default: "利用者請求ソフト"
+      t.text    :customer_billing_reason, default: "そのソフトを使用している理由"
+      t.boolean :is_public,               default: false
+      t.boolean :is_deleted,              default: false
 
       t.timestamps null: false
     end

@@ -1,0 +1,43 @@
+<div class="container mt-5 enclosure_color">
+    <div class="row text-center">
+      このサイトは、施設関係者同士が情報交換を行いながら
+    </div>
+    <div class="row">
+      より自施設の形態に沿った情報管理ツールを見つけることで 、
+    </div>
+    <div class="row">
+      介護業界が進むべき、デジタル化への
+    </div>
+    <div class="row">
+      その一歩を踏み出しやすくするためのサイトです。
+    </div>
+   </div>
+   
+  <div class="container mt-5">
+    <div class="row">
+      <% @users.each do |user| %>
+        <div class="col-3 enclosure_color">
+          <table class="table borderless mt-4">
+            <tr>
+              <th>
+                <%= image_tag user.get_profile_image(200, 300) %>
+              </th>
+            </tr>
+            <tr>
+              <td>
+                <%= user.name %>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <%= user.employee %>
+              </td>
+            </tr>
+          </table>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="container ">
+    <%= link_to "一覧はこちら>>", facilities_path %>
+  </div>

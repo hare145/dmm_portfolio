@@ -12,7 +12,93 @@
     
   </head>
 
-  <body>
+  <body class = "d-flex flex-column vh-100 bg_color">
+    <header class="border bg-light">
+      <nav class = "navbar navbar-expand-md navbar-light">
+        <% if admin_signed_in? %>
+          <% if request.fullpath.include? "/admin" %>
+            <p class ="navbar-brand pt-3"> LOGO </p>
+          <% else %>
+            <a class ="navbar-brand p-3" href='<%= root_path %>'> LOGO </a>
+          <% end %>
+        <% elsif user_signed_in? %>
+          <a class ="navbar-brand p-3" href='<%= root_path %>'> LOGO </a>
+        <% else %>
+          <a class ="navbar-brand p-3" href='<%= root_path %>'> LOGO </a>
+        <% end %>  
+        <button class ="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation" >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav ml-auto">
+            <% if admin_signed_in? %>
+              <% if request.fullpath.include? "/admin" %>
+                <li class="nav-item ml-auto" >  
+                  <%= link_to "施設一覧",  admin_facilities_path, class: 'nav-link text-dark' %>
+                </li>
+                <li class="nav-item ml-auto" > 
+                  <%= link_to "ソフト一覧", admin_softs_path, class: 'nav-link text-dark' %>
+                </li>
+                <li class="nav-item ml-auto" > 
+                  <%= link_to "編集通知一覧", admin_soft_edit_notices_path, class: 'nav-link text-dark' %>
+                </li>
+                <li class="nav-item ml-auto" > 
+                  <%= link_to "タグ一覧", admin_tags_path, class: 'nav-link text-dark' %>
+                </li>
+                <li class="nav-item ml-auto" > 
+                  <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' %>
+                </li>
+              <% else %>
+                <li class="nav-item ml-auto" > 
+                  <%= link_to  "施設一覧", facilities_path, class: 'nav-link text-dark' %>
+                </li>
+                <li class="nav-item ml-auto" > 
+                  <%= link_to "ソフト一覧", softs_path, class: 'nav-link text-dark' %>
+                </li>
+                <li class="nav-item ml-auto" > 
+                  <%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-dark' %>
+                </li>
+                <li class="nav-item ml-auto" > 
+                  <%= link_to "ログイン", new_user_session_path, class: 'nav-link text-dark' %>
+                </li>
+              <% end %>
+            <% elsif user_signed_in? %>
+              <li class="nav-item ml-auto" > 
+                <%= link_to  "施設一覧", facilities_path, class: 'nav-link text-dark' %>
+              </li>
+              <li class="nav-item ml-auto" > 
+                <%= link_to "ソフト一覧", softs_path, class: 'nav-link text-dark' %>
+              </li>
+              <li class="nav-item ml-auto" > 
+                <%= link_to "マイページ", users_mypage_path, class: 'nav-link text-dark' %>
+              </li>
+              <li class="nav-item ml-auto" > 
+                <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-dark' %>
+              </li>
+      　　    <% else %>
+              <li class="nav-item ml-auto" > 
+                <%= link_to  "施設一覧", facilities_path, class: 'nav-link text-dark' %>
+              </li>
+              <li class="nav-item ml-auto" > 
+                <%= link_to "ソフト一覧", softs_path, class: 'nav-link text-dark' %>
+              </li>
+              <li class="nav-item ml-auto" > 
+                <%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-dark' %>
+              </li>
+              <li class="nav-item ml-auto" > 
+                <%= link_to "ログイン", new_user_session_path, class: 'nav-link text-dark' %>
+              </li>
+          　 <% end %>　
+          </ul>
+        </div>
+      </nav>
+    </header>
     <%= yield %>
+    <footer class = "mt-auto border bg-light">
+      <div class="container text-center m-4">
+        お問い合わせこちら
+      </div>
+    </footer>
   </body>
 </html>

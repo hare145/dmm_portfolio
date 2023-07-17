@@ -1,32 +1,39 @@
 Rails.application.routes.draw do
+  namespace :public do
+    get 'users/edit'
+    get 'users/unsubscribe'
+    get 'users/mypage'
+  end
  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
    devise_for :users, controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
 }
-  
-  devise_for :admins, skip: [:registrations, :passwords],  controllers: {
+
+   devise_for :admins, skip: [:registrations, :passwords],  controllers: {
     sessions: "admin/sessions"
 }
-    scope module: :public do
+
+  scope module: :public do
    
     controller :homes do
       root to: "homes#top"
     end
     
     controller :facilities do
-      resources :facilities, only: [:show, :index]
-    end
-    
-    controller :users do
-      resources :users, only: [:edit, :update] do
+      resources :facilities, only: [:show, :index] do
         controller :user_comments do
           resources :user_comments, only: [:show, :index, :create, :update]
         end
       end
-      get 'users/mypage' => "users#mypage" 
+    end
+    
+    controller :users do
+      get 'users/mypage' => "users#mypage"
+      get '/users/information/edit' => "users#edit"
+      patch '/users/information' => "users#update"
       get 'users/unsubscribe' => "users#unsubscribe"
-      patch 'users/withdraw' => "users#withdraw"
+      patch 'users/withdraw' => "user#withdraw"
     end
     
     controller :softs do

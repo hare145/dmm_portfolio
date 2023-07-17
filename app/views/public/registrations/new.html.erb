@@ -1,29 +1,61 @@
-<h2>Sign up</h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "publics/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<div class="container mt-5 bg-light">
+  <div class="row form-group">
+    <div class="col-1">
+    </div>
+    <div class="col-5">
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= render "public/shared/error_messages", resource: resource %>
+    
+        <div class="field m-4">
+          <%= f.label :name, "施設名", class: "text-right col-form-label" %><br />
+          <%= f.text_field :name, class: "form-control" %>
+        </div>
+        
+        <div class="field m-4">
+          <%= f.label :email,"メールアドレス", class: "text-right col-form-label" %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+        </div>
+        
+        <div class="field m-4">
+          <%= f.label :employee, "従業員数", class: "text-right col-form-label" %><br />
+          <%= f.text_field :employee, class: "form-control", list: "datalistOptions" %>
+          <datalist id="datalistOptions">
+            <option value="30人未満">
+            <option value="30人以上50人未満">
+            <option value="50人以上100人未満">
+            <option value="100人以上">
+          </datalist>
+        </div>
+        
+        <div class="field m-4">
+          <%= f.label :password, "パスワード（６文字以上）", class: "text-right col-form-label" %>
+          <% if @minimum_password_length %>
+          <% end %><br />
+          <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+        </div>
+      
+        <div class="field m-4">
+          <%= f.label :password_confirmation, "パスワード再入力", class: "text-right col-form-label" %><br />
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+        </div>
+      
+        <div class="actions m-4">
+          <%= f.submit "Sign up" %>
+        </div>
+        <div class="m-4">
+          <%= link_to "cancel", new_user_registration_path, class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-6">
+      <div class="container h-100">
+        <div class="row h-50">
+        </div>
+        <div class="row h-50 ">
+          会員登録済みの方は
+          <%= render "public/shared/links" %>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "publics/shared/links" %>
+</div>
