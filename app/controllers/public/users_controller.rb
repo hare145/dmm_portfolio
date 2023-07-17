@@ -13,6 +13,10 @@ class Public::UsersController < ApplicationController
   end
   
   def withdraw
+    user = User.find(current_customer.id)
+    user.update(is_deleted: true)
+    reset_session
+    redirect_to root_path
   end
 
   def mypage
@@ -28,6 +32,6 @@ class Public::UsersController < ApplicationController
     :account_reason, :accounting_soft, :accounting_reason, :other_soft, :other_reason,
     :salary_soft, :salary_reason, :working_hours_soft, :working_hours_reason,
     :communication_soft, :communication_reason, :customer_info_soft, :customer_info_reason,
-    :customer_deposit_soft, :customer_billing_soft, :customer_billing_reason, :addressee)
+    :customer_deposit_soft, :customer_billing_soft, :customer_billing_reason)
   end
 end

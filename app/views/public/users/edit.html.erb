@@ -13,11 +13,14 @@
 
 <%=form_with model: @user, url: users_information_path, method: :patch do |f| %>
 
-<div class="container mt-4 mb-4">
+<div class="container mt-4">
   <div class="row">
     <div class="col-4">
       <div class="container mb-4 p-2 enclosure_color">
         <%= image_tag current_user.get_profile_image(400, 500), width: '100%', height: '100%'%>
+      </div>
+      <div class="mb-4">
+        <%= f.file_field :image, accept: "image/*" %>
       </div>
       <div class="container p-2 enclosure_color"> 
         <div class="row justify-content-center m-4 p-2 bg-light">
@@ -148,10 +151,12 @@
     <div class="col-3">
       <%=f.submit "変更保存を保存する", class: "form-control btn btn-outline-primary btn-lg" %>
     </div>
-    <div class="col-3">
+    <div class="col-4">
     </div>
     <div class="col-2">
       <%= link_to "退会する", users_unsubscribe_path, class: "form-control btn btn-outline-danger btn-lg" %>
+    </div>
+    <div class="col-1">
     </div>
   </div>
 </div>
