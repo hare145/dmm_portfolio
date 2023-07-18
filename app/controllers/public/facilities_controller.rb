@@ -3,5 +3,7 @@ class Public::FacilitiesController < ApplicationController
   end
 
   def show
+  #   @viwe = User.find(params[:id])
+  # 　impressionist(@view, nil, unique: [:ip_address]) 閲覧
   end
 end

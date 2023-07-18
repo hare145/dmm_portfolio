@@ -1,9 +1,4 @@
 Rails.application.routes.draw do
-  namespace :public do
-    get 'users/edit'
-    get 'users/unsubscribe'
-    get 'users/mypage'
-  end
  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
    devise_for :users, controllers: {
     registrations: "public/registrations",
@@ -58,11 +53,11 @@ Rails.application.routes.draw do
   namespace :admin do
     
     controller :homes do
-      root to: "homes#tops"
+      get '/' => "homes#top"
     end
     
-    controller:facilities  do
-      resources :facilities, only: [:show, :index, :edit, :update]
+    controller :facilities  do
+      resources :facilities, only: [:show, :edit, :update]
     end
     
     controller :softs do

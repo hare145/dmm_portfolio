@@ -144,7 +144,7 @@ ActiveRecord::Schema.define(version: 2023_07_17_125325) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer "name", null: false
+    t.string "name", null: false
     t.string "employee", default: "", null: false
     t.integer "tag"
     t.integer "service_id"

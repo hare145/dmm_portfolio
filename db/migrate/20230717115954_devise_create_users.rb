@@ -31,8 +31,8 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
       # t.integer  :failed_attempts, default: 0, null: false # Only if lock strategy is :failed_attempts
       # t.string   :unlock_token # Only if unlock strategy is :email or :both
       # t.datetime :locked_at
-      t.integer :name,                    null: false
-      t.string :employee,                 null: false, default: ""
+      t.string  :name,                    null: false
+      t.string  :employee,                null: false, default: ""
       t.integer :tag
       t.integer :service_id
       t.string  :account_soft,            default: "会計使用ソフト"
@@ -55,7 +55,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
       t.text    :customer_billing_reason, default: "そのソフトを使用している理由"
       t.boolean :is_public,               default: false
       t.boolean :is_deleted,              default: false
-
+      # t.integer :impressions_count,       default: 0 閲覧数を数えるカラム
       t.timestamps null: false
     end
 
