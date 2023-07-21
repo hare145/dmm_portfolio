@@ -1,7 +1,8 @@
-class CreateSoftInfos < ActiveRecord::Migration[6.1]
+class CreateSofts < ActiveRecord::Migration[6.1]
   def change
-    create_table :soft_infos do |t|
+    create_table :softs do |t|
       t.integer :user_id,        null: false
+      t.integer :work_id,        null: false
       t.string  :company,        null: false
       t.string  :address,        null: false
       t.string  :url,            null: false

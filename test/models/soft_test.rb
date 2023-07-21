@@ -1,6 +1,6 @@
 require "test_helper"
 
-class SoftInfoTest < ActiveSupport::TestCase
+class SoftTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

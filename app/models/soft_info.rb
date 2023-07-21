@@ -1,2 +1,0 @@
-class SoftInfo < ApplicationRecord
-end

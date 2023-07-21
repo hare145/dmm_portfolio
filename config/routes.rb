@@ -32,7 +32,8 @@ Rails.application.routes.draw do
     end
     
     controller :softs do
-      resources :softs, only: [:show, :index, :edit, :update] do
+      get 'softs/new' => "softs#new"
+      resources :softs, only: [:show, :index, :create, :update] do
         controller :soft_comments do
           resources :soft_comments, only: [:show, :index, :create, :update]
         end
@@ -53,7 +54,7 @@ Rails.application.routes.draw do
   namespace :admin do
     
     controller :homes do
-      get '/' => "homes#top"
+      root to: "homes#top"
     end
     
     controller :facilities  do

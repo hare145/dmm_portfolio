@@ -1,2 +1,67 @@
-<h1>Public::Softs#index</h1>
-<p>Find me in app/views/public/softs/index.html.erb</p>
+<div class="bg-dark">
+  <div class="container">
+    <div class="row p-4">
+      <div class="col-2 text-center text-light">
+        ソフト一覧
+      </div>
+      <div class="col-7">
+      </div>
+      <div class="col-3">
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="container mt-5 rounded-pill bg-dark">
+  <div class="row  d-flex justify-content-center text-light">
+    ソフト情報の新規登録は
+    <%= link_to "こちら", softs_new_path, class: "text-light" %>
+    から
+  </div>
+</div>
+
+ 
+ 
+ <div class="container mt-5">
+   <div class="row">
+     <div class="col-2">
+       ソフト一覧
+     </div>
+     <div class="col-10 p-2">
+       <div class="border border-dark">
+       </div>
+     </div>
+   </div>
+ </div>
+ 
+ 
+  <div class="container mt-5 rounded-pill">
+    <div class="row justify-content-center">
+      <% @works.each do |work| %>
+      <div class="d-flex">
+        <%= link_to "会計経理関係", softs_path(work_id: work.id) %>
+        <%= link_to "労務関係", softs_path(work_id: work.id)%>
+        <%= link_to "利用者関係", softs_path(work_id: work.id)%>
+      </div>
+      <% end %>
+      会計経理関係  労務関係  利用者関係
+    </div>
+      <div class="row">
+        <% @softs.each do |soft| %>
+          <div class="col-3">
+            <div class="container bg-light">
+              <div class="row">
+                <%= link_to soft.company, soft_path(soft_info.id), class: "text-dark" %>
+              </div>
+              <div class="row ">
+                <%= soft.work_id %>
+              </div>
+              <div class="row border_dashe"></div>
+                <%= soft.introduction.truncate(length: 25) %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+ </div>
+ 

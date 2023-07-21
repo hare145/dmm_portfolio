@@ -10,3 +10,14 @@ Admin.create!(
    email: 'admin@gmail.com',
    password: '123456',
 )
+
+
+[
+  ['会計経理関係'],
+  ['労務関係'],
+  ['利用者関係']
+].each do |kind|
+  Work.create!(
+    { kind: kind }
+ )
+ end
