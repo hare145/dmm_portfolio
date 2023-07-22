@@ -86,7 +86,7 @@ ActiveRecord::Schema.define(version: 2023_07_19_154029) do
   end
 
   create_table "services", force: :cascade do |t|
-    t.string "contact", null: false
+    t.string "content", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -113,19 +113,14 @@ ActiveRecord::Schema.define(version: 2023_07_19_154029) do
     t.integer "work_id", null: false
     t.string "company", null: false
     t.string "address", null: false
+    t.string "founding"
     t.string "url", null: false
     t.text "introduction", null: false
     t.integer "first_cost"
     t.integer "month_cost"
     t.integer "year_cost"
     t.text "function"
-    t.boolean "is_pubic", default: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "tags", force: :cascade do |t|
-    t.string "content", null: false
+    t.boolean "is_public", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

@@ -1,0 +1,11 @@
+public 
+
+index 
+is_public == false
+一覧に表示させない
+
+
+admin
+
+一覧に表示
+is_public == false or true で検索できても良いかも

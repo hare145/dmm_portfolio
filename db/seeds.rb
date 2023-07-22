@@ -19,5 +19,5 @@ Admin.create!(
 ].each do |kind|
   Work.create!(
     { kind: kind }
- )
- end
+  )
+end

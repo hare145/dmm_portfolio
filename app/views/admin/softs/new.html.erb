@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row p-4">
       <div class="col-2 text-center text-light">
-        ソフト情報編集画面
+        ソフト情報投稿画面
       </div>
       <div class="col-7">
       </div>
@@ -12,17 +12,20 @@
   </div>
 </div>
 
-<%=form_with model: @soft, url: admin_softs_path, method: :patch do |f| %>
+<%=form_with model: @soft, url: admin_softs_path, method: :post do |f| %>
   
   <div class="container mt-4 mb-4">
     <div class="row">
       <div class="col-4">
         <div class="container mb-4 p-2 enclosure_color">
+          <%= image_tag 'no_image.jpg', width: '100%', height: '100%'%>
+        </div>
+        <div class="mb-4">
           <%= f.file_field :image, accept: "image/*" %>
         </div>
         <div class="container p-2 enclosure_color"> 
           <div class="row justify-content-center m-4 p-2 bg-light">
-            <%= f.text_field :company, class: "form-control-plaintext border-secondary border-bottom border-top-0" %>
+            <%= f.text_field :company, placeholder: "会社名", class: "form-control-plaintext border-secondary border-bottom border-top-0" %>
           </div>
           <div class="row justify-content-center h-100">
             <div class="col-4 text-center h-25 m-4 p-2 bg-light">
@@ -45,12 +48,12 @@
               創立日
             </div>
             <div class="col-5 text-center m-4 p-2 content_color">
-              <%= f.text_field :founding, class: "form-control-plaintext border-secondary border-bottom border-top-0" %>
+              <%= f.text_field :address, placeholder: "XXXX年",class: "form-control-plaintext border-secondary border-bottom border-top-0" %>
             </div>
           </div>
           <div class="row justify-content-center">
             <div class="col-10 text-center m-4 p-2 content_color">
-              <%= f.text_field :url, class: "form-control-plaintext border-secondary border-bottom border-top-0 placeholder_font" %>
+              <%= f.text_field :url, placeholder: "ここにURL（例：http://example.com）を記載してください", class: "form-control-plaintext border-secondary border-bottom border-top-0 placeholder_font" %>
             </div>
           </div>
         </div>
@@ -70,13 +73,13 @@
           基本料金情報
         </div>
         <div class="">
-          <%= f.text_field :first_cost, class: "form-control border-secondary border-bottom border-top-0"%>
+          <%= f.text_field :first_cost, placeholder: "初回費用", class: "form-control border-secondary border-bottom border-top-0"%>
         </div>
         <div class="">
-          <%= f.text_field :mouth_cost, class: "form-control border-secondary border-bottom border-top-0"%>
+          <%= f.text_field :mouth_cost, placeholder: "月額費用", class: "form-control border-secondary border-bottom border-top-0"%>
         </div>
         <div class="">
-          <%= f.text_field :year_cost, class: "form-control border-secondary border-bottom border-top-0"%>
+          <%= f.text_field :year_cost, placeholder: "年額費用", class: "form-control border-secondary border-bottom border-top-0"%>
         </div>
         
         <div class="p-1 text-light bg-dark">
@@ -85,21 +88,6 @@
         <div class="h-25">
           <%= f.text_area :function, class: "form-control border-secondary border-bottom border-top-0", style: "height:100%" %>
         </div>
-      </div>
-    </div>
-  </div>
-  
-  <div class="container mt-2 mb-5">
-    <div class="row d-flex justify-content-center">
-      <div class="col-4">
-      </div>
-      <div class="col-4">
-          <%= form.radio_button :is_public, :false %>
-          <%= form.label :is_public, "非公開", {value: :false, style: "display: inline-block;"} %>
-          <%= form.radio_button :is_public, :true %>
-          <%= form.label :is_public, "女性", {value: :true, style: "display: inline-block;"} %>
-      </div>
-      <div class="col-4">
       </div>
     </div>
   </div>

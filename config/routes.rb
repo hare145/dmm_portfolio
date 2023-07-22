@@ -62,11 +62,12 @@ Rails.application.routes.draw do
     end
     
     controller :softs do
-      resources :softs, only: [:show, :index, :edit, :update]
+      get 'softs/new' => "softs#new"
+      resources :softs, only: [:show, :index, :edit, :update, :create]
     end
     
-    controller :tags do
-      resources :tags, only: [:index, :edit, :update, :create]
+    controller :services do
+      resources :services, only: [:index, :edit, :update, :create]
     end
     
     controller :contacts do
