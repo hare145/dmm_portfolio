@@ -1,0 +1,19 @@
+<button class="btn m-1 " type="button" data-bs-toggle="collapse" 
+       data-bs-target="#collapseSoft" aria-expanded="false" aria-controls="collapseSoft"
+       data-bs-toggle="tooltip" data-bs-placement="bottom" title="ソフト情報検索"
+       onclick="actionToggle();">
+  <i class="fa-brands fa-uncharted"></i>
+</button>
+<div class="collapse" id="collapseSoft">
+    <%= form_with url: softs_path, method: :get do |f| %>
+    <div class="d-flex">
+      <%= f.text_field :name, class: 'form-control-plaintext border-bottom' %>
+      <%= button_tag type: "submit", class: "btn btn-default" do %>
+        <i class="fa-solid fa-magnifying-glass"></i>
+      <% end %>
+    </div>
+    <% end %>
+</div>
+
+  
+  

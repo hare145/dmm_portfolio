@@ -14,10 +14,10 @@
 
 
 <div class="container mt-5 rounded-pill bg-dark">
-  <div class="row  d-flex justify-content-center text-light">
-    ソフト情報の新規登録は
-    <%= link_to "こちら", softs_new_path, class: "text-light" %>
-    から
+  <div class="row p-3 d-flex text-center text-light">
+    <spam>ソフト情報の新規登録は</span>
+    <%= link_to "こちら", admin_softs_new_path, class: "text-light" %>
+    <span>から</span>
   </div>
 </div>
 
@@ -36,31 +36,26 @@
  </div>
  
  
-  <div class="container mt-5 rounded-pill bg_color">
-    <div class="row justify-content-center">
-      <% @works.each do |work| %>
-      <div class="d-flex">
-        <%= link_to work.kind, softs_path(work_id: work.id) %>
-      </div>
-      <% end %>
-    </div>
-    <div class="row">
-      <% @softs.each do |soft| %>
-        <div class="col-3">
-          <div class="container bg-light">
-            <div class="row">
-              <%= link_to soft.company, soft_path(soft_info.id), class: "text-dark" %>
-            </div>
-            <div class="row ">
-              <%= soft.work_id %>
-            </div>
-            <div class="row border_dashe"></div>
-            <div class="row">
-              <%= soft.introduction.truncate(length: 25) %>
-            </div>
-          </div>
+<div class="container mt-5 rounded enclosure_color">
+  <div class="row d-flex justify-content-center">
+    <% @works.each do |work| %>
+      <span>
+        <%= link_to work.kind, admin_softs_path(work_id: work.id) %>
+      </span>
+    <% end %>
+  </div>
+  <div class="row">
+    <% @softs.each do |soft| %>
+      <div class="col-3 m-1">
+        <div class="card border border-dark">
+        <div class="card-body">
+          <h6 class="card-title"><%= link_to soft.company, admin_soft_path(soft.id), class: "text-dark" %></h6>
+          <h6 class="card-subtitle mb-2 text-muted"><%= soft.work_id %></h6>
+          <div class="row border_dashe m-1"></div>
+          <p class="card-text mb-3"><%= truncate("#{soft.introduction}", length: 15, omission: "..." ) %></p>
         </div>
-      <% end %>
+      </div>
     </div>
- </div>
- 
+    <% end %>
+  </div>
+</div>

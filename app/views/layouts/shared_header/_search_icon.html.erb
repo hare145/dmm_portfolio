@@ -1,0 +1,18 @@
+<div class="search_icon">
+  <i class="fa-solid fa-magnifying-glass"></i>
+</div>
+
+
+<style>
+ .search_icon.is-hidden {
+    opacity: 0;
+ }
+</style>
+
+
+<script>
+function actionToggle() {
+  var $search_icon = document.querySelector('.search_icon')
+  $search_icon.classList.toggle('is-hidden')
+}
+</script>

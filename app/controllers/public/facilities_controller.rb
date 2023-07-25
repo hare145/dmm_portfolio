@@ -1,5 +1,10 @@
 class Public::FacilitiesController < ApplicationController
   def index
+    if params[:name].present?
+      @users = User.where("name LIKE?","%#{params[:name]}%")
+    else
+      @users = User.all
+    end
   end
 
   def show

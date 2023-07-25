@@ -18,7 +18,10 @@
     <div class="row">
       <div class="col-4">
         <div class="container mb-4 p-2 enclosure_color">
-          <%= f.file_field :image, accept: "image/*" %>
+          <%= image_tag @soft.get_logo_image(400,500), width: '100%', height: '100%' %>
+        </div>
+        <div class="container mb-4 p-2 enclosure_color">
+          <%= f.file_field :logo_image, accept: "image/*" %>
         </div>
         <div class="container p-2 enclosure_color"> 
           <div class="row justify-content-center m-4 p-2 bg-light">
@@ -73,7 +76,7 @@
           <%= f.text_field :first_cost, class: "form-control border-secondary border-bottom border-top-0"%>
         </div>
         <div class="">
-          <%= f.text_field :mouth_cost, class: "form-control border-secondary border-bottom border-top-0"%>
+          <%= f.text_field :month_cost, class: "form-control border-secondary border-bottom border-top-0"%>
         </div>
         <div class="">
           <%= f.text_field :year_cost, class: "form-control border-secondary border-bottom border-top-0"%>
@@ -94,10 +97,10 @@
       <div class="col-4">
       </div>
       <div class="col-4">
-          <%= form.radio_button :is_public, :false %>
-          <%= form.label :is_public, "非公開", {value: :false, style: "display: inline-block;"} %>
-          <%= form.radio_button :is_public, :true %>
-          <%= form.label :is_public, "女性", {value: :true, style: "display: inline-block;"} %>
+          <%= f.radio_button :is_public, :false %>
+          <%= f.label :is_public, "非公開", {value: :false, style: "display: inline-block;"} %>
+          <%= f.radio_button :is_public, :true %>
+          <%= f.label :is_public, "公開", {value: :true, style: "display: inline-block;"} %>
       </div>
       <div class="col-4">
       </div>

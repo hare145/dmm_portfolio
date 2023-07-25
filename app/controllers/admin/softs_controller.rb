@@ -5,14 +5,20 @@ class Admin::SoftsController < ApplicationController
   
   def index
     @works = Work.all
-    if params[:work_id] == "1"
-      @softs = Soft.where(work_id: 1)
-    elsif params[:work_id] == "2"
-      @softs = Soft.where(work_id: 2)
-    elsif params[:work_id] == "3"
-      @softs = Soft.where(work_id: 3)
-    else  
-     @softs = Soft.all
+    if params[:company].present?
+      @softs = Soft.where("name LIKE?","%#{params[:company]}%")
+      if params[:work_id] == "#{params[:id]}"
+        @softs.where(work_id: params[:id])
+      else  
+       @softs = Soft.all
+      end
+    else
+      @softs = Soft.all
+      if params[:work_id] == "#{params[:id]}"
+        @softs.where(work_id: params[:id])
+      else  
+       @softs = Soft.all
+      end
     end
   end
 
@@ -28,9 +34,9 @@ class Admin::SoftsController < ApplicationController
 
 
   def create
-    @soft = Soft.new
+    @soft = Soft.new(soft_params)
     @soft.user_id = current_admin.id
-    @soft.save(soft_params)
+    @soft.save
     redirect_to admin_softs_path(@soft)
   end
 
@@ -46,6 +52,6 @@ class Admin::SoftsController < ApplicationController
   
   def soft_params
     params.require(:soft).permit(:user_id, :work_id, :company, :address, :url,
-    :introduction, :first_cost, :month_cost, :year_cost, :function, :is_public)
+    :introduction, :first_cost, :month_cost, :year_cost, :function, :founding, :is_public, :logo_image)
   end
 end

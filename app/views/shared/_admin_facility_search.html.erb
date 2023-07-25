@@ -1,0 +1,17 @@
+<button class="btn m-1" type="button" data-bs-toggle="collapse" 
+       data-bs-target="#collapseFacility" aria-expanded="false" aria-controls="collapseFacility"
+       onclick="actionToggle();">
+  <i class="fa-solid fa-house"></i>
+</button>
+<div class="collapse" id="collapseFacility">
+  <%= form_with url: admin_root_path, method: :get do |f| %>
+  <div class="d-flex">
+    <%= f.text_field :name, class: 'form-control-plaintext border-bottom' %>
+    <%= button_tag type: "submit", class: "btn btn-default" do %>
+      <i class="fa-solid fa-magnifying-glass"></i>
+    <% end %>
+  </div>
+  <% end %>
+</div>
+
+
