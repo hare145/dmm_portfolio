@@ -10,4 +10,5 @@ class Soft < ApplicationRecord
     logo_image.variant(resize_to_limit: [width, height]).processed
   end
   
+  
 end

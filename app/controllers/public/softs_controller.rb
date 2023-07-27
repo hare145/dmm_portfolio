@@ -5,14 +5,16 @@ class Public::SoftsController < ApplicationController
   
   def index
     @works = Work.all
-    if params[:work_id] == "1"
-      @softs = Soft.where(work_id: 1, is_public: true)
-    elsif params[:work_id] == "2"
-      @softs = Soft.where(work_id: 2, is_public: true)
-    elsif params[:work_id] == "3"
-      @softs = Soft.where(work_id: 3, is_public: true)
-    else  
-     @softs = Soft.where(is_public: true)
+    @search_soft = params[:company]
+    @search_work = params[:work_id]
+    if @search_soft.present? && @search_work.present?
+      @softs = Soft.where("company LIKE?","%#{@search_soft}%").where(work_id: @search_work)
+    elsif @search_soft.present?
+      @softs = Soft.where("company LIKE?","%#{@search_soft}%")
+    elsif @search_work.present?
+      @softs = Soft.where(work_id: @search_work)
+    else
+      @softs = Soft.all
     end
   end
 

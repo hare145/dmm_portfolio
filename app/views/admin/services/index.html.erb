@@ -1,2 +1,37 @@
-<h1>Admin::Services#index</h1>
-<p>Find me in app/views/admin/services/index.html.erb</p>
+<div class="bg-dark">
+  <div class="container">
+    <div class="row p-4">
+      <div class="col-2 text-center text-light">
+        サービス業務を追加する
+      </div>
+      <div class="col-7">
+      </div>
+      <div class="col-3">
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= form_with model: @service, url: admin_services_path, method: :post do |f| %>
+  <div class="container mt-5 mb-5">
+    <div class="row">
+      <div class="col-3">
+        <%= f.text_field :content, class: "form-control-plaintext border-secondary border-bottom border-top-0" %>
+      </div>
+      <div class="col-1">
+        <%= f.submit "追加", class: "form-control btn btn-outline-primary" %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+
+<div class="container mt-5 mb-2 rounded enclosure_color h-50">
+  <div class="row p-3">
+    <% @services.each do |service| %>
+      <div class="col-2 mb-3 text-center">
+        <%= link_to service.content, admin_service_path(service.id) %>
+      </div>
+    <% end %>
+  </div>
+</div>

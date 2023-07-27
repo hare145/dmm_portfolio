@@ -5,27 +5,22 @@ class Admin::SoftsController < ApplicationController
   
   def index
     @works = Work.all
-    if params[:company].present?
-      @softs = Soft.where("name LIKE?","%#{params[:company]}%")
-      if params[:work_id] == "#{params[:id]}"
-        @softs.where(work_id: params[:id])
-      else  
-       @softs = Soft.all
-      end
+    @search_soft = params[:company]
+    @search_work = params[:work_id]
+    if @search_soft.present? && @search_work.present?
+      @softs = Soft.where("company LIKE?","%#{@search_soft}%").where(work_id: @search_work)
+    elsif @search_soft.present?
+      @softs = Soft.where("company LIKE?","%#{@search_soft}%")
+    elsif @search_work.present?
+      @softs = Soft.where(work_id: @search_work)
     else
       @softs = Soft.all
-      if params[:work_id] == "#{params[:id]}"
-        @softs.where(work_id: params[:id])
-      else  
-       @softs = Soft.all
-      end
     end
   end
 
   def show
     @soft = Soft.find(params[:id])
     @soft_comments = SoftComment.where(id: params[:id])
-    
   end
 
   def edit
@@ -42,7 +37,7 @@ class Admin::SoftsController < ApplicationController
 
   def update
     @soft = Soft.find(params[:id])
-    @soft.update(soft_parans)
+    @soft.update(soft_params)
     redirect_to admin_softs_path(@soft)
   end
 

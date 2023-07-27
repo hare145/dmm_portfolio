@@ -5,6 +5,9 @@ class Public::FacilitiesController < ApplicationController
     else
       @users = User.all
     end
+    @works = Work.all
+    @services = Service.all
+    @search_facility = params[:name]
   end
 
   def show

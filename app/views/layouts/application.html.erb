@@ -12,7 +12,6 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     
-    
   </head>
 
   <body class = "d-flex flex-column vh-100 bg_color">
@@ -51,7 +50,7 @@
                     <% end %>
                   </li>
                   <li class="nav-item mr-auto" > 
-                    <%= link_to "編集通知一覧", admin_soft_edit_notices_path, class: 'nav-link active text-dark', "aria-current": "page" %>
+                    <%= link_to "編集通知一覧", admin_soft_edit_notices_path, class: 'nav-link active text-dark', "aria-current": :"page" %>
                   </li>
                   <li class="nav-item mr-auto" > 
                     <%= link_to "サービス一覧", admin_services_path, class: 'nav-link active text-dark', "aria-current": :"page" %>
@@ -63,10 +62,10 @@
                     <%= render partial: 'layouts/shared_header/search_icon' %>
                   </li>
                   <li class="nav-item mr-auto">
-                    <%= render partial: 'shared/admin_facility_search' %>
+                    <%= render partial: 'layouts/shared_header/admin_facility_search' %>
                   </li>
                   <li class="nav-item mr-auto">
-                    <%= render partial: 'shared/admin_soft_search' %>
+                    <%= render partial: 'layouts/shared_header/admin_soft_search' %>
                   </li>
                 <% else %>
                   <li class="nav-item mr-auto" > 
@@ -85,10 +84,10 @@
                     <%= render partial: 'layouts/shared_header/search_icon' %>
                   </li>
                   <li class="nav-item">
-                    <%= render partial: 'shared/facility_search' %>
+                    <%= render partial: 'layouts/shared_header/facility_search' %>
                   </li>
                   <li class="nav-item">
-                    <%= render partial: 'shared/soft_search' %>
+                    <%= render partial: 'layouts/shared_header/soft_search' %>
                   </li>
                 <% end %>
               <% elsif user_signed_in? %>
@@ -108,10 +107,10 @@
                   <%= render partial: 'layouts/shared_header/search_icon' %>
                 </li>
                 <li class="nav-item mr-auto">
-                  <%= render partial: 'shared/facility_search' %>
+                  <%= render partial: 'layouts/shared_header/facility_search' %>
                 </li>
                 <li class="nav-item mr-auto">
-                  <%= render partial: 'shared/soft_search' %>
+                  <%= render partial: 'layouts/shared_header/soft_search' %>
                 </li>
         　　    <% else %>
                 <li class="nav-item mr-auto" > 
@@ -130,10 +129,10 @@
                   <%= render partial: 'layouts/shared_header/search_icon' %>
                 </li>
                 <li class="nav-item mr-auto">
-                    <%= render partial: 'shared/facility_search' %>
+                    <%= render partial: 'layouts/shared_header/facility_search' %>
                 </li>
                 <li class="nav-item mr-auto">
-                  <%= render partial: 'shared/soft_search' %>
+                  <%= render partial: 'layouts/shared_header/soft_search' %>
                 </li>
             　 <% end %>
             </ul>

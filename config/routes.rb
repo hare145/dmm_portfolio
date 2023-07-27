@@ -67,7 +67,7 @@ Rails.application.routes.draw do
     end
     
     controller :services do
-      resources :services, only: [:index, :edit, :update, :create]
+      resources :services, only: [:index, :edit, :update, :create, :destroy]
     end
     
     controller :contacts do

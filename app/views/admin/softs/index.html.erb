@@ -36,26 +36,58 @@
  </div>
  
  
-<div class="container mt-5 rounded enclosure_color">
-  <div class="row d-flex justify-content-center">
+<div class="container mt-5 p-2 rounded enclosure_color">
+  <div class="row justify-content-center">
     <% @works.each do |work| %>
-      <span>
-        <%= link_to work.kind, admin_softs_path(work_id: work.id) %>
-      </span>
-    <% end %>
-  </div>
-  <div class="row">
-    <% @softs.each do |soft| %>
-      <div class="col-3 m-1">
-        <div class="card border border-dark">
-        <div class="card-body">
-          <h6 class="card-title"><%= link_to soft.company, admin_soft_path(soft.id), class: "text-dark" %></h6>
-          <h6 class="card-subtitle mb-2 text-muted"><%= soft.work_id %></h6>
-          <div class="row border_dashe m-1"></div>
-          <p class="card-text mb-3"><%= truncate("#{soft.introduction}", length: 15, omission: "..." ) %></p>
-        </div>
-      </div>
+    <div class="col-3">
+      <%= link_to work.kind, admin_softs_path( company: @search_soft, work_id: work.id) %>
     </div>
     <% end %>
+  </div>
+  <div>
+    
+  </div>
+  
+  <div class="row p-3">
+    <table class="table">
+      <tr>
+        <thead class="table-dark text-center">
+          <th class="col-4">
+            ソフト名
+          </th>
+          <th class="col-3">
+            業務分類
+          </th>
+          <th class="col-2">
+            閲覧数
+          </th>
+          <th class="col-3">
+            公開ステータス
+          </th>
+        </thead>
+      </tr>
+      <tr>
+        <% @softs.each do |soft| %>
+        <tbody class="text-center">
+          <td>
+            <%= link_to soft.company, admin_soft_path(soft.id), class: "text-dark" %> 
+          </td>
+          <td>
+            <%= soft.work_id %>
+          </td>
+          <td>
+            
+          </td>
+          <% if soft.is_public == false %>
+            <td class="text-secondary">非公開</td>
+          <% elsif soft.is_public == true %>
+            <td class="text-success">公開</td>
+          <% else %>
+            <td>なし</td>
+          <% end %>
+        </tbody>
+        <% end %>
+      </tr>
+    </table>
   </div>
 </div>

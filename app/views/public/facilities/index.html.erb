@@ -1,0 +1,50 @@
+<div class="bg-dark">
+  <div class="container">
+    <div class="row p-4">
+      <div class="col-2 text-center text-light">
+        施設一覧
+      </div>
+      <div class="col-7">
+      </div>
+      <div class="col-3">
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="container mt-5">
+  <div class="row">
+    <% @services.each do |service| %>
+      <% break if service.id = 5 %>
+        <div class="col-2 mr-1 rounded enclosure_color">
+          <%= link_to service.content, facilities_path(name: @search_facility, service_id: service.id) %>
+        </div>
+      <% next if service.id = 1..5 && break if service.id = 9 %>
+        <div class="col-3 mr-1 rounded enclosure_color">
+          <%= link_to service.content, facilities_path %>
+        </div>
+      <% next if service.id = 9..12 && break if service.id = 15 %>
+        <div class="col-4 mr-1 rounded enclosure_color">
+          <%= link_to service.content, facilities_path %>
+        </div>
+    <% end %>
+  </div>
+</div>
+ 
+<div class="container mt-5 p-2 ">
+  <div class="row">
+    <% @users.each do |user| %>
+      <div class="col-3 m-1 p-2 rounded enclosure_color">
+        <div class="card" style="height: 100%, width: 100%">
+          <%= image_tag user.get_profile_image(200, 300), class: "border" %>
+          <div class="card-body m-2">
+            <h5 class="card-title p-1 text-center"><%= user.name %></h5>
+            <p class="card-text p-2 text-center"><%= user.employee %></p>
+            <%= link_to "詳細ページへ", facility_path(user.id), class: "btn btn-warning " %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
