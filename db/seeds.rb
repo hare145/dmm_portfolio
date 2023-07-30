@@ -21,3 +21,11 @@ Admin.create!(
     { kind: kind }
   )
 end
+
+
+require "csv"
+CSV.foreach('db/csv/福祉サービス一覧.csv', headers: true) do |row|
+  Service.create(
+    content: row['content']
+  )
+end

@@ -33,7 +33,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
       # t.datetime :locked_at
       t.string  :name,                    null: false
       t.string  :employee,                null: false, default: ""
-      t.integer :tag
+      t.integer :impressions_count,       default: 0
       t.integer :service_id
       t.string  :account_soft,            default: "会計使用ソフト"
       t.text    :account_reason,          default: "そのソフトを使用している理由"

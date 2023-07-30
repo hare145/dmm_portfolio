@@ -4,9 +4,18 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   
-  # is_impressionable counter_cache: true 閲覧数を数える
+  has_many :user_services
+  
   
   has_one_attached :profile_image
+  
+  # ---Impressionistを用いてPV数取得---
+  is_impressionable counter_cache: true
+  
+  
+  scope :creat_search, -> { order(created_at: :desc) }
+  scope :view_search, -> { order(impressions_count: :desc) }
+  
   
   def get_profile_image(width, height)
     unless profile_image.attached?

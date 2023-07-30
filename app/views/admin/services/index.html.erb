@@ -16,7 +16,7 @@
   <div class="container mt-5 mb-5">
     <div class="row">
       <div class="col-3">
-        <%= f.text_field :content, class: "form-control-plaintext border-secondary border-bottom border-top-0" %>
+        <%= f.text_field :content, class: "form-control" %>
       </div>
       <div class="col-1">
         <%= f.submit "追加", class: "form-control btn btn-outline-primary" %>
@@ -30,7 +30,7 @@
   <div class="row p-3">
     <% @services.each do |service| %>
       <div class="col-2 mb-3 text-center">
-        <%= link_to service.content, admin_service_path(service.id) %>
+        <%= link_to service.content, edit_admin_service_path(service.id) %>
       </div>
     <% end %>
   </div>

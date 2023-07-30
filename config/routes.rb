@@ -47,6 +47,14 @@ Rails.application.routes.draw do
       get 'contacts/notice' => "contacts#notice"
     end
     
+    controller :services do
+      resources :services, only: [:index]
+    end
+    
+    controller :user_services do
+      resources :user_services, only: [:create]
+    end
+    
     
   end
 

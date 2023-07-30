@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_07_19_154029) do
+ActiveRecord::Schema.define(version: 2023_07_30_095037) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -111,6 +111,7 @@ ActiveRecord::Schema.define(version: 2023_07_19_154029) do
   create_table "softs", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "work_id", null: false
+    t.integer "impressions_count", default: 0
     t.string "company", null: false
     t.string "address", null: false
     t.string "founding"
@@ -134,6 +135,13 @@ ActiveRecord::Schema.define(version: 2023_07_19_154029) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "user_services", force: :cascade do |t|
+    t.integer "use_id"
+    t.integer "service_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -142,7 +150,7 @@ ActiveRecord::Schema.define(version: 2023_07_19_154029) do
     t.datetime "remember_created_at"
     t.string "name", null: false
     t.string "employee", default: "", null: false
-    t.integer "tag"
+    t.integer "impressions_count", default: 0
     t.integer "service_id"
     t.string "account_soft", default: "会計使用ソフト"
     t.text "account_reason", default: "そのソフトを使用している理由"

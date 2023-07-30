@@ -13,24 +13,53 @@
 </div>
 
 
-<div class="container mt-5">
-  <div class="row">
-    <% @services.each do |service| %>
-      <% break if service.id = 5 %>
-        <div class="col-2 mr-1 rounded enclosure_color">
-          <%= link_to service.content, facilities_path(name: @search_facility, service_id: service.id) %>
-        </div>
-      <% next if service.id = 1..5 && break if service.id = 9 %>
-        <div class="col-3 mr-1 rounded enclosure_color">
-          <%= link_to service.content, facilities_path %>
-        </div>
-      <% next if service.id = 9..12 && break if service.id = 15 %>
-        <div class="col-4 mr-1 rounded enclosure_color">
-          <%= link_to service.content, facilities_path %>
-        </div>
+<div class="container mt-5 ">
+  <div class="row justify-content-center mt-1">
+    <% @first_services.each do |service| %>
+      <div class="col-2 m-1 text-center rounded-pill enclosure_color border border-secondary">
+        <%= link_to service.content, facilities_path(name: @search_facility, service_id: service.id), class: "small text-dark text-decoration-none" %>
+      </div>
     <% end %>
   </div>
+  <div class="row justify-content-center mt-1 mx-3">
+    <% @next_services.each do |service| %>
+      <div class="col-2 m-1 text-center rounded-pill enclosure_color border border-secondary">
+        <%= link_to service.content, facilities_path(name: @search_facility, service_id: service.id), class: "small text-dark text-decoration-none" %>
+      </div>
+  <% end %>
+  </div>
+  <div class="row justify-content-center mt-1 mx-5">
+    <% @third_services.each do |service| %>
+      <div class="col-2 m-1 text-center rounded-pill enclosure_color border border-secondary">
+        <%= link_to service.content, facilities_path(name: @search_facility, service_id: service.id), class: "small text-dark text-decoration-none" %>
+      </div>
+   <% end %>
+   <div class="col-2 m-1 text-center rounded-pill enclosure_color border border-secondary">
+      <%= link_to "サービス一覧へ>>", services_path, class: "small text-dark text-decoration-none" %>
+   </div>
+  </div>
 </div>
+
+<div class="container">
+  <div class ="row mt-3">
+      <div class="col-10">
+      </div>
+      <div class ="col-2">
+        <%= form_with model: @users, url: facilities_path, method: :get do |f| %>
+          <%= f.select :ordered, [  ['投稿が新しい順', 'new'],
+                                    ['閲覧数が多い', 'view']
+          ], {prompt: '選択してください' }, class: "form-select form-select-sm border border-secondary", id: "sort" %>
+          <%= f.hidden_field :company, :value=> @search_facility %>
+          <%= f.hidden_field :service_id, :value=> params[:service_id] %>
+        <% end %>
+        <script>
+          $('#sort').change(function() {
+          $(this).parent().submit();
+        });
+        </script>
+      </div>
+    </div>
+ </div>
  
 <div class="container mt-5 p-2 ">
   <div class="row">

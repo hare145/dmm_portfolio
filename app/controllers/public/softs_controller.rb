@@ -5,21 +5,58 @@ class Public::SoftsController < ApplicationController
   
   def index
     @works = Work.all
+    # @rank_softs = Soft.order(impressions_count: 'DESC')
+    
     @search_soft = params[:company]
     @search_work = params[:work_id]
-    if @search_soft.present? && @search_work.present?
-      @softs = Soft.where("company LIKE?","%#{@search_soft}%").where(work_id: @search_work)
+    @search_order = params[:ordered]
+    
+    if @search_soft.present? && @search_work.present? && @search_order.present?
+      if @search_order == "new"
+        @softs = Soft.where("company LIKE?","%#{@search_soft}%").where(work_id: @search_work).creat_search.public_true
+      else @search_oreder = "view" 
+        @softs = Soft.where("company LIKE?","%#{@search_soft}%").where(work_id: @search_work).view_search.public_true
+      end
+      
+    elsif @search_soft.present? && @search_work.present?
+      @softs = Soft.where("company LIKE?","%#{@search_soft}%").where(work_id: @search_work).public_true
+      
+    elsif @search_soft.present? && @search_order.present?
+      if @search_order == "new"
+        @softs = Soft.where("company LIKE?","%#{@search_soft}%").creat_search.public_true
+      else @search_oreder = "view" 
+        @softs = Soft.where("company LIKE?","%#{@search_soft}%").view_search.public_true
+      end
+      
+    elsif @search_work.present? && @search_order.present?
+      if @search_order == "new"
+        @softs = Soft.where(work_id: @search_work).creat_search.public_true
+      else @search_oreder = "view" 
+        @softs = Soft.where(work_id: @search_work).view_search.public_true
+      end
+    
     elsif @search_soft.present?
-      @softs = Soft.where("company LIKE?","%#{@search_soft}%")
+      @softs = Soft.where("company LIKE?","%#{@search_soft}%").public_true
+      
     elsif @search_work.present?
-      @softs = Soft.where(work_id: @search_work)
+      @softs = Soft.where(work_id: @search_work).public_true
+      
+    elsif @search_order.present?
+      if @search_order == "new"
+        @softs = Soft.creat_search.public_true
+      else @search_oreder = "view" 
+        @softs = Soft.view_search.public_true
+      end
+    
     else
-      @softs = Soft.all
+      @softs = Soft.all.public_true
     end
   end
 
   def show
     @soft = Soft.find(params[:id])
+    # impressionist(@soft, nil, unique: [:ip_address])
+    
     @soft_comments = SoftComment.where(id: params[:id])
   end
 

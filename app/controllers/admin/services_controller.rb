@@ -5,6 +5,7 @@ class Admin::ServicesController < ApplicationController
   end
 
   def edit
+    @service = Service.find(params[:id])
   end
   
   def create
@@ -14,7 +15,9 @@ class Admin::ServicesController < ApplicationController
   end
   
   def update
-    
+    @service = Service.find(params[:id])
+    @servive.update(service_params)
+    redirect_to :index
   end
   
   def destroy
