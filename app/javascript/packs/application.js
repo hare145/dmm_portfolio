@@ -13,7 +13,13 @@ import "popper.js";
 import "bootstrap";
 import "../stylesheets/application.scss";
 
+require("jquery")
 
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+
+$(function () {
+    $('#select_box').select2();
+});

@@ -4,9 +4,22 @@
       <div class="col-2 text-center text-light">
         ソフト一覧
       </div>
-      <div class="col-7">
+      <div class="col-8">
       </div>
-      <div class="col-3">
+      <div class="col-2">
+        <%= form_with model: @softs, url: admin_softs_path, method: :get do |f| %>
+          <%= f.select :ordered, [  ['投稿が新しい順', 'new'],
+                                    ['閲覧数が多い', 'view']
+          ], {prompt: '選択してください' }, class: "form-select form-select-sm border border-secondary", id: "sort" %>
+          <%= f.hidden_field :company, :value=> @search_soft %>
+          <%= f.hidden_field :work_id, :value=> params[:work_id] %>
+        <% end %>
+        <script>
+          $('#sort').change(function() {
+          $(this).parent().submit();
+        });
+        </script>
+      </div>
       </div>
     </div>
   </div>
@@ -76,7 +89,7 @@
             <%= soft.work_id %>
           </td>
           <td>
-            
+            <%= soft.impressions_count %>
           </td>
           <% if soft.is_public == false %>
             <td class="text-secondary">非公開</td>

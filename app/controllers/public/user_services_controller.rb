@@ -1,9 +1,19 @@
 class Public::UserServicesController < ApplicationController
-
+  
+  def show
+  end
+  
   def create
-    @user.new(user_service_params)
-    @user.user_id = current_user.id
-    @user.save
+    @user_service = UserService.new
+    @user_service.user_id = current_user.id
+    @user_servuce.save(user_service_params)
+    redirect_to users_mypage_path
+  end
+
+  def update
+    @user_service = UserService.find(params[:id])
+    @user_service.user_id = current_user.id
+    @user_service.update(user_service_params)
     redirect_to users_mypage_path
   end
 

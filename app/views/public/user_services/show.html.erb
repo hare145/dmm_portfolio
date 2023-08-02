@@ -1,0 +1,44 @@
+<div class="bg-dark">
+  <div class="container">
+    <div class="row p-4">
+      <div class="col-2 text-center text-light">
+        自施設サービス選択画面
+      </div>
+      <div class="col-10">
+      </div>
+    </div>
+  </div>
+</div>
+
+<% if UserService.exists?(use_id: params[:id]) %>
+  <%=form_with model: @user_service, url: user_service_path, method: :post do |f| %>
+  <div class="container mt-5">
+    <%= f.select :service_id, options_from_collection_for_select(Service.all, :id, :content), {}, class: "form-control-plaintext serect_box", multiple: true %>
+  </div>
+  
+  <div class="container mt-4 mb-4">
+    <div class="row d-flex justify-content-center">
+      <div class="col-3">
+        <%=f.submit "変更保存を保存する", class: "form-control btn btn-outline-primary btn-lg" %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+
+<% else %>
+  <%=form_with model: @user_service, url: user_service_path, method: :patch do |f| %>
+  <div class="container mt-5">
+    <%= f.select :service_id, options_from_collection_for_select(Service.all, :id, :content), {}, class: "form-control-plaintext serect_box", multiple: true %>
+  </div>
+  
+  <div class="container mt-4 mb-4">
+    <div class="row d-flex justify-content-center">
+      <div class="col-3">
+        <%=f.submit "変更保存を保存する", class: "form-control btn btn-outline-primary btn-lg" %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+<% end %>
+
+ <%= javascript_pack_tag 'select' %>

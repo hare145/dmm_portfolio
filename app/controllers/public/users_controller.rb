@@ -13,7 +13,7 @@ class Public::UsersController < ApplicationController
   end
   
   def withdraw
-    user = User.find(current_customer.id)
+    user = User.find(current_user.id)
     user.update(is_deleted: true)
     reset_session
     redirect_to root_path

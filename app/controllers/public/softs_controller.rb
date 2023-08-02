@@ -5,7 +5,6 @@ class Public::SoftsController < ApplicationController
   
   def index
     @works = Work.all
-    # @rank_softs = Soft.order(impressions_count: 'DESC')
     
     @search_soft = params[:company]
     @search_work = params[:work_id]
@@ -55,7 +54,7 @@ class Public::SoftsController < ApplicationController
 
   def show
     @soft = Soft.find(params[:id])
-    # impressionist(@soft, nil, unique: [:ip_address])
+    impressionist(@soft, nil, unique: [:ip_address])
     
     @soft_comments = SoftComment.where(id: params[:id])
   end

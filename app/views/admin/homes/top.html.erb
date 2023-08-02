@@ -6,8 +6,19 @@
       </div>
       <div class="col-7">
       </div>
-      <div class="col-3 text-center text-light">
-         ここにソート機能 
+      <div class="col-2 text-center text-light">
+         <%= form_with model: @users, url: admin_root_path, method: :get do |f| %>
+          <%= f.select :ordered, [  ['投稿が新しい順', 'new'],
+                                    ['閲覧数が多い', 'view']
+          ], {prompt: '選択してください' }, class: "form-select form-select-sm border border-secondary", id: "sort" %>
+          <%= f.hidden_field :company, :value=> @search_facility %>
+          <%= f.hidden_field :service_id, :value=> params[:service_id] %>
+        <% end %>
+        <script>
+          $('#sort').change(function() {
+          $(this).parent().submit();
+        });
+        </script>
       </div>
     </div>
   </div>
@@ -30,9 +41,7 @@
           <tr>
           <td><%= link_to user.name, admin_facility_path(user.id), class: "text-dark" %></td>
           <td><%= user.email %></td>
-          <td>  
-          <!--閲覧数 %= user.impressions_count %> -->
-          </td>
+          <td><%= user.impressions_count %> --></td>
             <% if user.is_deleted == true %>
               <td class="text-secondary">退会</td>
             <% elsif user.is_deleted == false %>

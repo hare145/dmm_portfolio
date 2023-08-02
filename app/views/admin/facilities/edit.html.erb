@@ -1,2 +1,162 @@
-<h1>Admin::Facilities#edit</h1>
-<p>Find me in app/views/admin/facilities/edit.html.erb</p>
+<div class="bg-dark">
+  <div class="container">
+    <div class="row p-4">
+      <div class="col-2 text-center text-light">
+        登録情報編集画面
+      </div>
+      <div class="col-10">
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<%=form_with model: @user, url: users_information_path, method: :patch do |f| %>
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-4">
+      <div class="container mb-4 p-2 enclosure_color">
+        <%= image_tag @user.get_profile_image(400, 500), width: '100%', height: '100%'%>
+      </div>
+      <div class="mb-4">
+        <%= f.file_field :image, accept: "image/*" %>
+      </div>
+      <div class="container p-2 enclosure_color"> 
+        <div class="row justify-content-center m-4 p-2 bg-light">
+          <%= f.text_field :name, class: "form-control-plaintext border-secondary border-bottom border-top-0" %>
+        </div>
+        <div class="row justify-content-center h-100">
+          <div class="col-4 text-center h-25 m-4 p-2 bg-light">
+            提供サービス
+          </div>
+          <div class="col-5 text-center m-4 p-2 content_color">
+          <%= link_to "サービスを選択する", user_service_path(@user), class: "text-dark" %>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-4 text-center h-25 m-4 p-2 bg-light">
+            従業員数
+          </div>
+          <div class="col-5 text-center m-4 p-2 content_color">
+            <%= f.text_field :employee, class: "form-control-plaintext border-secondary border-bottom border-top-0", list: "datalistOptions" %>
+            <datalist id="datalistOptions">
+              <option value="30人未満">
+              <option value="30人以上50人未満">
+              <option value="50人以上100人未満">
+              <option value="100人以上">
+            </datalist>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-1">
+    </div>
+    <div class="col-7">
+      <div class="p-1 text-light bg-dark">
+        会計・経理関係採用サイト
+      </div>
+      <table class="table m-0">
+        <tr>
+          <th class="col-4 text-center table-danger">
+            <%= f.text_field :account_soft, class: "form-control-plaintext border-secondary border-bottom border-top-0" %>
+          </th>
+          <td class="col-8">
+            <%= f.text_area :account_reason, class: "form-control-plaintext border-secondary border-bottom border-top-0"%>
+          </td>
+        </tr>
+        <tr>
+          <th class="col-4 text-center table-danger">
+            <%= f.text_field :accounting_soft, class: "form-control-plaintext border-secondary border-bottom border-top-0" %>
+          </th>
+          <td class="col-8">
+            <%= f.text_area :accounting_reason, class: "form-control-plaintext border-secondary border-bottom border-top-0"%>
+          </td>
+        </tr>
+        <tr>
+          <th class="col-4 text-center table-danger">
+            <%= f.text_field :other_soft, class: "form-control-plaintext border-secondary border-bottom border-top-0" %>
+          </th>
+          <td class="col-8">
+            <%= f.text_area :other_reason, class: "form-control-plaintext border-secondary border-bottom border-top-0"%>
+          </td>
+        </tr>
+      </table>
+      <div class="p-1 text-light bg-dark">
+        労務関係採用サイト
+      </div>
+      <table class="table m-0">
+        <tr>
+          <th class="col-4 text-center table-danger">
+            <%= f.text_field :salary_soft, class: "form-control-plaintext border-secondary border-bottom border-top-0" %>
+          </th>
+          <td class="col-8">
+            <%= f.text_area :salary_reason, class: "form-control-plaintext border-secondary border-bottom border-top-0"%>
+          </td>
+        </tr>
+        <tr>
+          <th class="col-4 text-center table-danger">
+            <%= f.text_field :working_hours_soft, class: "form-control-plaintext border-secondary border-bottom border-top-0" %>
+          </th>
+          <td class="col-8">
+            <%= f.text_area :working_hours_reason, class: "form-control-plaintext border-secondary border-bottom border-top-0"%>
+          </td>
+        </tr>
+        <tr>
+          <th class="col-4 text-center table-danger">
+            <%= f.text_field :communication_soft, class: "form-control-plaintext border-secondary border-bottom border-top-0" %>
+          </th>
+          <td class="col-8">
+            <%= f.text_area :communication_reason, class: "form-control-plaintext border-secondary border-bottom border-top-0"%>
+          </td>
+        </tr>
+      </table>
+      <div class="p-1 text-light bg-dark">
+        利用者関係採用サイト
+      </div>
+      <table class="table m-0">
+        <tr>
+          <th class="col-4 text-center table-danger">
+            <%= f.text_field :customer_info_soft, class: "form-control-plaintext border-secondary border-bottom border-top-0" %>
+          </th>
+          <td class="col-8">
+            <%= f.text_area :customer_info_reason, class: "form-control-plaintext border-secondary border-bottom border-top-0"%>
+          </td>
+        </tr>
+        <tr>
+          <th class="col-4 text-center table-danger">
+            <%= f.text_field :customer_deposit_soft, class: "form-control-plaintext border-secondary border-bottom border-top-0" %>
+          </th>
+          <td class="col-8">
+            <%= f.text_area :customer_deposit_reason, class: "form-control-plaintext border-secondary border-bottom border-top-0"%>
+          </td>
+        </tr>
+        <tr>
+          <th class="col-4 text-center table-danger">
+            <%= f.text_field :customer_billing_soft, class: "form-control-plaintext border-secondary border-bottom border-top-0" %>
+          </th>
+          <td class="col-8">
+            <%= f.text_area :customer_billing_reason, class: "form-control-plaintext border-secondary border-bottom border-top-0"%>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="container mt-4 mb-4">
+  <div class="row d-flex justify-content-center">
+    <div class="col-2">
+    </div>
+    <div class="col-3">
+      <%=f.submit "変更保存を保存する", class: "form-control btn btn-outline-primary btn-lg" %>
+    </div>
+    <div class="col-4">
+    </div>
+    <div class="col-2">
+      <%= link_to "退会する", users_unsubscribe_path, class: "form-control btn btn-outline-danger btn-lg" %>
+    </div>
+    <div class="col-1">
+    </div>
+  </div>
+</div>
+<% end %>

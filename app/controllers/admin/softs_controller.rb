@@ -4,15 +4,48 @@ class Admin::SoftsController < ApplicationController
   end
   
   def index
-    @works = Work.all
+     @works = Work.all
+     
     @search_soft = params[:company]
     @search_work = params[:work_id]
-    if @search_soft.present? && @search_work.present?
+    @search_order = params[:ordered]
+    
+    if @search_soft.present? && @search_work.present? && @search_order.present?
+      if @search_order == "new"
+        @softs = Soft.where("company LIKE?","%#{@search_soft}%").where(work_id: @search_work).creat_search
+      else @search_oreder = "view" 
+        @softs = Soft.where("company LIKE?","%#{@search_soft}%").where(work_id: @search_work).view_search
+      end
+    elsif @search_soft.present? && @search_work.present?
       @softs = Soft.where("company LIKE?","%#{@search_soft}%").where(work_id: @search_work)
+      
+    elsif @search_soft.present? && @search_order.present?
+      if @search_order == "new"
+        @softs = Soft.where("company LIKE?","%#{@search_soft}%").creat_search
+      else @search_oreder = "view" 
+        @softs = Soft.where("company LIKE?","%#{@search_soft}%").view_search
+      end
+      
+    elsif @search_work.present? && @search_order.present?
+      if @search_order == "new"
+        @softs = Soft.where(work_id: @search_work).creat_search
+      else @search_oreder = "view" 
+        @softs = Soft.where(work_id: @search_work).view_search
+      end
+    
     elsif @search_soft.present?
       @softs = Soft.where("company LIKE?","%#{@search_soft}%")
+      
     elsif @search_work.present?
       @softs = Soft.where(work_id: @search_work)
+      
+    elsif @search_order.present?
+      if @search_order == "new"
+        @softs = Soft.creat_search
+      else @search_oreder = "view" 
+        @softs = Soft.view_search
+      end
+    
     else
       @softs = Soft.all
     end

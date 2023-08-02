@@ -52,7 +52,7 @@ Rails.application.routes.draw do
     end
     
     controller :user_services do
-      resources :user_services, only: [:create]
+      resources :user_services, only: [:show, :create, :update]
     end
     
     
