@@ -38,6 +38,9 @@ Rails.application.routes.draw do
         controller :soft_comments do
           resources :soft_comments, only: [:show, :index, :create, :update]
         end
+        controller :softmarks do
+          resources :softmarks, only: [:create, :destroy]
+        end
       end
     end
     

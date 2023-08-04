@@ -41,7 +41,7 @@
           <tr>
           <td><%= link_to user.name, admin_facility_path(user.id), class: "text-dark" %></td>
           <td><%= user.email %></td>
-          <td><%= user.impressions_count %> --></td>
+          <td><%= user.impressions_count %></td>
             <% if user.is_deleted == true %>
               <td class="text-secondary">退会</td>
             <% elsif user.is_deleted == false %>

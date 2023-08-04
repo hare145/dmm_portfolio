@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row p-4">
       <div class="col-2 text-center text-light">
-        マイページ
+        施設情報詳細
       </div>
       <div class="col-7">
       </div>
@@ -105,11 +105,7 @@
             <%= @facility.communication_soft %>
           </th>
           <td class="col-8">
-            <%if @facility.communication_reason.nil? %>   
-              <%= @facility.communication_reason %>
-            <% else %>
-              <%= safe_join(@facility.communication_reason.split("\n"),tag(:br)) %>
-            <%end %>
+            <%= safe_join(@facility.communication_reason.split("\n"),tag(:br)) %>
           </td>
         </tr>
       </table>

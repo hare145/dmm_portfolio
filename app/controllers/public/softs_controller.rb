@@ -55,7 +55,6 @@ class Public::SoftsController < ApplicationController
   def show
     @soft = Soft.find(params[:id])
     impressionist(@soft, nil, unique: [:ip_address])
-    
     @soft_comments = SoftComment.where(id: params[:id])
   end
 

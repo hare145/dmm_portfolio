@@ -4,9 +4,8 @@ class Public::UserServicesController < ApplicationController
   end
   
   def create
-    @user_service = UserService.new
-    @user_service.user_id = current_user.id
-    @user_servuce.save(user_service_params)
+    @user_service = current_user.user_services.new(user_service_params)
+    @user_servuce.save
     redirect_to users_mypage_path
   end
 

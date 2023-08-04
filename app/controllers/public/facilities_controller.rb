@@ -1,4 +1,7 @@
 class Public::FacilitiesController < ApplicationController
+  impressionist :actions => [:show]
+  
+  
   def index
     @first_services = Service.all.limit(5)
     @next_services = Service.all.limit(4).offset(6)
@@ -51,7 +54,9 @@ class Public::FacilitiesController < ApplicationController
   end
 
   def show
-  #   @viwe = User.find(params[:id])
-  # 　impressionist(@view, nil, unique: [:ip_address]) 
+    @facility = User.find(params[:id])
+    @comments = UserComment.all
+    # @UserService.where(user_id: @facility)
+  # 　impressionist(@facility, nil, unique: [:ip_address])
   end
 end
