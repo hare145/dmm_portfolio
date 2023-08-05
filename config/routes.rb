@@ -29,6 +29,18 @@ Rails.application.routes.draw do
       patch '/users/information' => "users#update"
       get 'users/unsubscribe' => "users#unsubscribe"
       patch 'users/withdraw' => "user#withdraw"
+      get 'users/bookmark' => "users#bookmark"
+      resources :users do
+        controller :user_services do
+          resources :user_services, only: [:show, :create, :update]
+        end
+        controller :user_comments do
+          resources :user_comments, only: [:show, :index, :create, :update]
+        end
+        controller :usermarks do
+          resources :usermarks, only: [:create, :destroy]
+        end
+      end
     end
     
     controller :softs do
@@ -53,11 +65,6 @@ Rails.application.routes.draw do
     controller :services do
       resources :services, only: [:index]
     end
-    
-    controller :user_services do
-      resources :user_services, only: [:show, :create, :update]
-    end
-    
     
   end
 

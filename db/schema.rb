@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_08_04_125842) do
+ActiveRecord::Schema.define(version: 2023_08_05_120136) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -174,6 +174,14 @@ ActiveRecord::Schema.define(version: 2023_08_04_125842) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "usermarks", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["facility_id"], name: "index_usermarks_on_facility_id"
+    t.index ["user_id"], name: "index_usermarks_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -224,4 +232,6 @@ ActiveRecord::Schema.define(version: 2023_08_04_125842) do
   add_foreign_key "softkmarks", "users"
   add_foreign_key "softmarks", "softs"
   add_foreign_key "softmarks", "users"
+  add_foreign_key "usermarks", "facilities"
+  add_foreign_key "usermarks", "users"
 end

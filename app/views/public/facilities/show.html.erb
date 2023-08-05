@@ -7,7 +7,13 @@
       <div class="col-7">
       </div>
       <div class="col-3 text-center">
-        <%= link_to "登録情報を編集する", edit_admin_facility_path(@facility), class: "text-light" %>
+        <% if user_signed_in? %>
+          <% if Usermark.where(user_id: current_user.id).exists? %>
+            <%= link_to "お気に入りを解除", user_usermark_path(current_user.usermarks.find_by(user_id: @facility.id)), method: :delete, class: "btn btn-outline-success" %>
+          <% else %>
+            <%= link_to "お気に入りに登録", user_usermarks_path(@facility, usermark: {user_id: @facility.id}), method: :post, class: "btn btn-success" %>
+          <% end %>
+        <% end %>
       </div>
     </div>
   </div>

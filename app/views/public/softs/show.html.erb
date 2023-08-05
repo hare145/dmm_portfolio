@@ -7,7 +7,13 @@
       <div class="col-7">
       </div>
       <div class="col-3">
-       <%= render "public/shared/softmark", soft: @soft %>
+        <% if user_signed_in? %>
+          <% if Softmark.where(user_id: current_user.id).exists? %>
+            <%= link_to "お気に入りを解除", soft_softmark_path(current_user.softmarks.find_by(soft_id: @soft.id)), method: :delete, class: "btn btn-outline-success" %>
+          <% else %>
+            <%= link_to "お気に入りに登録", soft_softmarks_path(@soft, softmark: {soft_id: @soft.id}), method: :post, class: "btn btn-success" %>
+          <% end %>
+        <% end %>
       </div>
     </div>
   </div>

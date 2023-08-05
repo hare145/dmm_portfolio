@@ -1,7 +1,6 @@
 class Public::SoftmarksController < ApplicationController
   def create
-    @softkmark = Softmark.new(softmark_params)
-    @softmark.user_id = current_user.id
+    @softmark = current_user.softmarks.build(softmark_params)
     if @softmark.save
       redirect_to request.referer
     else
@@ -9,9 +8,8 @@ class Public::SoftmarksController < ApplicationController
     end
   end
   
-  def destory
-    @soft = Soft.find(params[:soft_id])
-    @softmark = @soft.softmarks.find_by(user_id: current_user.id)
+  def destroy
+    @softmark = current_user.softmarks.find_by(soft_id: params[:id])
     if @softmark.present?
       @softmark.destroy
       redirect_to request.referer
@@ -25,6 +23,6 @@ class Public::SoftmarksController < ApplicationController
 private
   
   def softmark_params
-    params.permit(:soft_id)
+    params.require(:softmark).permit(:soft_id)
   end
 end

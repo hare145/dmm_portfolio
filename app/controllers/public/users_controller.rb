@@ -23,7 +23,10 @@ class Public::UsersController < ApplicationController
     @comments = UserComment.where(user_id: params[:id])
   end
   
-  
+  def bookmark
+    @softmarks = current_user.softmark_softs.order(created_at: :desc)
+    
+  end
   
   private
  

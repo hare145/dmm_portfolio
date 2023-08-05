@@ -23,8 +23,5 @@ class Soft < ApplicationRecord
     logo_image.variant(resize_to_limit: [width, height]).processed
   end
   
-  def softmarked_by?(user)
-    softmarks.where(user_id: user).exists?
-  end
   
 end
