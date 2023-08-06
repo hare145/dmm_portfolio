@@ -52,15 +52,6 @@ ActiveRecord::Schema.define(version: 2023_08_05_120136) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
-  create_table "bookmarks", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "soft_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["soft_id"], name: "index_bookmarks_on_soft_id"
-    t.index ["user_id"], name: "index_bookmarks_on_user_id"
-  end
-
   create_table "contacts", force: :cascade do |t|
     t.text "contant", null: false
     t.boolean "is_notice", default: false
@@ -122,15 +113,6 @@ ActiveRecord::Schema.define(version: 2023_08_05_120136) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "softkmarks", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "soft_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["soft_id"], name: "index_softkmarks_on_soft_id"
-    t.index ["user_id"], name: "index_softkmarks_on_user_id"
-  end
-
   create_table "softmarks", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "soft_id", null: false
@@ -178,7 +160,6 @@ ActiveRecord::Schema.define(version: 2023_08_05_120136) do
     t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["facility_id"], name: "index_usermarks_on_facility_id"
     t.index ["user_id"], name: "index_usermarks_on_user_id"
   end
 
@@ -226,12 +207,7 @@ ActiveRecord::Schema.define(version: 2023_08_05_120136) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "bookmarks", "softs"
-  add_foreign_key "bookmarks", "users"
-  add_foreign_key "softkmarks", "softs"
-  add_foreign_key "softkmarks", "users"
   add_foreign_key "softmarks", "softs"
   add_foreign_key "softmarks", "users"
-  add_foreign_key "usermarks", "facilities"
   add_foreign_key "usermarks", "users"
 end

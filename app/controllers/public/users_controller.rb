@@ -25,7 +25,7 @@ class Public::UsersController < ApplicationController
   
   def bookmark
     @softmarks = current_user.softmark_softs.order(created_at: :desc)
-    
+    @usermarks = current_user.usermark_users.order(created_at: :desc)
   end
   
   private

@@ -55,8 +55,8 @@ class Public::FacilitiesController < ApplicationController
 
   def show
     @facility = User.find(params[:id])
+    impressionist(@facility, nil, unique: [:ip_address])
     @comments = UserComment.all
     # @UserService.where(user_id: @facility)
-  # 　impressionist(@facility, nil, unique: [:ip_address])
   end
 end

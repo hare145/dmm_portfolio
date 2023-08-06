@@ -9,7 +9,6 @@
   </div>
 </div>
 
-
 <div class="container mt-3 enclosure_color">
   <div class="row justify-content-center">
     <% @softmarks.each do |softmark| %>
@@ -35,5 +34,22 @@
     <div class="col-10 mt-2 border-top border-dark">
       
     </div>
+  </div>
+</div>
+
+<div class="container mt-3 enclosure_color">
+  <div class="row justify-content-center">
+    <% @usermarks.each do |usermark| %>
+      <div class="col-3 m-1">
+        <div class="card border border-dark">
+        <div class="card-body">
+          <h6 class="card-title"><%= link_to usermark.name, facility_path(usermark.id), class: "text-dark" %></h6>
+          <h6 class="card-subtitle mb-2 text-muted"><%= usermark.employee %></h6>
+          <div class="row border_dashe m-1"></div>
+          <p class="card-text mb-3"><%= truncate("#{usermark.impressions_count}", length: 25, omission: "..." ) %></p>
+        </div>
+      </div>
+    </div>
+    <% end %>
   </div>
 </div>
