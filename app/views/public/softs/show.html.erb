@@ -8,7 +8,7 @@
       </div>
       <div class="col-3">
         <% if user_signed_in? %>
-          <% if Softmark.where(user_id: current_user.id).exists? %>
+          <% if Softmark.where(user_id: current_user.id, soft_id: @soft.id).exists? %>
             <%= link_to "お気に入りを解除", soft_softmark_path(current_user.softmarks.find_by(soft_id: @soft.id)), method: :delete, class: "btn btn-outline-success" %>
           <% else %>
             <%= link_to "お気に入りに登録", soft_softmarks_path(@soft, softmark: {soft_id: @soft.id}), method: :post, class: "btn btn-success" %>
@@ -97,18 +97,41 @@
 <div class="container">
   <div class="row">
     <div class="col-2">
-      投稿コメント一覧(全<%= %>件)
+      投稿コメント一覧(全<%= @comments.count %>件)
     </div>
-    <div class="col-10 border-bottom border-dark">
+    <div class="col-10 mt-2 border-top border-dark">
     </div>
   </div>
 </div>
 
 <div class="container enclosure_color mt-4 mb-4">
-  <% @soft_comments.each do |comment| %>
-    <div class="row">
-      <%= comment.is_public %>
-      <%= comment.content %>
+  <%=form_with model: @softcomment, url: soft_softcomments_path(@soft.id), method: :post do |f| %>
+    <div class="row mt-4 ms-4">
+        <div class="col-4">
+            <%= f.radio_button :name, current_user.name %>
+            <%= f.label :name, current_user.name, {value: current_user.name, style: "display: inline-block;"} %>
+            <%= f.radio_button :name, "匿名" %>
+            <%= f.label :name, "匿名", {value: "匿名", style: "display: inline-block;"} %>
+        </div>
+      </div>
+    <div class="row mx-3">
+      <div class="col-10">
+        <%= f.text_area :content, class: "form-control" %>
+      </div>
+      <div class="col-2">
+        <%= f.submit "投稿する", class: "btn btn-success" %>
+      </div>
+    </div>
+  <% end %>
+  
+  <% @comments.each do |comment| %>
+    <div class="row mx-4">
+      <%= comment.name %>
+    </div>
+    <div class="row mx-3">
+      <div class="col-10">
+        <%= comment.content %>
+      </div>
     </div>
   <% end %>
   <div class="row">

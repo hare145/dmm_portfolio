@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_08_05_120136) do
+ActiveRecord::Schema.define(version: 2023_08_06_004601) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -59,11 +59,6 @@ ActiveRecord::Schema.define(version: 2023_08_05_120136) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "facilities", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "impressions", force: :cascade do |t|
     t.string "impressionable_type"
     t.integer "impressionable_id"
@@ -96,21 +91,24 @@ ActiveRecord::Schema.define(version: 2023_08_05_120136) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "soft_comments", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "facilitiy_id", null: false
-    t.text "content", null: false
-    t.boolean "is_public", default: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "soft_edit_notices", force: :cascade do |t|
     t.string "user_id", null: false
     t.string "soft_info_id", null: false
     t.boolean "is_notice", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "softcomments", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "soft_id", null: false
+    t.string "name", null: false
+    t.text "content", null: false
+    t.boolean "is_public", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["soft_id"], name: "index_softcomments_on_soft_id"
+    t.index ["user_id"], name: "index_softcomments_on_user_id"
   end
 
   create_table "softmarks", force: :cascade do |t|
@@ -140,24 +138,20 @@ ActiveRecord::Schema.define(version: 2023_08_05_120136) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "user_comments", force: :cascade do |t|
+  create_table "usercomments", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.integer "profile_id", null: false
+    t.integer "page_id", null: false
+    t.string "name", null: false
     t.text "content", null: false
     t.boolean "is_public", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "user_services", force: :cascade do |t|
-    t.integer "use_id"
-    t.integer "service_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_usercomments_on_user_id"
   end
 
   create_table "usermarks", force: :cascade do |t|
     t.integer "user_id", null: false
+    t.integer "page_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_usermarks_on_user_id"
@@ -199,6 +193,15 @@ ActiveRecord::Schema.define(version: 2023_08_05_120136) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "userservices", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "service_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["service_id"], name: "index_userservices_on_service_id"
+    t.index ["user_id"], name: "index_userservices_on_user_id"
+  end
+
   create_table "works", force: :cascade do |t|
     t.string "kind", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -207,7 +210,12 @@ ActiveRecord::Schema.define(version: 2023_08_05_120136) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "softcomments", "softs"
+  add_foreign_key "softcomments", "users"
   add_foreign_key "softmarks", "softs"
   add_foreign_key "softmarks", "users"
+  add_foreign_key "usercomments", "users"
   add_foreign_key "usermarks", "users"
+  add_foreign_key "userservices", "services"
+  add_foreign_key "userservices", "users"
 end

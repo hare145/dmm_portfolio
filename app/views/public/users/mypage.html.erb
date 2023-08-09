@@ -154,20 +154,45 @@
 <div class="container">
   <div class="row">
     <div class="col-2">
-      投稿コメント一覧(全<%= %>件)
+      投稿コメント一覧(全<%= @usercomments.count + @softcomments.count %>件)
     </div>
-    <div class="col-10 border-bottom border-dark">
+    <div class="col-10">
     </div>
   </div>
 </div>
 
-<div class="container enclosure_color mt-4 mb-4">
-  <% @comments.each do |comment| %>
+
+
+<div class="container mt-4 mb-4 enclosure_color">
+  <div class="container mt-5">
     <div class="row">
-      <%= comment.is_public %>
-      <%= comment.content %>
+      <div class="col-3">
+        ユーザー情報への投稿コメント一覧(全<%= @usercomments.count %>件)
+      </div>
+      <div class="col-9 mt-3 border-top border-dark">
+      </div>
     </div>
-  <% end %>
+    <% @usercomments.each do |usercomment| %>
+      <div class="row m-3 bg-light">
+        <%= usercomment.content %>
+      </div>
+    <% end %>
+  </div>
+  
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-3">
+        ソフト情報への投稿コメント一覧(全<%= @softcomments.count %>件)
+      </div>
+      <div class="col-9 mt-3 border-top border-dark">
+      </div>
+    </div>
+    <% @softcomments.each do |softcomment| %>
+      <div class="row m-3 bg-light">
+        <%= softcomment.content %>
+      </div>
+    <% end %>
+  </div>
   <div class="row">
     <div class="col-10">
     </div>

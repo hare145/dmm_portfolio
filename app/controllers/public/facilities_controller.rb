@@ -56,7 +56,10 @@ class Public::FacilitiesController < ApplicationController
   def show
     @facility = User.find(params[:id])
     impressionist(@facility, nil, unique: [:ip_address])
-    @comments = UserComment.all
+    if user_signed_in?
+      @usercomment = current_user.usercomments.new
+    end
+    @comments = Usercomment.where(page_id: @facility, is_public: false)
     # @UserService.where(user_id: @facility)
   end
 end

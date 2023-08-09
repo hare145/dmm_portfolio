@@ -1,0 +1,2 @@
+module Public::SoftcommentsHelper
+end

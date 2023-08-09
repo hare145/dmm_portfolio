@@ -53,7 +53,7 @@ class Admin::SoftsController < ApplicationController
 
   def show
     @soft = Soft.find(params[:id])
-    @soft_comments = SoftComment.where(id: params[:id])
+    @soft_comments = Softcomment.where(id: params[:id])
   end
 
   def edit

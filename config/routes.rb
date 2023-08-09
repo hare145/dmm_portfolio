@@ -16,11 +16,7 @@ Rails.application.routes.draw do
     end
     
     controller :facilities do
-      resources :facilities, only: [:show, :index] do
-        controller :user_comments do
-          resources :user_comments, only: [:show, :index, :create, :update]
-        end
-      end
+      resources :facilities, only: [:show, :index]
     end
     
     controller :users do
@@ -34,8 +30,8 @@ Rails.application.routes.draw do
         controller :user_services do
           resources :user_services, only: [:show, :create, :update]
         end
-        controller :user_comments do
-          resources :user_comments, only: [:show, :index, :create, :update]
+        controller :usercomments do
+          resources :usercomments, only: [:create, :update, :destroy]
         end
         controller :usermarks do
           resources :usermarks, only: [:create, :destroy]
@@ -47,8 +43,8 @@ Rails.application.routes.draw do
       get 'softs/new' => "softs#new"
       get 'softs/notice' => "softs#notice"
       resources :softs, only: [:show, :index, :create, :update] do
-        controller :soft_comments do
-          resources :soft_comments, only: [:show, :index, :create, :update]
+        controller :softcomments do
+          resources :softcomments, only: [:create, :update, :destroy]
         end
         controller :softmarks do
           resources :softmarks, only: [:create, :destroy]
@@ -97,7 +93,6 @@ Rails.application.routes.draw do
     end
     
   end
-  
 
 
   

@@ -145,7 +145,7 @@
 <div class="container">
   <div class="row">
     <div class="col-2">
-      投稿コメント一覧(全<%= %>件)
+      投稿コメント一覧(全<%= @usercomments.count %>件)
     </div>
     <div class="col-10 border-bottom border-dark">
     </div>
@@ -153,10 +153,19 @@
 </div>
 
 <div class="container enclosure_color mt-4 mb-4">
-  <% @comments.each do |comment| %>
+  <% @usercomments.each do |usercomment| %>
     <div class="row">
-      <%= comment.is_public %>
-      <%= comment.content %>
+      <% if usercomment.is_public == false %>
+        <%= link_to "非公開にする", user_usercomment_path(@facility, comment_id: usercomment.id, usercomment: { is_public: true}), method: :patch %>
+      <% else %>
+       <%= link_to "公開する", user_usercomment_path(@facility, comment_id: usercomment.id, usermark: {is_public: false}), method: :patch %>
+      <% end %>
+      <div class="col-3">
+        <%= usercomment.name %>
+      </div>
+    </div>
+    <div class="row">
+      <%= usercomment.content %>
     </div>
   <% end %>
   <div class="row">

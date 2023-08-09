@@ -1,7 +1,7 @@
 class Soft < ApplicationRecord
   
   has_many :softmarks, dependent: :destroy
-  
+  has_many :softcomments, dependent: :destroy
   
   has_one_attached :logo_image
   

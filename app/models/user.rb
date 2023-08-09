@@ -9,6 +9,10 @@ class User < ApplicationRecord
   has_many :softmark_softs, through: :softmarks, source: :soft
   has_many :usermarks, dependent: :destroy
   has_many :usermark_users, through: :usermarks, source: :user
+  has_many :softcomments, dependent: :destroy
+  has_many :softcomments_softs, through: :softcomments, source: :soft
+  has_many :usercomments, dependent: :destroy
+  has_many :usercomments_users, through: :usercommetns, source: :user
   
   has_one_attached :profile_image
   

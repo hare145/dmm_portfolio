@@ -1,17 +1,17 @@
 <div class="bg-dark">
   <div class="container">
     <div class="row p-4">
-      <div class="col-2 text-center text-light">
+      <div class="col-2 mt-2 text-center text-light">
         施設情報詳細
       </div>
       <div class="col-7">
       </div>
       <div class="col-3 text-center">
         <% if user_signed_in? %>
-          <% if Usermark.where(user_id: current_user.id).exists? %>
-            <%= link_to "お気に入りを解除", user_usermark_path(current_user.usermarks.find_by(user_id: @facility.id)), method: :delete, class: "btn btn-outline-success" %>
+          <% if Usermark.where(user_id: current_user.id, page_id: @facility.id).exists? %>
+            <%= link_to "お気に入りを解除", user_usermark_path(Usermark.where(user_id: current_user.id, page_id: @facility.id)), method: :delete, class: "btn btn-outline-success" %>
           <% else %>
-            <%= link_to "お気に入りに登録", user_usermarks_path(@facility, usermark: {user_id: @facility.id}), method: :post, class: "btn btn-success" %>
+            <%= link_to "お気に入りに登録", user_usermarks_path(@facility, usermark: {page_id: @facility.id}), method: :post, class: "btn btn-success" %>
           <% end %>
         <% end %>
       </div>
@@ -155,18 +155,51 @@
 <div class="container">
   <div class="row">
     <div class="col-2">
-      投稿コメント一覧(全<%= %>件)
+      投稿コメント一覧(全<%= @comments.count %>件)
     </div>
-    <div class="col-10 border-bottom border-dark">
+    <div class="col-10 mt-2 border-top border-dark">
     </div>
   </div>
 </div>
 
-<div class="container enclosure_color mt-4 mb-4">
+<% if user_signed_in? %>
+  <div class="container enclosure_color mt-4 mb-4">
+    <%=form_with model: @usercomment, url: user_usercomments_path(@facility.id), method: :post do |f| %>
+      <div class="row mt-4 ms-4">
+        <div class="col-4">
+            <%= f.radio_button :name, current_user.name %>
+            <%= f.label :name, current_user.name, {value: current_user.name, style: "display: inline-block;"} %>
+            <%= f.radio_button :name, "匿名" %>
+            <%= f.label :name, "匿名", {value: "匿名", style: "display: inline-block;"} %>
+        </div>
+      </div>
+      <%= f.hidden_field :page_id, :value => @facility.id %>
+      <div class="row mx-3">
+        <div class="col-10">
+          <%= f.text_area :content, class: "form-control" %>
+        </div>
+        <div class="col-2">
+          <%= f.submit "投稿する", class: "btn btn-success" %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+  
   <% @comments.each do |comment| %>
     <div class="row">
-      <%= comment.is_public %>
-      <%= comment.content %>
+      <% if @facility.id = current_user.id && comment.is_public == false %>
+        <%= link_to "非公開にする", user_usercomment_path(@facility, comment_id: comment.id, usercomment: { is_public: true}), method: :patch %>
+      <% end %>
+    </div>
+    <div class="row mx-4">
+      <div class="col-3">
+        <%= comment.name %>
+      </div>
+    </div>
+    <div class="row mx-3">
+      <div class="col-10">
+        <%= comment.content %>
+      </div>
     </div>
   <% end %>
   <div class="row">

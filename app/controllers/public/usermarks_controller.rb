@@ -9,7 +9,7 @@ class Public::UsermarksController < ApplicationController
   end
   
   def destroy
-    @usermark = current_user.usermarks.find_by(user_id: params[:id])
+    @usermark = current_user.usermarks.find_by(page_id: params[:id])
     if @usermark.present?
       @usermark.destroy
       redirect_to request.referer
@@ -23,7 +23,7 @@ class Public::UsermarksController < ApplicationController
 private
   
   def usermark_params
-    params.require(:usermark).permit(:user_id)
+    params.require(:usermark).permit(:user_id, :page_id)
   end
 
 end

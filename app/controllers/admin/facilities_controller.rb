@@ -1,7 +1,7 @@
 class Admin::FacilitiesController < ApplicationController
   def show
     @facility = User.find(params[:id])
-    @comments = UserComment.all
+    @usercomments = Usercomment.where(page_id: params[:id])
     # @UserService.where(user_id: @facility)
   end
 
