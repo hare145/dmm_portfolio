@@ -94,16 +94,25 @@
     <div class="col-2">
       投稿コメント一覧(全<%= %>件)
     </div>
-    <div class="col-10 border-bottom border-dark">
+    <div class="col-10 mt-3 border-top border-dark">
     </div>
   </div>
 </div>
 
 <div class="container enclosure_color mt-4 mb-4">
-  <% @soft_comments.each do |comment| %>
+  <% @softcomments.each do |softcomment| %>
     <div class="row">
-      <%= comment.is_public %>
-      <%= comment.content %>
+      <% if softcomment.is_public == false %>
+        <%= link_to "非公開にする", admin_soft_softcomment_path(@soft, comment_id: softcomment.id, softcomment: { is_public: true}), method: :patch %>
+      <% else %>
+       <%= link_to "公開する", admin_soft_softcomment_path(@soft, comment_id: softcomment.id, softcomment: {is_public: false}), method: :patch %>
+      <% end %>
+      <%= link_to "削除する", admin_soft_softcomment_path(@soft, comment_id: softcomment.id), method: :delete %>
+      <div class="col-3">
+        <%= softcomment.name %>
+      </div>
+    <div class="row">
+      <%= softcomment.content %>
     </div>
   <% end %>
   <div class="row">

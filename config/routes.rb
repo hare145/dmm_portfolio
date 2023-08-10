@@ -72,12 +72,20 @@ Rails.application.routes.draw do
     end
     
     controller :facilities  do
-      resources :facilities, only: [:show, :edit, :update]
+      resources :facilities, only: [:show, :edit, :update] do
+        controller :usercomments do
+          resources :usercomments, only: [:update, :destroy]
+        end
+      end
     end
     
     controller :softs do
       get 'softs/new' => "softs#new"
-      resources :softs, only: [:show, :index, :edit, :update, :create]
+      resources :softs, only: [:show, :index, :edit, :update, :create] do
+        controller :softcomments do
+          resources :softcomments, only: [:update, :destroy]
+        end
+      end
     end
     
     controller :services do
