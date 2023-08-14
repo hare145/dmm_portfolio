@@ -62,13 +62,14 @@ class Public::SoftsController < ApplicationController
   def create
     @soft = Soft.new(soft_params)
     @soft.user_id = current_user.id
-    @soft.save
-    redirect_to softs_notice_path
+    if @soft.save!
+      @soft.save_notification!(current_user, @soft.id)
+      redirect_to softs_notice_path
+    else
+      redirect_to soft_path(@soft)
+    end
   end
 
-  def notice
-  end
-  
   
   
   private

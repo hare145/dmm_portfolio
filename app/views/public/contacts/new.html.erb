@@ -1,0 +1,46 @@
+<div class="bg-dark">
+  <div class="container">
+    <div class="row p-4">
+      <div class="col-2 mt-2 text-center text-light">
+        お問い合わせフォーム
+      </div>
+      <div class="col-10">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row justify-content-center">
+    <p>
+      迷惑行為や誤った情報などについてのお問い合わせは</br>
+      下記にお願い致ます。
+    </p>
+  </div>
+</div>
+
+<% if user_signed_in? %>
+ <div class="container">
+   <div class="row justify-content-center">
+      <p>
+        （注）お問い合わせはログイン状態でないと行えません。
+      </p>
+   </div>
+ </div>
+<% end %>
+
+<div class="container">
+  <div class="row border border-dark">
+  </div>
+</div>
+
+<%= form_with model: @contact, url: contacts_path, method: :post do |f| %>
+<div class="container vh-75">
+  <div class="row">
+    <%= f.text_field :content %>
+  </div>
+  <div class="row">
+    <%= f.submit "送信する", data: { confirm: "お問い合わせの内容は修正はできません" }, class: "form-control btn btn-outline-primary"%>
+  </div>
+</div>
+<% end %>

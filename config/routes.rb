@@ -93,11 +93,11 @@ Rails.application.routes.draw do
     end
     
     controller :contacts do
-      resources :contacts, only: [:index, :edit, :update]
+      resources :contacts, only: [:index, :update]
     end
     
-    controller :soft_edit_notices do
-      resources :soft_edit_notices, only: [:index]
+    controller :notifications do
+      resources :notifications, only: [:index, :update]
     end
     
   end

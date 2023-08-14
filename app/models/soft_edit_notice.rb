@@ -1,2 +1,0 @@
-class SoftEditNotice < ApplicationRecord
-end

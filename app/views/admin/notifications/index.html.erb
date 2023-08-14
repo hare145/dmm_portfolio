@@ -1,0 +1,50 @@
+<div class="bg-dark">
+  <div class="container">
+    <div class="row p-4">
+      <div class="col-2 text-center text-light">
+        編集通知一覧
+      </div>
+      <div class="col-7">
+      </div>
+      <div class="col-2 text-center">
+        <%= link_to "未確認のみ表示", admin_notifications_path(is_checked: false), class: "text-light" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container mt-5">
+  <div class="row p-2 enclosure_color">
+    <table class="table m-0">
+      <thead class="table-dark text-center">
+        <tr>
+          <th>投稿施設名</th>
+          <th>登録メールアドレス</th>
+          <th>登録情報</th>
+          <th>確認ステータス</th>
+        </tr>
+      </thead>
+      
+      <% @notifications.each do |notice| %>
+        <tbody class="text-center">
+          <tr>
+          <td><%= link_to notice.user.name, admin_facility_path(notice.user_id), class: "text-dark" %></td>
+          <td><%= notice.user.email %></td>
+          <td><%= link_to notice.soft.company, admin_soft_path(notice.soft_id), class: "text-dark" %></td>
+            <% if notice.is_checked == true %>
+              <td>
+                <%= link_to "確認済み", admin_notification_path(notice.id, is_checked: false), method: :patch, data: {confirm: "未確認に変更しますか？"}, class: "text-secondary"%>
+              </td>
+            <% elsif notice.is_checked == false %>
+              <td>
+                 <%= link_to "未確認", admin_notification_path(notice.id, is_checked: true), method: :patch, data: {confirm: "確認済みに変更しますか？"}, class: "text-success"%>
+              </td>
+            <% else %>
+              <td>なし</td>
+            <% end %>
+          </tr>
+        </tbody>
+      <% end %>
+    </table>
+  </div>
+</div>

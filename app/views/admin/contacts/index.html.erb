@@ -1,2 +1,50 @@
-<h1>Admin::Contacts#index</h1>
-<p>Find me in app/views/admin/contacts/index.html.erb</p>
+<div class="bg-dark">
+  <div class="container">
+    <div class="row p-4">
+      <div class="col-2 text-center text-light">
+        編集通知一覧
+      </div>
+      <div class="col-7">
+      </div>
+      <div class="col-2 text-center">
+        <%= link_to "未確認のみ表示", admin_contacts_path(is_checked: false), class: "text-light" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container mt-5">
+  <div class="row p-2 enclosure_color">
+    <table class="table m-0">
+      <thead class="table-dark text-center">
+        <tr>
+          <th>投稿日時</th>
+          <th>投稿施設名</th>
+          <th>登録メールアドレス</th>
+          <th>確認ステータス</th>
+        </tr>
+      </thead>
+      
+      <% @contacts.each do |contact| %>
+        <tbody class="text-center">
+          <tr>
+          <td></td>
+          <td><%= link_to contact.user.name, admin_facility_path(contact.user_id), class: "text-dark" %></td>
+          <td><%= contact.user.email %></td>
+          <% if contact.is_checked == true %>
+            <td>
+              <%= link_to "確認済み", admin_contact_path(contact.id, is_checked: false), method: :patch, data: {confirm: "未確認に変更しますか？"}, class: "text-secondary"%>
+            </td>
+          <% elsif contact.is_checked == false %>
+            <td>
+               <%= link_to "未確認", admin_contact_path(contact.id, is_checked: true), method: :patch, data: {confirm: "確認済みに変更しますか？"}, class: "text-success"%>
+            </td>
+          <% else %>
+            <td>なし</td>
+          <% end %>
+          </tr>
+        </tbody>
+      <% end %>
+    </table>
+  </div>
+</div>

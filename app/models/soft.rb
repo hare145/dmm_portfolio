@@ -2,6 +2,7 @@ class Soft < ApplicationRecord
   
   has_many :softmarks, dependent: :destroy
   has_many :softcomments, dependent: :destroy
+  has_many :notifications, dependent: :destroy
   
   has_one_attached :logo_image
   
@@ -21,6 +22,14 @@ class Soft < ApplicationRecord
       logo_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpg')
     end
     logo_image.variant(resize_to_limit: [width, height]).processed
+  end
+  
+  
+  def save_notification!(current_user, soft_id)
+    notification = current_user.notifications.new(
+      soft_id: id,
+    )
+    notification.save
   end
   
   

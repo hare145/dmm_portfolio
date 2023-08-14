@@ -13,6 +13,8 @@ class User < ApplicationRecord
   has_many :softcomments_softs, through: :softcomments, source: :soft
   has_many :usercomments, dependent: :destroy
   has_many :usercomments_users, through: :usercommetns, source: :user
+  has_many :notifications, dependent: :destroy
+  has_many :contacts, dependent: :destroy
   
   has_one_attached :profile_image
   

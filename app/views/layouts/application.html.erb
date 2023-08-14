@@ -50,7 +50,7 @@
                     <% end %>
                   </li>
                   <li class="nav-item mr-auto" > 
-                    <%= link_to "編集通知一覧", admin_soft_edit_notices_path, class: 'nav-link active text-dark', "aria-current": :"page" %>
+                    <%= link_to "編集通知一覧", admin_notifications_path, class: 'nav-link active text-dark', "aria-current": :"page" %>
                   </li>
                   <li class="nav-item mr-auto" > 
                     <%= link_to "サービス一覧", admin_services_path, class: 'nav-link active text-dark', "aria-current": :"page" %>
@@ -143,9 +143,11 @@
     <%= yield %>
     <footer class = "mt-auto border bg-light">
       <div class="container m-4">
-        <div class="row justify-content-center">
+        <div class="row d-flex justify-content-center">
           <div class="col-3">
-            お問い合わせこちら
+            <spam>お問い合わせは</span>
+            <%= link_to "こちら", contacts_new_path, class: "text-light" %>
+            <span>から</span>
           </div>
         </div>
       </div>

@@ -12,13 +12,10 @@ Admin.create!(
 )
 
 
-[
-  ['会計経理関係'],
-  ['労務関係'],
-  ['利用者関係']
-].each do |kind|
-  Work.create!(
-    { kind: kind }
+require "csv"
+CSV.foreach('db/csv/業務分類一覧.csv', headers: true) do |row|
+  Work.create(
+    kind: row['kind']
   )
 end
 
