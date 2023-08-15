@@ -13,43 +13,43 @@ class Public::FacilitiesController < ApplicationController
     
     if @search_ficility.present? && @search_service.present? && @search_order.present?
       if @search_order == "new"
-        @users = User.where("name LIKE?","%#{@search_ficility}%").where(service_id: @search_service).creat_search
+        @users = User.where("name LIKE?","%#{@search_ficility}%").where(service_id: @search_service).creat_search.page(params[:page]).per(10)
       else @search_oreder = "view" 
-        @users = User.where("name LIKE?","%#{@search_ficility}%").where(service_id: @search_service).view_search
+        @users = User.where("name LIKE?","%#{@search_ficility}%").where(service_id: @search_service).view_search.page(params[:page]).per(10)
       end
       
     elsif @search_ficility.present? && @search_service.present?
-      @users = User.where("name LIKE?","%#{@search_ficility}%").where(service_id: @search_service)
+      @users = User.where("name LIKE?","%#{@search_ficility}%").where(service_id: @search_service).page(params[:page]).per(10)
       
     elsif @search_ficility.present? && @search_order.present?
       if @search_order == "new"
-        @users = User.where("name LIKE?","%#{@search_ficility}%").creat_search
+        @users = User.where("name LIKE?","%#{@search_ficility}%").creat_search.page(params[:page]).per(10)
       else @search_oreder = "view"
-        @users = User.where(service_id: @search_service).view_search
+        @users = User.where(service_id: @search_service).view_search.page(params[:page]).per(10)
       end
       
     elsif @search_service.present? && @search_order.present?
       if @search_order == "new"
-        @users = User.where("name LIKE?","%#{@search_ficility}%").where(service_id: @search_service).creat_search
+        @users = User.where("name LIKE?","%#{@search_ficility}%").where(service_id: @search_service).creat_search.page(params[:page]).per(10)
       else @search_oreder = "view" 
-        @users = User.where("name LIKE?","%#{@search_ficility}%").where(service_id: @search_service ).view_search
+        @users = User.where("name LIKE?","%#{@search_ficility}%").where(service_id: @search_service ).view_search.page(params[:page]).per(10)
       end
       
     elsif @search_ficility.present?
-      @users = User.where("name LIKE?","%#{@search_ficility}%") 
+      @users = User.where("name LIKE?","%#{@search_ficility}%").page(params[:page]).per(10)
       
     elsif @search_service.present?
-      @users = User.where(service_id: @search_service )
+      @users = User.where(service_id: @search_service).page(params[:page]).per(10)
       
     elsif @search_order.present?
       if @search_order == "new"
-        @users = User.creat_search
+        @users = User.creat_search.page(params[:page]).per(10)
       else @search_oreder = "view" 
-        @users = User.view_search
+        @users = User.view_search.page(params[:page]).per(10)
       end
       
     else
-      @users = User.all
+      @users = User.all.page(params[:page]).per(10)
     end
   end
 

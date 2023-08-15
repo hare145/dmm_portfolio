@@ -1,9 +1,9 @@
 class Admin::NotificationsController < ApplicationController
   def index
     if params[:is_checked] == false
-      @notifications = Notification.where(is_checked: false)
+      @notifications = Notification.where(is_checked: false).page(params[:page]).per(20)
     else
-      @notifications = Notification.all
+      @notifications = Notification.all.page(params[:page]).per(20)
     end
   end
   

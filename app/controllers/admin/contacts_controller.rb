@@ -1,9 +1,9 @@
 class Admin::ContactsController < ApplicationController
   def index
     if params[:is_cheacked] == false
-      @contacts = Contact.where(is_cheacked: false)
+      @contacts = Contact.where(is_cheacked: false).page(params[:page]).per(20)
     else
-      @contacts = Contact.all
+      @contacts = Contact.all.page(params[:page]).per(20)
     end
   end
 

@@ -1,7 +1,7 @@
 class Admin::ServicesController < ApplicationController
   def index
     @service = Service.new
-    @services = Service.all
+    @services = Service.all.page(params[:page]).per(30)
   end
 
   def edit

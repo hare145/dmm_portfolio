@@ -63,7 +63,6 @@
     <% end %>
   </div>
   <div>
-    
   </div>
   <div class="row justify-content-center">
     <% @softs.each do |soft| %>
@@ -78,5 +77,11 @@
       </div>
     </div>
     <% end %>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <%= paginate @softs %>
   </div>
 </div>

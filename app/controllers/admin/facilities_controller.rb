@@ -1,7 +1,7 @@
 class Admin::FacilitiesController < ApplicationController
   def show
     @facility = User.find(params[:id])
-    @usercomments = Usercomment.where(page_id: params[:id])
+    @usercomments = Usercomment.where(page_id: params[:id]).limit(5)
     # @UserService.where(user_id: @facility)
   end
 

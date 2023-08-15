@@ -12,43 +12,43 @@ class Public::SoftsController < ApplicationController
     
     if @search_soft.present? && @search_work.present? && @search_order.present?
       if @search_order == "new"
-        @softs = Soft.where("company LIKE?","%#{@search_soft}%").where(work_id: @search_work).creat_search.public_true
+        @softs = Soft.where("company LIKE?","%#{@search_soft}%").where(work_id: @search_work).creat_search.public_true.page(params[:page]).per(10)
       else @search_oreder = "view" 
-        @softs = Soft.where("company LIKE?","%#{@search_soft}%").where(work_id: @search_work).view_search.public_true
+        @softs = Soft.where("company LIKE?","%#{@search_soft}%").where(work_id: @search_work).view_search.public_true.page(params[:page]).per(10)
       end
       
     elsif @search_soft.present? && @search_work.present?
-      @softs = Soft.where("company LIKE?","%#{@search_soft}%").where(work_id: @search_work).public_true
+      @softs = Soft.where("company LIKE?","%#{@search_soft}%").where(work_id: @search_work).public_true.page(params[:page]).per(10)
       
     elsif @search_soft.present? && @search_order.present?
       if @search_order == "new"
-        @softs = Soft.where("company LIKE?","%#{@search_soft}%").creat_search.public_true
+        @softs = Soft.where("company LIKE?","%#{@search_soft}%").creat_search.public_true.page(params[:page]).per(10)
       else @search_oreder = "view" 
-        @softs = Soft.where("company LIKE?","%#{@search_soft}%").view_search.public_true
+        @softs = Soft.where("company LIKE?","%#{@search_soft}%").view_search.public_true.page(params[:page]).per(10)
       end
       
     elsif @search_work.present? && @search_order.present?
       if @search_order == "new"
-        @softs = Soft.where(work_id: @search_work).creat_search.public_true
+        @softs = Soft.where(work_id: @search_work).creat_search.public_true.page(params[:page]).per(10)
       else @search_oreder = "view" 
-        @softs = Soft.where(work_id: @search_work).view_search.public_true
+        @softs = Soft.where(work_id: @search_work).view_search.public_true.page(params[:page]).per(10)
       end
     
     elsif @search_soft.present?
-      @softs = Soft.where("company LIKE?","%#{@search_soft}%").public_true
+      @softs = Soft.where("company LIKE?","%#{@search_soft}%").public_true.page(params[:page]).per(10)
       
     elsif @search_work.present?
-      @softs = Soft.where(work_id: @search_work).public_true
+      @softs = Soft.where(work_id: @search_work).public_true.page(params[:page]).per(10)
       
     elsif @search_order.present?
       if @search_order == "new"
-        @softs = Soft.creat_search.public_true
+        @softs = Soft.creat_search.public_true.page(params[:page]).per(10)
       else @search_oreder = "view" 
-        @softs = Soft.view_search.public_true
+        @softs = Soft.view_search.public_true.page(params[:page]).per(10)
       end
     
     else
-      @softs = Soft.all.public_true
+      @softs = Soft.all.public_true.page(params[:page]).per(10)
     end
   end
 
@@ -56,7 +56,7 @@ class Public::SoftsController < ApplicationController
     @soft = Soft.find(params[:id])
     impressionist(@soft, nil, unique: [:ip_address])
     @softcomment = current_user.softcomments.new
-    @comments = Softcomment.where(soft_id: params[:id], is_public: false)
+    @comments = Softcomment.where(soft_id: params[:id], is_public: false).limit(5)
   end
 
   def create
