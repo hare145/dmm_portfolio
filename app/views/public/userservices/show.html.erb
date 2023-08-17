@@ -1,0 +1,54 @@
+<div class="bg-dark">
+  <div class="container">
+    <div class="row p-4">
+      <div class="col-2 text-center text-light">
+        自施設サービス選択画面
+      </div>
+      <div class="col-10">
+      </div>
+    </div>
+  </div>
+</div>
+
+<% if Userservice.exists?(user_id: params[:id]) %>
+  <%=form_with model: @userservice, url: user_userservice_path, method: :patch do |f| %>
+  <div class="container mt-5">
+    <div class="row justify-content-around">
+      <div class="col-12">
+        <%= f.collection_check_boxes :service_id, Service.all, :id, :content, {checked: @current_user_services, include_hidden: false}, class: "form-check-input me-2", multiple: true do |tag| %>
+         <%= tag.label(class: "form-check-label m-1 me-5"){tag.check_box + tag.text } %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  
+  <div class="container mt-4 mb-4">
+    <div class="row d-flex justify-content-center">
+      <div class="col-3">
+        <%=f.submit "変更保存を保存する", class: "form-control btn btn-outline-primary btn-lg" %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+
+<% else %>
+<%=form_with model: @userservice, url: user_userservices_path, method: :post do |f| %>
+<div class="container mt-5">
+  <div class="row justify-content-around">
+    <div class="col-12">
+      <%= f.collection_check_boxes :service_id, Service.all, :id, :content, {include_hidden: false}, class: "form-check-input me-2", multiple: true do |tag| %>
+       <%= tag.label(class: "form-check-label m-1 me-5"){tag.check_box + tag.text } %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="container mt-4 mb-4">
+  <div class="row d-flex justify-content-center">
+    <div class="col-3">
+      <%=f.submit "サービスを登録する", class: "form-control btn btn-outline-primary btn-lg" %>
+    </div>
+  </div>
+</div>
+<% end %>
+<% end %>

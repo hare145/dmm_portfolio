@@ -1,43 +1,49 @@
-<div class="container mt-5 enclosure_color">
-    <div class="row text-center">
-      このサイトは、施設関係者同士が情報交換を行いながら
+<div class="bg-dark">
+  <div class="container">
+    <div class="row p-4">
+      <div class="col-2 text-center text-light">
+        トップページ
+      </div>
+      <div class="col-7">
+      </div>
+      <div class="col-3">
+      </div>
     </div>
-    <div class="row">
-      より自施設の形態に沿った情報管理ツールを見つけることで 、
+  </div>
+</div>
+
+<div class="container mt-5 bg_color">
+    <div class="row text-center m-3">
+      <p>このサイトは、施設関係者同士が情報交換を行いながら</p>
     </div>
-    <div class="row">
-      介護業界が進むべき、デジタル化への
+    <div class="row text-center m-3">
+      <p>より自施設の形態に沿った情報管理ツールを見つけることで、</p>
     </div>
-    <div class="row">
-      その一歩を踏み出しやすくするためのサイトです。
+    <div class="row text-center m-3">
+      <p>介護業界が進むべき、デジタル化への</p>
+    </div>
+    <div class="row text-center m-3">
+      <p>その一歩を踏み出しやすくするためのサイトです。</p>
     </div>
    </div>
    
   <div class="container mt-5">
-    <div class="row">
+    <div class="row justify-content-around">
       <% @users.each do |user| %>
-        <div class="col-3 enclosure_color">
-          <table class="table borderless mt-4">
-            <tr>
-              <th>
-                <%= image_tag user.get_profile_image(200, 300) %>
-              </th>
-            </tr>
-            <tr>
-              <td>
-                <%= user.name %>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <%= user.employee %>
-              </td>
-            </tr>
-          </table>
+        <div class="col-3 mt-2 p-2 bg-warning-subtle bg-gradient">
+          <div class="card bg-light-subtle bg-gradient" style="height: 100%, width: 100%">
+            <%= image_tag user.get_profile_image(200, 300), class: "border" %>
+            <div class="card-body m-2">
+              <h5 class="card-title p-1 text-center"><%= user.name %></h5>
+              <p class="card-text p-2 text-center"><%= user.employee %></p>
+              <p class="text-center"><%= link_to "詳細ページへ", facility_path(user.id), class: "btn btn-warning" %></p>
+            </div>
+          </div>
         </div>
       <% end %>
     </div>
   </div>
-  <div class="container ">
-    <%= link_to "一覧はこちら>>", facilities_path %>
+  
+  <div class="container mt-4 mb-2">
+    <p class="text-end"><%= link_to "一覧はこちら>>", facilities_path, class: "text-dark" %></p>
   </div>

@@ -4,7 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   
-  has_many :user_services, dependent: :destroy
+  has_many :userservices, dependent: :destroy
+  has_many :userservice_services, through: :userservices, source: :service
   has_many :softmarks, dependent: :destroy
   has_many :softmark_softs, through: :softmarks, source: :soft
   has_many :usermarks, dependent: :destroy

@@ -27,8 +27,8 @@ Rails.application.routes.draw do
       patch 'users/withdraw' => "user#withdraw"
       get 'users/bookmark' => "users#bookmark"
       resources :users do
-        controller :user_services do
-          resources :user_services, only: [:show, :create, :update]
+        controller :userservices do
+          resources :userservices, only: [:show, :create, :update, :destroy]
         end
         controller :usercomments do
           resources :usercomments, only: [:create, :update, :destroy]
