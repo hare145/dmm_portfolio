@@ -3,6 +3,7 @@ class Soft < ApplicationRecord
   has_many :softmarks, dependent: :destroy
   has_many :softcomments, dependent: :destroy
   has_many :notifications, dependent: :destroy
+  belongs_to :work
   
   has_one_attached :logo_image
   
@@ -12,8 +13,14 @@ class Soft < ApplicationRecord
   
 
   scope :public_true, -> { where(is_public: true) }
-  scope :creat_search, -> { order(created_at: :desc) }
+  scope :create_search, -> { order(created_at: :desc) }
   scope :view_search, -> { order(impressions_count: :desc) }
+  scope :company_search, -> (company) do
+    where("company LIKE?","%#{company}%")
+  end
+  scope :work_search, -> (work) do
+    where(work_id: work)
+  end
 
   
   def get_logo_image(width, height)

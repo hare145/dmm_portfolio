@@ -104,24 +104,26 @@
   </div>
 </div>
 
-<div class="container enclosure_color mt-4 mb-4">
-  <%=form_with model: @softcomment, url: soft_softcomments_path(@soft.id), method: :post do |f| %>
-    <div class="row mt-4 ms-4">
-        <div class="col-4">
-            <%= f.radio_button :name, current_user.name %>
-            <%= f.label :name, current_user.name, {value: current_user.name, style: "display: inline-block;"} %>
-            <%= f.radio_button :name, "匿名" %>
-            <%= f.label :name, "匿名", {value: "匿名", style: "display: inline-block;"} %>
+<% if user_signed_in? %>
+  <div class="container enclosure_color mt-4 mb-4">
+    <%=form_with model: @softcomment, url: soft_softcomments_path(@soft.id), method: :post do |f| %>
+      <div class="row mt-4 ms-4">
+          <div class="col-4">
+              <%= f.radio_button :name, current_user.name %>
+              <%= f.label :name, current_user.name, {value: current_user.name, style: "display: inline-block;"} %>
+              <%= f.radio_button :name, "匿名" %>
+              <%= f.label :name, "匿名", {value: "匿名", style: "display: inline-block;"} %>
+          </div>
+        </div>
+      <div class="row mx-3">
+        <div class="col-10">
+          <%= f.text_area :content, class: "form-control" %>
+        </div>
+        <div class="col-2">
+          <%= f.submit "投稿する", class: "btn btn-success" %>
         </div>
       </div>
-    <div class="row mx-3">
-      <div class="col-10">
-        <%= f.text_area :content, class: "form-control" %>
-      </div>
-      <div class="col-2">
-        <%= f.submit "投稿する", class: "btn btn-success" %>
-      </div>
-    </div>
+    <% end %>
   <% end %>
   
   <% @comments.each do |comment| %>

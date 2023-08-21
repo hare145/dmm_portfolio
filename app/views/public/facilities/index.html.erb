@@ -16,25 +16,25 @@
 <div class="container mt-5 ">
   <div class="row justify-content-center mt-1">
     <% @first_services.each do |service| %>
-      <div class="col-2 m-1 text-center rounded-pill enclosure_color border border-secondary">
+      <div class="col-2 m-1 text-center rounded-pill bg-light-subtle border border-secondary">
         <%= link_to service.content, facilities_path(name: @search_facility, service_id: service.id), class: "small text-dark text-decoration-none" %>
       </div>
     <% end %>
   </div>
   <div class="row justify-content-center mt-1 mx-3">
     <% @next_services.each do |service| %>
-      <div class="col-2 m-1 text-center rounded-pill enclosure_color border border-secondary">
+      <div class="col-2 m-1 text-center rounded-pill bg-light-subtle border border-secondary">
         <%= link_to service.content, facilities_path(name: @search_facility, service_id: service.id), class: "small text-dark text-decoration-none" %>
       </div>
   <% end %>
   </div>
   <div class="row justify-content-center mt-1 mx-5">
     <% @third_services.each do |service| %>
-      <div class="col-2 m-1 text-center rounded-pill enclosure_color border border-secondary">
+      <div class="col-2 m-1 text-center rounded-pill bg-light-subtle border border-secondary">
         <%= link_to service.content, facilities_path(name: @search_facility, service_id: service.id), class: "small text-dark text-decoration-none" %>
       </div>
    <% end %>
-   <div class="col-2 m-1 text-center rounded-pill enclosure_color border border-secondary">
+   <div class="col-2 m-1 text-center rounded-pill bg-light-subtle border border-secondary">
       <%= link_to "サービス一覧へ>>", services_path, class: "small text-dark text-decoration-none" %>
    </div>
   </div>
@@ -47,10 +47,12 @@
       <div class ="col-2">
         <%= form_with model: @users, url: facilities_path, method: :get do |f| %>
           <%= f.select :ordered, [  ['投稿が新しい順', 'new'],
-                                    ['閲覧数が多い', 'view']
+                                    ['閲覧数が多い', 'view'],
+                                    ['雇用人数が多い順','many'],
+                                    ['雇用人数が少ない順','few']
           ], {prompt: '選択してください' }, class: "form-select form-select-sm border border-secondary", id: "sort" %>
           <%= f.hidden_field :company, :value=> @search_facility %>
-          <%= f.hidden_field :service_id, :value=> params[:service_id] %>
+          <%= f.hidden_field :service_id, :value=> @search_service %>
         <% end %>
         <script>
           $('#sort').change(function() {
@@ -60,26 +62,28 @@
       </div>
     </div>
  </div>
- 
-<div class="container mt-5 p-2">
-  <div class="row justify-content-around">
-    <% @users.each do |user| %>
-      <div class="col-3 mt-5 mb-3 mx-2 p-2 rounded bg-warning-subtle bg-gradient">
-        <div class="card" style="height: 100%, width: 100%">
-          <%= image_tag user.get_profile_image(200, 300), class: "border" %>
-          <div class="card-body m-2">
-            <h5 class="card-title p-1 text-center"><%= user.name %></h5>
-            <p class="card-text p-2 text-center"><%= user.employee %></p>
-            <p class="text-center"><%= link_to "詳細ページへ", facility_path(user.id), class: "btn btn-warning " %></p>
+
+<div class="bg_image mt-5">
+  <div class="container mt-5 p-2">
+    <div class="row justify-content-around">
+      <% @users.each do |user| %>
+        <div class="col-3 mt-5 mb-3 mx-2 p-2 ">
+          <div class="card" style="height: 100%, width: 100%">
+            <%= image_tag user.get_profile_image(200, 300), class: "border" %>
+            <div class="card-body m-2">
+              <h5 class="card-title p-1 text-center"><%= user.name %></h5>
+              <p class="card-text p-2 text-center"><%= user.employee %></p>
+              <p class="text-center"><%= link_to "詳細ページへ", facility_path(user.id), class: "btn btn-warning " %></p>
+            </div>
           </div>
         </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
   </div>
-</div>
 
-<div class="container">
-  <div class="row">
-    <%= paginate @users %>
+  <div class="container">
+    <div class="row">
+      <%= paginate @users %>
+    </div>
   </div>
-</div>
+</div> 

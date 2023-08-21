@@ -22,10 +22,19 @@ class User < ApplicationRecord
   # ---Impressionistを用いてPV数取得---
   is_impressionable counter_cache: true
   
+  enum employee_method: { less_than_thirty: 0, thirty_less_than_fifty: 1, fifty_less_than_hundred: 2, hundred_more: 3 }
   
-  scope :creat_search, -> { order(created_at: :desc) }
+  scope :create_search, -> { order(created_at: :desc) }
   scope :view_search, -> { order(impressions_count: :desc) }
-  
+  scope :many_search, -> { order(employee: :desc) }
+  scope :few_search, -> { order(employee: :asc) }
+  scope :name_search, -> (name) do
+    where("name LIKE?","%#{name}%")
+  end
+  scope :service_search, -> (service) do
+    ids = Userservice.where(service_id: service).pluck(:user_id)
+    where(id: ids)
+  end
   
   def get_profile_image(width, height)
     unless profile_image.attached?

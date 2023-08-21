@@ -1,0 +1,17 @@
+<div class="row justify-content-center">
+  <% Work.find(1) do |work| %>
+  <div class="col-2 pt-1 text-center">
+    <%= link_to work.kind, softs_path( company: search_soft, work_id: 1), class: "text-decoration-none" %>
+  </div>
+  <% end %>
+  <% Work.find(2) do |work| %>
+  <div class="col-2 pt-1 text-center">
+    <%= link_to work.kind, softs_path( company: search_soft, work_id: 2), class: "text-decoration-none" %>
+  </div>
+  <% end %>
+  <% Work.find(3) do |work| %>
+  <div class="col-2 pt-1 text-center border border-bottom-0 border-secondary-subtle bg-light">
+    <%= link_to work.kind, softs_path( company: search_soft, work_id: 3), class: "text-dark text-decoration-none" %>
+  </div>
+  <% end %>
+</div>

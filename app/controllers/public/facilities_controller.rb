@@ -13,43 +13,67 @@ class Public::FacilitiesController < ApplicationController
     
     if @search_ficility.present? && @search_service.present? && @search_order.present?
       if @search_order == "new"
-        @users = User.where("name LIKE?","%#{@search_ficility}%").where(service_id: @search_service).creat_search.page(params[:page]).per(10)
-      else @search_oreder = "view" 
-        @users = User.where("name LIKE?","%#{@search_ficility}%").where(service_id: @search_service).view_search.page(params[:page]).per(10)
+        @users = User.name_search(@search_ficility).service_search(@search_service).create_search.page(params[:page]).per(12)
+      elsif @search_oreder == "view" 
+        @users = User.name_search(@search_ficility).service_search(@search_service).view_search.page(params[:page]).per(12)
+      elsif @search_oreder == "many"
+        @users = User.name_search(@search_ficility).service_search(@search_service).many_search.page(params[:page]).per(12)
+      elsif @search_oreder == "few" 
+        @users = User.name_search(@search_ficility).service_search(@search_service).few_search.page(params[:page]).per(12)
+      else
+        @users = User.all.page(params[:page]).per(12)
       end
       
     elsif @search_ficility.present? && @search_service.present?
-      @users = User.where("name LIKE?","%#{@search_ficility}%").where(service_id: @search_service).page(params[:page]).per(10)
+      @users = User.name_search(@search_ficility).service_search(@search_service).page(params[:page]).per(12)
       
     elsif @search_ficility.present? && @search_order.present?
       if @search_order == "new"
-        @users = User.where("name LIKE?","%#{@search_ficility}%").creat_search.page(params[:page]).per(10)
-      else @search_oreder = "view"
-        @users = User.where(service_id: @search_service).view_search.page(params[:page]).per(10)
+        @users = User.name_search(@search_ficility).create_search.page(params[:page]).per(12)
+      elsif @search_oreder == "view"
+        @users = User.name_search(@search_ficility).view_search.page(params[:page]).per(12)
+      elsif @search_oreder == "many"
+        @users = User.name_search(@search_ficility).many_search.page(params[:page]).per(12)
+      elsif @search_oreder == "few" 
+        @users = User.name_search(@search_ficility).few_search.page(params[:page]).per(12)
+      else
+        @users = User.all.page(params[:page]).per(12)
       end
       
     elsif @search_service.present? && @search_order.present?
       if @search_order == "new"
-        @users = User.where("name LIKE?","%#{@search_ficility}%").where(service_id: @search_service).creat_search.page(params[:page]).per(10)
-      else @search_oreder = "view" 
-        @users = User.where("name LIKE?","%#{@search_ficility}%").where(service_id: @search_service ).view_search.page(params[:page]).per(10)
+        @users = User.service_search(@search_service).create_search.page(params[:page]).per(12)
+      elsif @search_oreder == "view" 
+        @users = User.service_search(@search_service).view_search.page(params[:page]).per(12)
+      elsif @search_oreder == "many"
+        @users = User.service_search(@search_service).many_search.page(params[:page]).per(12)
+      elsif @search_oreder == "few" 
+        @users = User.service_search(@search_service).few_search.page(params[:page]).per(12)
+      else
+        @users = User.all.page(params[:page]).per(12)
       end
       
     elsif @search_ficility.present?
-      @users = User.where("name LIKE?","%#{@search_ficility}%").page(params[:page]).per(10)
+      @users = User.name_search(@search_ficility).page(params[:page]).per(12)
       
     elsif @search_service.present?
-      @users = User.where(service_id: @search_service).page(params[:page]).per(10)
+      @users = User.service_search(@search_service).page(params[:page]).per(12)
       
     elsif @search_order.present?
       if @search_order == "new"
-        @users = User.creat_search.page(params[:page]).per(10)
-      else @search_oreder = "view" 
-        @users = User.view_search.page(params[:page]).per(10)
+        @users = User.create_search.page(params[:page]).per(12)
+      elsif @search_oreder == "view" 
+        @users = User.view_search.page(params[:page]).per(12)
+      elsif @search_oreder == "many"
+        @users = User.many_search.page(params[:page]).per(12)
+      elsif @search_oreder == "few" 
+        @users = User.few_search.page(params[:page]).per(12)
+      else
+        @users = User.all.page(params[:page]).per(12)
       end
       
     else
-      @users = User.all.page(params[:page]).per(10)
+      @users = User.all.page(params[:page]).per(12)
     end
   end
 
@@ -60,6 +84,5 @@ class Public::FacilitiesController < ApplicationController
       @usercomment = current_user.usercomments.new
     end
     @comments = Usercomment.where(page_id: @facility, is_public: false)
-    # @UserService.where(user_id: @facility)
   end
 end

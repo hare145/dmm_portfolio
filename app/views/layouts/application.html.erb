@@ -15,7 +15,7 @@
   </head>
 
   <body class = "d-flex flex-column vh-100 bg-light">
-    <header class="border">
+    <header class="border shadow">
       <nav class = "navbar navbar-expand-md bg-body-tertiary">
         <div class="container-fluid">
           <% if admin_signed_in? %>
@@ -146,8 +146,10 @@
     <%= yield %>
     <footer class = "mt-auto border">
       <div class="container m-4">
-        <div class="row d-flex justify-content-center">
-          <div class="col-3">
+        <div class="row">
+          <div class="col-4"></div>
+          <div class="col-4"></div>
+          <div class="col-4">
             <spam>お問い合わせは</span>
             <%= link_to "こちら", contacts_new_path, class: "text-dark" %>
             <span>から</span>
