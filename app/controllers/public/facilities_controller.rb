@@ -5,7 +5,7 @@ class Public::FacilitiesController < ApplicationController
   def index
     @first_services = Service.all.limit(5)
     @next_services = Service.all.limit(4).offset(6)
-    @third_services = Service.all.limit(2).offset(9)
+    @third_services = Service.all.limit(2).offset(10)
     
     @search_ficility = params[:name]
     @search_service = params[:service_id]

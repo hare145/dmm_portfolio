@@ -41,3 +41,4 @@ class Soft < ApplicationRecord
   
   
 end
+

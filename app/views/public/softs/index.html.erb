@@ -13,7 +13,7 @@
 </div>
 
 
-<div class="bg_image_white pb-5">
+<div class="bg_image_white vh-100">
   <div class="container mt-5 rounded-pill bg-dark">
     <div class="row p-3 d-flex text-center text-light">
       <spam>ソフト情報の新規登録は</span>
@@ -27,7 +27,7 @@
       <div class="col-10">
       </div>
       <div class ="col-2">
-        <%= form_with model: @softs, url: softs_path, method: :get do |f| %>
+        <%= form_with url: softs_path, method: :get do |f| %>
           <%= f.select :ordered, [  ['投稿が新しい順', 'new'],
                                     ['閲覧数が多い', 'view']
           ], {prompt: '選択してください' }, class: "form-select form-select-sm border border-secondary", id: "sort" %>
@@ -64,11 +64,11 @@
     <% end %>
     
     <% if @search_work.present? %>
-      <div class="bg-light mx-5 rounded">
+      <div class="bg-light mx-5 pt-4 rounded">
         <%= render partial: 'public/shared/soft_cards', locals: { softs: @softs } %>  
       </div>
     <% else %>
-      <div class="">
+      <div class="mx-5 pt-4">
         <%= render partial: 'public/shared/soft_cards', locals: { softs: @softs } %>  
       </div>
     <% end %>
