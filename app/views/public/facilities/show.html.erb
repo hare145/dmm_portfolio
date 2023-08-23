@@ -67,18 +67,18 @@
           </tr>
           <tr>
             <th class="col-4 text-center table-primary">
-              <%= @facility.accounting_soft %>
+              <%= safe_join(@facility.accounting_soft.split("\n"),tag(:br)) %>
             </th>
             <td class="col-8">
-              <%= @facility.accounting_reason %>
+              <%= safe_join(@facility.accounting_reason.split("\n"),tag(:br)) %>
             </td>
           </tr>
           <tr>
             <th class="col-4 text-center table-primary">
-              <%= @facility.other_soft %>
+              <%= safe_join(@facility.other_soft.split("\n"),tag(:br)) %>
             </th>
             <td class="col-8">
-              <%= @facility.other_reason %>
+              <%= safe_join(@facility.other_reason.split("\n"),tag(:br)) %>
             </td>
           </tr>
         </table>
@@ -88,26 +88,26 @@
         <table class="table m-0">
           <tr>
             <th class="col-4 text-center table-primary">
-              <%= @facility.salary_soft %>
+              <%= safe_join(@facility.salary_soft.split("\n"),tag(:br)) %>
             </th>
             <td class="col-8">
-              <%= @facility.salary_reason %>
+              <%= safe_join(@facility.salary_reason.split("\n"),tag(:br)) %>
             </td>
           </tr>
           <tr>
             <th class="col-4 text-center table-primary">
-              <%= @facility.working_hours_soft %>
+              <%= safe_join(@facility.working_hours_soft.split("\n"),tag(:br)) %>
             </th>
             <td class="col-8">
-              <%= @facility.working_hours_reason %>
+              <%= safe_join(@facility.working_hours_reason.split("\n"),tag(:br)) %>
             </td>
           </tr>
           <tr>
             <th class="col-4 text-center table-primary">
-              <%= @facility.communication_soft %>
+              <%= safe_join(@facility.communication_soft.split("\n"),tag(:br)) %>
             </th>
             <td class="col-8">
-                <%= safe_join(@facility.communication_reason.split("\n"),tag(:br)) %>
+              <%= safe_join(@facility.communication_reason.split("\n"),tag(:br)) %>
             </td>
           </tr>
         </table>
@@ -117,26 +117,26 @@
         <table class="table m-0">
           <tr>
             <th class="col-4 text-center table-primary">
-              <%= @facility.customer_info_soft %>
+              <%= safe_join(@facility.customer_info_soft.split("\n"),tag(:br)) %>
             </th>
             <td class="col-8">
-              <%= @facility.customer_info_reason %>
+              <%= safe_join(@facility.customer_info_reason.split("\n"),tag(:br)) %>
             </td>
           </tr>
           <tr>
             <th class="col-4 text-center table-primary">
-              <%= @facility.customer_deposit_soft %>
+              <%= safe_join(@facility.customer_deposit_soft.split("\n"),tag(:br)) %>
             </th>
             <td class="col-8">
-              <%= @facility.customer_deposit_reason %>
+              <%= safe_join(@facility.customer_deposit_reason.split("\n"),tag(:br)) %>
             </td>
           </tr>
           <tr>
             <th class="col-4 text-center table-primary">
-              <%= @facility.customer_billing_soft %>
+              <%= safe_join(@facility.customer_billing_soft.split("\n"),tag(:br)) %>
             </th>
             <td class="col-8">
-              <%= @facility.customer_billing_reason %>
+              <%= safe_join(@facility.customer_billing_reason.split("\n"),tag(:br)) %>
             </td>
           </tr>
         </table>

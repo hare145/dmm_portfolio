@@ -18,7 +18,7 @@
         
         <div class="field m-4">
           <%= f.label :employee, "従業員数", class: "text-right col-form-label" %><br />
-          <%= f.select :employee, User.employee_methods.keys.map.with_index {|k, i| [I18n.t("enums.user.employee_method.#{k}"), i]}, {},class: 'form-control' %>
+          <%= f.select :employee, User.employee_methods.keys.map.with_index {|k, i| [I18n.t("enums.user.employee_method.#{k}"), i]}, {}, class: 'form-control' %>
         </div>
         
         <div class="field m-4">

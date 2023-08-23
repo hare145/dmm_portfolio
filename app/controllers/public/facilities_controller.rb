@@ -21,7 +21,7 @@ class Public::FacilitiesController < ApplicationController
       elsif @search_oreder == "few" 
         @users = User.name_search(@search_ficility).service_search(@search_service).few_search.page(params[:page]).per(12)
       else
-        @users = User.all.page(params[:page]).per(12)
+        @users = user_all
       end
       
     elsif @search_ficility.present? && @search_service.present?
@@ -37,7 +37,7 @@ class Public::FacilitiesController < ApplicationController
       elsif @search_oreder == "few" 
         @users = User.name_search(@search_ficility).few_search.page(params[:page]).per(12)
       else
-        @users = User.all.page(params[:page]).per(12)
+        @users = user_all
       end
       
     elsif @search_service.present? && @search_order.present?
@@ -50,7 +50,7 @@ class Public::FacilitiesController < ApplicationController
       elsif @search_oreder == "few" 
         @users = User.service_search(@search_service).few_search.page(params[:page]).per(12)
       else
-        @users = User.all.page(params[:page]).per(12)
+        @users = user_all
       end
       
     elsif @search_ficility.present?
@@ -69,11 +69,11 @@ class Public::FacilitiesController < ApplicationController
       elsif @search_oreder == "few" 
         @users = User.few_search.page(params[:page]).per(12)
       else
-        @users = User.all.page(params[:page]).per(12)
+        @users = user_all
       end
       
     else
-      @users = User.all.page(params[:page]).per(12)
+      @users = user_all
     end
   end
 
@@ -85,4 +85,11 @@ class Public::FacilitiesController < ApplicationController
     end
     @comments = Usercomment.where(page_id: @facility, is_public: false)
   end
+  
+  private
+  
+  def user_all
+    User.where(is_deleted: false).page(params[:page]).per(12)
+  end
+  
 end

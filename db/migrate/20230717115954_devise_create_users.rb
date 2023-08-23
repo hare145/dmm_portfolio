@@ -35,6 +35,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
       t.string  :employee,                null: false, default: ""
       t.integer :impressions_count,       default: 0
       t.integer :service_id
+      t.string  :founding
       t.string  :account_soft,            default: "会計使用ソフト"
       t.text    :account_reason,          default: "そのソフトを使用している理由"
       t.string  :accounting_soft,         default: "経理使用ソフト"
