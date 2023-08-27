@@ -1,5 +1,10 @@
 class Public::UsercommentsController < ApplicationController
   
+  def show
+    @user = User.find(params[:id])
+    @usercomments = Usercomment.where(page_id: params[:id], is_public: false )
+  end
+  
   def create
     @usercomment = current_user.usercomments.build(usercomment_params)
     if @usercomment.save!
@@ -18,11 +23,6 @@ class Public::UsercommentsController < ApplicationController
       redirect_to request.referer
     end
   end
-  
-  def destroy
-    
-  end
-  
   
   private
   

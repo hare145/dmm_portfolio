@@ -1,4 +1,10 @@
 class Public::SoftcommentsController < ApplicationController
+  def show
+    @soft = Soft.find(params[:id])
+    @softcomments = Softcomment.where(soft_id: params[:soft_id], is_public: false)
+  end
+  
+  
   def create
     @soft = Soft.find(params[:soft_id])
     @softcomment = @soft.softcomments.build(softcomment_params.merge(user: current_user))
@@ -10,19 +16,13 @@ class Public::SoftcommentsController < ApplicationController
   end
   
   def update
-    @soft = Soft.find(params[:soft_id])
-    @softcomment = @soft.softcomments.find(params[:id])
+    @softcomment = Softcomment.find(params[:id])
     if @softcomment.update!(softcomment_params)
       redirect_to request.referer
     else
       redirect_to request.referer
     end
   end
-
-  def destroy
-  end
-  
-  
   
   private
   

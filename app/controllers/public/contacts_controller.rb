@@ -1,6 +1,9 @@
 class Public::ContactsController < ApplicationController
   
   def new
+    if user_signed_in?
+      @contact = current_user.contacts.new
+    end
   end
   
   def create
@@ -12,10 +15,14 @@ class Public::ContactsController < ApplicationController
     end
   end
   
+  def notice
+    
+  end
+  
   
   private
   
   def contact_params
-    params.require(:contact).permit(:user_id, :content)
+    params.require(:contact).permit(:content, :user_id)
   end
 end

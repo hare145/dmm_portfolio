@@ -20,14 +20,19 @@ class Public::UsersController < ApplicationController
   end
 
   def mypage
-    @usercomments = Usercomment.where(user_id: current_user.id)
-    @softcomments = Softcomment.where(user_id: current_user.id)
+    @usercomments = Usercomment.where(user_id: current_user.id).limit(4)
+    @softcomments = Softcomment.where(user_id: current_user.id).limit(4)
   end
   
   def bookmark
     @softmarks = current_user.softmark_softs.order(created_at: :desc)
     @usermark_page = Usermark.select("page_id").where(user_id: current_user.id)
     @usermarks = User.where(id: @usermark_page).order(created_at: :desc)
+  end
+  
+  def mycomment
+    @usercomments = current_user.usercomments.all
+    @softcomments = current_user.softcomments.all
   end
   
   private

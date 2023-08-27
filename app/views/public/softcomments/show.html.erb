@@ -1,2 +1,38 @@
-<h1>Public::Softcomments#show</h1>
-<p>Find me in app/views/public/softcomments/show.html.erb</p>
+<div class="vh-100 bg-primary-subtle">
+  <div class="container vh-100 bg-light">
+    <div class="container pt-5">
+      <div class="row mt-3">
+        <div class="col-3">
+          <%= @soft.company %>投稿コメント一覧(全<%= @softcomments.count %>件)
+        </div>
+        <div class="col-9 mt-2 border-top border-dark">
+        </div>
+      </div>
+    </div>
+    
+    <div class="container">
+      <% @softcomments.each do |comment| %>
+        <div class="row mt-5 mx-4">
+          <div class="col-3">
+            <%= comment.name %>
+          </div>
+          <div class="col-6">
+          </div>
+          <div class="col-3">
+            <% if user_signed_in? %>
+              <% if params[:user_id] = current_user.id && comment.is_public == false %>
+                <%= link_to "非公開にする", soft_softcomment_path(@soft, id: comment.id, softcomment: {is_public: true}), method: :patch,
+                    class: "m-1 btn btn-secondary btn-sm" %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+        <div class="row mx-3 p-2 bg-primary-subtle">
+          <div class="col-10">
+            <%= safe_join(comment.content.split("\n"),tag(:br)) %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

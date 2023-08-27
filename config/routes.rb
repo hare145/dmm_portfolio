@@ -26,12 +26,13 @@ Rails.application.routes.draw do
       get 'users/unsubscribe' => "users#unsubscribe"
       patch 'users/withdraw' => "user#withdraw"
       get 'users/bookmark' => "users#bookmark"
+      get 'users/mycomment' => "users#mycomment"
       resources :users do
         controller :userservices do
           resources :userservices, only: [:show, :create, :update, :destroy]
         end
         controller :usercomments do
-          resources :usercomments, only: [:create, :update, :destroy]
+          resources :usercomments, only: [:show, :create, :update, :destroy]
         end
         controller :usermarks do
           resources :usermarks, only: [:create, :destroy]
@@ -44,7 +45,7 @@ Rails.application.routes.draw do
       get 'softs/notice' => "softs#notice"
       resources :softs, only: [:show, :index, :create, :update] do
         controller :softcomments do
-          resources :softcomments, only: [:create, :update, :destroy]
+          resources :softcomments, only: [:show, :create, :update, :destroy]
         end
         controller :softmarks do
           resources :softmarks, only: [:create, :destroy]

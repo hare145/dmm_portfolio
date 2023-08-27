@@ -36,6 +36,11 @@ class User < ApplicationRecord
     where(id: ids)
   end
   
+  
+  def employee_enum(user)
+    employee_methods_i18n[User.employee_methods.key(user.employee)]
+  end
+  
   def get_profile_image(width, height)
     unless profile_image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')

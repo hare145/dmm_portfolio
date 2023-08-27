@@ -42,14 +42,6 @@
               <%= f.select :employee, User.employee_methods.keys.map.with_index {|k, i| [I18n.t("enums.user.employee_method.#{k}"), i]}, {}, class: 'form-control-plaintext border-secondary border-bottom border-top-0' %>
             </div>
           </div>
-           <div class="row justify-content-center">
-            <div class="col-4 text-center m-4 p-2 fw-bold">
-              創立日
-            </div>
-            <div class="col-5 text-center m-4 p-2">
-            　<%= f.text_field :founding, class: "form-control-plaintext border-secondary border-bottom border-top-0" %>
-            </div>
-          </div>
         </div>
       </div>
       <div class="col-1">
@@ -60,7 +52,7 @@
         </div>
         <table class="table m-0">
           <tr>
-            <th class="col-4 text-center table-primary">
+            <th class="col-4 text-center table-warning">
               <%= f.text_field :account_soft, class: "form-control-plaintext border-secondary border-bottom border-top-0" %>
             </th>
             <td class="col-8">
@@ -68,7 +60,7 @@
             </td>
           </tr>
           <tr>
-            <th class="col-4 text-center table-primary">
+            <th class="col-4 text-center table-warning">
               <%= f.text_field :accounting_soft, class: "form-control-plaintext border-secondary border-bottom border-top-0" %>
             </th>
             <td class="col-8">
@@ -76,7 +68,7 @@
             </td>
           </tr>
           <tr>
-            <th class="col-4 text-center table-primary">
+            <th class="col-4 text-center table-warning">
               <%= f.text_field :other_soft, class: "form-control-plaintext border-secondary border-bottom border-top-0" %>
             </th>
             <td class="col-8">
@@ -89,7 +81,7 @@
         </div>
         <table class="table m-0">
           <tr>
-            <th class="col-4 text-center table-primary">
+            <th class="col-4 text-center table-warning">
               <%= f.text_field :salary_soft, class: "form-control-plaintext border-secondary border-bottom border-top-0" %>
             </th>
             <td class="col-8">
@@ -97,7 +89,7 @@
             </td>
           </tr>
           <tr>
-            <th class="col-4 text-center table-primary">
+            <th class="col-4 text-center table-warning">
               <%= f.text_field :working_hours_soft, class: "form-control-plaintext border-secondary border-bottom border-top-0" %>
             </th>
             <td class="col-8">
@@ -105,7 +97,7 @@
             </td>
           </tr>
           <tr>
-            <th class="col-4 text-center table-primary">
+            <th class="col-4 text-center table-warning">
               <%= f.text_field :communication_soft, class: "form-control-plaintext border-secondary border-bottom border-top-0" %>
             </th>
             <td class="col-8">
@@ -118,7 +110,7 @@
         </div>
         <table class="table m-0">
           <tr>
-            <th class="col-4 text-center table-primary">
+            <th class="col-4 text-center table-warning">
               <%= f.text_field :customer_info_soft, class: "form-control-plaintext border-secondary border-bottom border-top-0" %>
             </th>
             <td class="col-8">
@@ -126,7 +118,7 @@
             </td>
           </tr>
           <tr>
-            <th class="col-4 text-center table-primary">
+            <th class="col-4 text-center table-warning">
               <%= f.text_field :customer_deposit_soft, class: "form-control-plaintext border-secondary border-bottom border-top-0" %>
             </th>
             <td class="col-8">
@@ -134,7 +126,7 @@
             </td>
           </tr>
           <tr>
-            <th class="col-4 text-center table-primary">
+            <th class="col-4 text-center table-warning">
               <%= f.text_field :customer_billing_soft, class: "form-control-plaintext border-secondary border-bottom border-top-0" %>
             </th>
             <td class="col-8">
