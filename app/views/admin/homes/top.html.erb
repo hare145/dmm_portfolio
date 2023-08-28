@@ -7,9 +7,11 @@
       <div class="col-7">
       </div>
       <div class="col-2 text-center text-light">
-         <%= form_with model: @users, url: admin_root_path, method: :get do |f| %>
+         <%= form_with url: admin_root_path, method: :get do |f| %>
           <%= f.select :ordered, [  ['投稿が新しい順', 'new'],
-                                    ['閲覧数が多い', 'view']
+                                    ['閲覧数が多い', 'view'],
+                                    ['公開のみ', 'release'],
+                                    ['非公開のみ', 'private']
           ], {prompt: '選択してください' }, class: "form-select form-select-sm border border-secondary", id: "sort" %>
           <%= f.hidden_field :company, :value=> @search_facility %>
           <%= f.hidden_field :service_id, :value=> params[:service_id] %>
@@ -25,7 +27,7 @@
 </div>
 
 <div class="container mt-5">
-  <div class="row p-2 enclosure_color">
+  <div class="row p-2 bg-dark-subtle">
     <table class="table m-0">
       <thead class="table-dark text-center">
         <tr>

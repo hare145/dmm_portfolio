@@ -1,7 +1,8 @@
 class Admin::UsercommentsController < ApplicationController
   
   def update
-    @usercomment = Usercomment.find(params[:comment_id])
+    @user = User.find(params[:user_id])
+    @usercomment = @user.usercomments.find(params[:comment_id])
     if @usercomment.update!(usercomment_params)
       redirect_to request.referer
     else
@@ -10,6 +11,7 @@ class Admin::UsercommentsController < ApplicationController
   end
   
   def destroy
+    @user = User.find(params[:user_id])
     @usercomment = Usercomment.find(params[:comment_id])
     if @usercomment.destroy!
       redirect_to request.referer

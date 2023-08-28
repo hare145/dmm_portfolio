@@ -1,7 +1,12 @@
 class Admin::ServicesController < ApplicationController
   def index
     @service = Service.new
-    @services = Service.all.page(params[:page]).per(30)
+    @search_service = params[:content]
+    if @search_service.present?
+      @services = Service.content_search(@search_service)
+    else
+      @services = Service.all
+    end
   end
 
   def edit

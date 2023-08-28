@@ -2,7 +2,6 @@ class Admin::FacilitiesController < ApplicationController
   def show
     @facility = User.find(params[:id])
     @usercomments = Usercomment.where(page_id: params[:id]).limit(5)
-    # @UserService.where(user_id: @facility)
   end
 
   def edit
@@ -10,15 +9,18 @@ class Admin::FacilitiesController < ApplicationController
   end
   
   def update
-    @facility = User.find(params[:id])
-    @facility.update(facility_params)
-    redirect_to admin_facility_path(@facility)
+    @user = User.find(params[:id])
+    if @user.update!(user_params)
+      redirect_to admin_facility_path(@user)
+    else
+      redirect_to admin_facility_path(@user)
+    end
   end
   
   
   private
   
-  def facility_params
+  def user_params
     params.require(:user).permit(:name, :employee, :tag, :service_id, :account_soft,
     :account_reason, :accounting_soft, :accounting_reason, :other_soft, :other_reason,
     :salary_soft, :salary_reason, :working_hours_soft, :working_hours_reason,

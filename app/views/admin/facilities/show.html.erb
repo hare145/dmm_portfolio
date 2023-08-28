@@ -1,179 +1,191 @@
 <div class="bg-dark">
   <div class="container">
     <div class="row p-4">
-      <div class="col-2 text-center text-light">
+      <div class="col-3 mt-1 text-center text-light">
         施設情報詳細
       </div>
-      <div class="col-7">
+      <div class="col-6">
       </div>
-      <div class="col-3 text-center">
-        <%= link_to "登録情報を編集する", edit_admin_facility_path(@facility), class: "text-light" %>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<div class="container mt-4 mb-4">
-  <div class="row">
-    <div class="col-4">
-      <div class="container mb-4 p-2 enclosure_color">
-        <%= image_tag @facility.get_profile_image(400, 500), width: '100%', height: '100%'%>
-      </div>
-      <div class="container p-2"> 
-        <div class="row justify-content-center m-4 p-2 border-bottom border-dark">
-          <%= @facility.name %>
-        </div>
-        <div class="row justify-content-center h-100">
-          <div class="col-4 text-center h-25 m-4 p-2 ">
-            提供サービス
-          </div>
-          <div class="col-5 text-center m-4 p-2">
-            <!--% @user_services.each do |user_service| %>-->
-            <!--%= user_service.service_id %>-->
-            <!--% end %>-->
-          </div>
-        </div>
-        <div class="row justify-content-center ">
-          <div class="col-4 text-center m-4 p-2">
-            従業員数
-          </div>
-          <div class="col-5 text-center m-4 p-2">
-            <%= @facility.employee %>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-1">
-    </div>
-    <div class="col-7">
-      <div class="p-1 text-light bg-dark">
-        会計・経理関係採用サイト
-      </div>
-      <table class="table m-0">
-        <tr>
-          <th class="col-4 text-center table-danger">
-            <%= @facility.account_soft %>
-          </th>
-          <td class="col-8">
-            <%if @facility.account_reason.nil? %>   
-              <%= @facility.account_reason %>
-            <% else %>
-              <%= safe_join(@facility.account_reason.split("\n"),tag(:br)) %>
-            <%end %>
-          </td>
-        </tr>
-        <tr>
-          <th class="col-4 text-center table-danger">
-            <%= @facility.accounting_soft %>
-          </th>
-          <td class="col-8">
-            <%= @facility.accounting_reason %>
-          </td>
-        </tr>
-        <tr>
-          <th class="col-4 text-center table-danger">
-            <%= @facility.other_soft %>
-          </th>
-          <td class="col-8">
-            <%= @facility.other_reason %>
-          </td>
-        </tr>
-      </table>
-      <div class="p-1 text-light bg-dark">
-        労務関係採用サイト
-      </div>
-      <table class="table m-0">
-        <tr>
-          <th class="col-4 text-center table-danger">
-            <%= @facility.salary_soft %>
-          </th>
-          <td class="col-8">
-            <%= @facility.salary_reason %>
-          </td>
-        </tr>
-        <tr>
-          <th class="col-4 text-center table-danger">
-            <%= @facility.working_hours_soft %>
-          </th>
-          <td class="col-8">
-            <%= @facility.working_hours_reason %>
-          </td>
-        </tr>
-        <tr>
-          <th class="col-4 text-center table-danger">
-            <%= @facility.communication_soft %>
-          </th>
-          <td class="col-8">
-            <%= safe_join(@facility.communication_reason.split("\n"),tag(:br)) %>
-          </td>
-        </tr>
-      </table>
-      <div class="p-1 text-light bg-dark">
-        利用者関係採用サイト
-      </div>
-      <table class="table m-0">
-        <tr>
-          <th class="col-4 text-center table-danger">
-            <%= @facility.customer_info_soft %>
-          </th>
-          <td class="col-8">
-            <%= @facility.customer_info_reason %>
-          </td>
-        </tr>
-        <tr>
-          <th class="col-4 text-center table-danger">
-            <%= @facility.customer_deposit_soft %>
-          </th>
-          <td class="col-8">
-            <%= @facility.customer_deposit_reason %>
-          </td>
-        </tr>
-        <tr>
-          <th class="col-4 text-center table-danger">
-            <%= @facility.customer_billing_soft %>
-          </th>
-          <td class="col-8">
-            <%= @facility.customer_billing_reason %>
-          </td>
-        </tr>
-      </table>
-    </div>
-  </div>
-</div>
-
-<div class="container">
-  <div class="row">
-    <div class="col-2">
-      投稿コメント一覧(全<%= @usercomments.count %>件)
-    </div>
-    <div class="col-10 mt-3 border-top border-dark">
-    </div>
-  </div>
-</div>
-
-<div class="container enclosure_color mt-4 mb-4">
-  <% @usercomments.each do |usercomment| %>
-    <div class="row">
-      <% if usercomment.is_public == false %>
-        <%= link_to "非公開にする", admin_facility_usercomment_path(@facility, comment_id: usercomment.id, usercomment: { is_public: true}), method: :patch %>
-      <% else %>
-       <%= link_to "公開する", admin_facility_usercomment_path(@facility, comment_id: usercomment.id, usercomment: {is_public: false}), method: :patch %>
-      <% end %>
-      <%= link_to "削除する", admin_facility_usercomment_path(@facility, comment_id: usercomment.id), method: :delete %>
       <div class="col-3">
-        <%= usercomment.name %>
+        <%= link_to "施設情報を編集する", edit_admin_facility_path(@facility), class: "text-light" %>
       </div>
     </div>
+  </div>
+</div>
+
+<div class="bg_image_yellow">
+  <div class="container mt-5 mb-4">
     <div class="row">
-      <%= usercomment.content %>
+      <div class="col-4">
+        <div class="container mb-4 p-2 shadow">
+          <%= image_tag @facility.get_profile_image(400, 500), width: '100%', height: '100%'%>
+        </div>
+        <div class="container p-2"> 
+          <div class="row justify-content-center m-4 p-2 border-bottom border-dark">
+            <%= @facility.name %>
+          </div>
+          <div class="row justify-content-center h-100">
+            <div class="col-4 text-center h-25 m-4 p-2 ">
+              提供サービス
+            </div>
+            <div class="col-5 text-center m-4 p-2">
+              <% @facility.userservice_services.each do |service| %>
+                <p><%= service.content %></p>
+              <% end %>
+            </div>
+          </div>
+          <div class="row justify-content-center ">
+            <div class="col-4 text-center m-4 p-2">
+              従業員数
+            </div>
+            <div class="col-5 text-center m-4 p-2">
+              <%= @facility.employee %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-1">
+      </div>
+      <div class="col-7">
+        <div class="p-1 fw-bold">
+          会計・経理関係採用サイト
+        </div>
+        <table class="table m-0">
+          <tr>
+            <th class="col-4 text-center table-warning">
+              <%= safe_join(@facility.account_soft.split("\n"),tag(:br)) %>
+            </th>
+            <td class="col-8">
+              <%= safe_join(@facility.account_reason.split("\n"),tag(:br)) %>
+            </td>
+          </tr>
+          <tr>
+            <th class="col-4 text-center table-warning">
+              <%= safe_join(@facility.accounting_soft.split("\n"),tag(:br)) %>
+            </th>
+            <td class="col-8">
+              <%= safe_join(@facility.accounting_reason.split("\n"),tag(:br)) %>
+            </td>
+          </tr>
+          <tr>
+            <th class="col-4 text-center table-warning">
+              <%= safe_join(@facility.other_soft.split("\n"),tag(:br)) %>
+            </th>
+            <td class="col-8">
+              <%= safe_join(@facility.other_reason.split("\n"),tag(:br)) %>
+            </td>
+          </tr>
+        </table>
+        <div class="p-1 mt-4 fw-bold">
+          労務関係採用サイト
+        </div>
+        <table class="table m-0">
+          <tr>
+            <th class="col-4 text-center table-warning">
+              <%= safe_join(@facility.salary_soft.split("\n"),tag(:br)) %>
+            </th>
+            <td class="col-8">
+              <%= safe_join(@facility.salary_reason.split("\n"),tag(:br)) %>
+            </td>
+          </tr>
+          <tr>
+            <th class="col-4 text-center table-warning">
+              <%= safe_join(@facility.working_hours_soft.split("\n"),tag(:br)) %>
+            </th>
+            <td class="col-8">
+              <%= safe_join(@facility.working_hours_reason.split("\n"),tag(:br)) %>
+            </td>
+          </tr>
+          <tr>
+            <th class="col-4 text-center table-warning">
+              <%= safe_join(@facility.communication_soft.split("\n"),tag(:br)) %>
+            </th>
+            <td class="col-8">
+              <%= safe_join(@facility.communication_reason.split("\n"),tag(:br)) %>
+            </td>
+          </tr>
+        </table>
+        <div class="p-1 mt-4 fw-bold">
+          利用者関係採用サイト
+        </div>
+        <table class="table m-0">
+          <tr>
+            <th class="col-4 text-center table-warning">
+              <%= safe_join(@facility.customer_info_soft.split("\n"),tag(:br)) %>
+            </th>
+            <td class="col-8">
+              <%= safe_join(@facility.customer_info_reason.split("\n"),tag(:br)) %>
+            </td>
+          </tr>
+          <tr>
+            <th class="col-4 text-center table-warning">
+              <%= safe_join(@facility.customer_deposit_soft.split("\n"),tag(:br)) %>
+            </th>
+            <td class="col-8">
+              <%= safe_join(@facility.customer_deposit_reason.split("\n"),tag(:br)) %>
+            </td>
+          </tr>
+          <tr>
+            <th class="col-4 text-center table-warning">
+              <%= safe_join(@facility.customer_billing_soft.split("\n"),tag(:br)) %>
+            </th>
+            <td class="col-8">
+              <%= safe_join(@facility.customer_billing_reason.split("\n"),tag(:br)) %>
+            </td>
+          </tr>
+        </table>
+      </div>
     </div>
-  <% end %>
-  <div class="row">
-    <div class="col-10">
+  </div>
+</div>
+
+<div class="bg-warning-subtle">
+  <div class="container bg-light">
+    <div class="container pt-5">
+      <div class="row">
+        <div class="col-4">
+          投稿コメント一覧(全<%= @usercomments.count %>件)
+        </div>
+        <div class="col-10 mt-2 border-top border-dark">
+        </div>
+      </div>
     </div>
-    <div class="col-2">
-      <%= link_to "一覧はこちら>>" %>
+    
+    <div class="container">
+      <% @usercomments.each do |comment| %>
+        <div class="row mt-5 mx-4">
+          <div class="col-3">
+            <%= comment.name %>
+          </div>
+          <div class="col-3">
+          </div>
+          <div class="col-2">
+            <% if comment.is_public == false %>
+              <%= link_to "非公開にする", admin_facility_usercomment_path(@facility, comment_id: comment.id, usercomment: { is_public: true}), method: :patch,
+                  class: "m-1 btn btn-secondary btn-sm" %>
+            <% else comment.is_public == true %>
+               <%= link_to "公開にする", admin_facility_usercomment_path(@facility, comment_id: comment.id, usercomment: { is_public: false}), method: :patch,
+                class: "m-1 btn btn-success btn-sm" %>
+            <% end %>
+          </div>
+          <div class="col-2">
+            <%= link_to "消去する", admin_facility_usercomment_path(@facility), method: :delete,
+                class: "m-1 btn btn-danger btn-sm" %>
+          </div>
+        </div>
+        <div class="row mx-3 p-2 bg-warning-subtle">
+          <div class="col-10">
+            <%= comment.content %>
+          </div>
+        </div>
+      <% end %>
+      <div class="row pt-3 pb-3">
+        <div class="col-10">
+        </div>
+        <div class="col-2">
+          <%= link_to "一覧はこちら>>", admin_facility_usercomment_path(@facility)%>
+        </div>
+      </div>
     </div>
   </div>
 </div>

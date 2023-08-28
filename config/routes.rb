@@ -75,7 +75,10 @@ Rails.application.routes.draw do
     controller :facilities  do
       resources :facilities, only: [:show, :edit, :update] do
         controller :usercomments do
-          resources :usercomments, only: [:update, :destroy]
+          resources :usercomments, only: [:show, :update, :destroy]
+        end
+        controller :userservices do
+          resources :userservices, only: [:show, :create, :update, :destroy]
         end
       end
     end
