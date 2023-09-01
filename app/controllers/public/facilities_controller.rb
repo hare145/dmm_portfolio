@@ -7,66 +7,66 @@ class Public::FacilitiesController < ApplicationController
     @next_services = Service.all.limit(4).offset(6)
     @third_services = Service.all.limit(2).offset(10)
     
-    @search_ficility = params[:name]
-    @search_service = params[:service_id]
-    @search_order = params[:ordered]
+    @facility = params[:name]
+    @service = params[:service_id]
+    @order = params[:ordered]
     
-    if @search_ficility.present? && @search_service.present? && @search_order.present?
-      if @search_order == "new"
-        @users = User.name_search(@search_ficility).service_search(@search_service).create_search.page(params[:page]).per(12)
-      elsif @search_oreder == "view" 
-        @users = User.name_search(@search_ficility).service_search(@search_service).view_search.page(params[:page]).per(12)
-      elsif @search_oreder == "many"
-        @users = User.name_search(@search_ficility).service_search(@search_service).many_search.page(params[:page]).per(12)
-      elsif @search_oreder == "few" 
-        @users = User.name_search(@search_ficility).service_search(@search_service).few_search.page(params[:page]).per(12)
+    if @facility.present? && @service.present? && @order.present?
+      if @order == "new"
+        @users = User.name_search(@facility).service_search(@service).create_search.page(params[:page]).per(12)
+      elsif @order == "view" 
+        @users = User.name_search(@facility).service_search(@service).view_search.page(params[:page]).per(12)
+      elsif @order == "many"
+        @users = User.name_search(@facility).service_search(@service).many_search.page(params[:page]).per(12)
+      elsif @order == "few" 
+        @users = User.name_search(@facility).service_search(@service).few_search.page(params[:page]).per(12)
       else
         @users = user_all
       end
       
-    elsif @search_ficility.present? && @search_service.present?
-      @users = User.name_search(@search_ficility).service_search(@search_service).page(params[:page]).per(12)
+    elsif @facility.present? && @service.present?
+      @users = User.name_search(@facility).service_search(@service).page(params[:page]).per(12)
       
-    elsif @search_ficility.present? && @search_order.present?
-      if @search_order == "new"
-        @users = User.name_search(@search_ficility).create_search.page(params[:page]).per(12)
-      elsif @search_oreder == "view"
-        @users = User.name_search(@search_ficility).view_search.page(params[:page]).per(12)
-      elsif @search_oreder == "many"
-        @users = User.name_search(@search_ficility).many_search.page(params[:page]).per(12)
-      elsif @search_oreder == "few" 
-        @users = User.name_search(@search_ficility).few_search.page(params[:page]).per(12)
+    elsif @facility.present? && @order.present?
+      if @order == "new"
+        @users = User.name_search(@facility).create_search.page(params[:page]).per(12)
+      elsif @order == "view"
+        @users = User.name_search(@facility).view_search.page(params[:page]).per(12)
+      elsif @order == "many"
+        @users = User.name_search(@facility).many_search.page(params[:page]).per(12)
+      elsif @order == "few" 
+        @users = User.name_search(@facility).few_search.page(params[:page]).per(12)
       else
         @users = user_all
       end
       
-    elsif @search_service.present? && @search_order.present?
-      if @search_order == "new"
-        @users = User.service_search(@search_service).create_search.page(params[:page]).per(12)
-      elsif @search_oreder == "view" 
-        @users = User.service_search(@search_service).view_search.page(params[:page]).per(12)
-      elsif @search_oreder == "many"
-        @users = User.service_search(@search_service).many_search.page(params[:page]).per(12)
-      elsif @search_oreder == "few" 
-        @users = User.service_search(@search_service).few_search.page(params[:page]).per(12)
+    elsif @service.present? && @order.present?
+      if @order == "new"
+        @users = User.service_search(@service).create_search.page(params[:page]).per(12)
+      elsif @order == "view" 
+        @users = User.service_search(@service).view_search.page(params[:page]).per(12)
+      elsif @order == "many"
+        @users = User.service_search(@service).many_search.page(params[:page]).per(12)
+      elsif @order == "few" 
+        @users = User.service_search(@service).few_search.page(params[:page]).per(12)
       else
         @users = user_all
       end
       
-    elsif @search_ficility.present?
-      @users = User.name_search(@search_ficility).page(params[:page]).per(12)
+    elsif @facility.present?
+      @users = User.name_search(@facility).page(params[:page]).per(12)
       
-    elsif @search_service.present?
-      @users = User.service_search(@search_service).page(params[:page]).per(12)
+    elsif @service.present?
+      @users = User.service_search(@service).page(params[:page]).per(12)
       
-    elsif @search_order.present?
-      if @search_order == "new"
+    elsif @order.present?
+      if @order == "new"
         @users = User.create_search.page(params[:page]).per(12)
-      elsif @search_oreder == "view" 
+      elsif @order == "view" 
         @users = User.view_search.page(params[:page]).per(12)
-      elsif @search_oreder == "many"
+      elsif @order == "many"
         @users = User.many_search.page(params[:page]).per(12)
-      elsif @search_oreder == "few" 
+      elsif @order == "few" 
         @users = User.few_search.page(params[:page]).per(12)
       else
         @users = user_all
@@ -91,5 +91,6 @@ class Public::FacilitiesController < ApplicationController
   def user_all
     User.where(is_deleted: false).page(params[:page]).per(12)
   end
+  
   
 end

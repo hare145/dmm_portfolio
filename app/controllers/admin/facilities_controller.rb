@@ -1,4 +1,6 @@
 class Admin::FacilitiesController < ApplicationController
+  before_action :authenticate_admin!
+  
   def show
     @facility = User.find(params[:id])
     @usercomments = Usercomment.where(page_id: params[:id]).limit(5)

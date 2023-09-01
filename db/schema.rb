@@ -168,10 +168,8 @@ ActiveRecord::Schema.define(version: 2023_08_14_125703) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.string "name", null: false
-    t.string "employee", default: "", null: false
+    t.integer "employee", null: false
     t.integer "impressions_count", default: 0
-    t.integer "service_id"
-    t.string "founding"
     t.string "account_soft", default: "会計使用ソフト"
     t.text "account_reason", default: "そのソフトを使用している理由"
     t.string "accounting_soft", default: "経理使用ソフト"

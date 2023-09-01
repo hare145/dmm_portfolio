@@ -39,7 +39,7 @@
               従業員数
             </div>
             <div class="col-5 text-center m-4 p-2">
-              <%= f.select :employee, User.employee_methods.keys.map.with_index {|k, i| [I18n.t("enums.user.employee_method.#{k}"), i]}, {}, class: 'form-control-plaintext border-secondary border-bottom border-top-0' %>
+              <%= f.select :employee, User.employee.keys.map.with_index {|k, i| [I18n.t("enums.user.employee.#{k}"), i]}, {}, class: 'form-control-plaintext border-secondary border-bottom border-top-0' %>
             </div>
           </div>
         </div>

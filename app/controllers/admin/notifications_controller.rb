@@ -1,6 +1,8 @@
 class Admin::NotificationsController < ApplicationController
+  before_action :authenticate_admin!
+  
   def index
-    if params[:is_checked] == false
+    if params[:is_checked] == "false"
       @notifications = Notification.where(is_checked: false).page(params[:page]).per(20)
     else
       @notifications = Notification.all.page(params[:page]).per(20)

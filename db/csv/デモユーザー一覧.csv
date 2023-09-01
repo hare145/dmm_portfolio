@@ -2,7 +2,7 @@ name,email,password,employee
 あいうえお,123456@gmail.com,123456,1
 123456,aaaaaa@gmail.com,123456,2
 abcdef,bbbbbb@gmail.com,123456,3
-@@@@@@,cccccc@gmail.com,123456,1
-かきくけこ,1234567@gmail.com,123456,1
-78910,12345678@gmail.com,123456,2
+@@@@@@,cccccc@gmail.com,123456,0
+かきくけこ,1234567@gmail.com,123456,0
+78910,12345678@gmail.com,123456,3
 ghijklm,123456789@gmail.com,123456,2

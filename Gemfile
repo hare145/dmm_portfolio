@@ -62,3 +62,5 @@ gem 'kaminari','~> 1.2.2'
 gem 'impressionist'
 
 gem "enum_help"
+
+gem 'rails-i18n'

@@ -1,0 +1,43 @@
+  <div class="bg-warning-subtle">
+    <div class="container bg-light">
+      <div class="container pt-5">
+        <div class="row mt-3">
+          <div class="col-3">
+            <%= @facility.name %>投稿コメント一覧(全<%= @usercomments.count %>件)
+          </div>
+          <div class="col-9 mt-2 border-top border-dark">
+          </div>
+        </div>
+      </div>
+      
+      <div class="container">
+        <% @usercomments.each do |comment| %>
+          <div class="row mt-5 mx-4">
+            <div class="col-2">
+              <%= comment.name %>
+            </div>
+            <div class="col-6">
+            </div>
+            <div class="col-2">
+              <% if comment.is_public == false %>
+                <%= link_to "非公開にする", admin_facility_usercomment_path(@facility, comment_id: comment.id, usercomment: { is_public: true}), method: :patch,
+                    class: "m-1 btn btn-secondary btn-sm" %>
+              <% else comment.is_public == true %>
+                 <%= link_to "公開にする", admin_facility_usercomment_path(@facility, comment_id: comment.id, usercomment: { is_public: false}), method: :patch,
+                  class: "m-1 btn btn-success btn-sm" %>
+              <% end %>
+            </div>
+            <div class="col-2">
+              <%= link_to "消去する", admin_facility_usercomment_path(@facility, comment_id: comment.id), method: :delete,
+                  class: "m-1 btn btn-danger btn-sm" %>
+            </div>
+          </div>
+          <div class="row mx-3 p-2 bg-warning-subtle">
+            <div class="col-10">
+              <%= comment.content %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>

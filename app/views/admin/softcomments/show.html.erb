@@ -16,15 +16,19 @@
           <div class="col-3">
             <%= comment.name %>
           </div>
-          <div class="col-6">
+          <div class="col-5">
           </div>
-          <div class="col-3">
-            <% if user_signed_in? %>
-              <% if params[:user_id] = current_user.id && comment.is_public == false %>
-                <%= link_to "非公開にする", soft_softcomment_path(@soft, id: comment.id, softcomment: {is_public: true}), method: :patch,
-                    class: "m-1 btn btn-secondary btn-sm" %>
-              <% end %>
+          <div class="col-2">
+            <% if comment.is_public == false %>
+              <%= link_to "非公開にする", soft_softcomment_path(@soft, id: comment.id, softcomment: {is_public: true}), method: :patch,
+                  class: "m-1 btn btn-secondary btn-sm" %>
+            <% else %>
+              <%= link_to "公開する", soft_softcomment_path(@soft, id: comment.id, softcomment: {is_public: false}), method: :patch,
+                  class: "m-1 btn btn-success btn-sm" %>
             <% end %>
+          </div>
+          <div class="col-2">
+            <%= link_to "削除する", soft_softcomment_path(@soft, id: comment.id), method: :delete, class: "m-1 btn btn-danger btn-sm" %>
           </div>
         </div>
         <div class="row mx-3 p-2 bg-primary-subtle">

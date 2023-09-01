@@ -48,7 +48,7 @@
               従業員数
             </div>
             <div class="col-5 text-center m-4 p-2">
-              <%= current_user.employee %>
+              <%= User.employees_i18n[current_user.employee] %>
             </div>
           </div>
         </div>

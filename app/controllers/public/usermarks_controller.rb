@@ -1,4 +1,6 @@
 class Public::UsermarksController < ApplicationController
+  before_action :authenticate_user!, only: [:create, :destroy]
+  
   def create
     @usermark = current_user.usermarks.build(usermark_params)
     if @usermark.save!

@@ -87,7 +87,7 @@ Rails.application.routes.draw do
       get 'softs/new' => "softs#new"
       resources :softs, only: [:show, :index, :edit, :update, :create] do
         controller :softcomments do
-          resources :softcomments, only: [:update, :destroy]
+          resources :softcomments, only: [:show, :update, :destroy]
         end
       end
     end

@@ -39,7 +39,7 @@
               従業員数
             </div>
             <div class="col-5 text-center m-4 p-2">
-              <%= @facility.employee %>
+              <%= User.employees_i18n[@facility.employee] %>
             </div>
           </div>
         </div>
@@ -169,13 +169,13 @@
             <% end %>
           </div>
           <div class="col-2">
-            <%= link_to "消去する", admin_facility_usercomment_path(@facility), method: :delete,
+            <%= link_to "消去する", admin_facility_usercomment_path(@facility, comment_id: comment.id), method: :delete,
                 class: "m-1 btn btn-danger btn-sm" %>
           </div>
         </div>
         <div class="row mx-3 p-2 bg-warning-subtle">
           <div class="col-10">
-            <%= comment.content %>
+            <%= safe_join(comment.content.split("\n"),tag(:br)) %>
           </div>
         </div>
       <% end %>

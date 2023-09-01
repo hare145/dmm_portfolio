@@ -12,26 +12,25 @@
   </div>
 </div>
 
-
 <div class="container mt-5 ">
   <div class="row justify-content-center mt-1">
     <% @first_services.each do |service| %>
       <div class="col-2 m-1 text-center rounded-pill bg-light-subtle border border-secondary">
-        <%= link_to service.content, facilities_path(name: @search_facility, service_id: service.id), class: "small text-dark text-decoration-none" %>
+        <%= link_to service.content, facilities_path(name: @facility, service_id: service.id), class: "small text-dark text-decoration-none" %>
       </div>
     <% end %>
   </div>
   <div class="row justify-content-center mt-1 mx-3">
     <% @next_services.each do |service| %>
       <div class="col-2 m-1 text-center rounded-pill bg-light-subtle border border-secondary">
-        <%= link_to service.content, facilities_path(name: @search_facility, service_id: service.id), class: "small text-dark text-decoration-none" %>
+        <%= link_to service.content, facilities_path(name: @facility, service_id: service.id), class: "small text-dark text-decoration-none" %>
       </div>
   <% end %>
   </div>
   <div class="row justify-content-center mt-1 mx-5">
     <% @third_services.each do |service| %>
       <div class="col-2 m-1 text-center rounded-pill bg-light-subtle border border-secondary">
-        <%= link_to service.content, facilities_path(name: @search_facility, service_id: service.id), class: "small text-dark text-decoration-none" %>
+        <%= link_to service.content, facilities_path(name: @facility, service_id: service.id), class: "small text-dark text-decoration-none" %>
       </div>
    <% end %>
    <div class="col-2 m-1 text-center rounded-pill bg-light-subtle border border-secondary">
@@ -51,8 +50,8 @@
                                     ['雇用人数が多い順','many'],
                                     ['雇用人数が少ない順','few']
           ], {prompt: '選択してください' }, class: "form-select form-select-sm border border-secondary", id: "sort" %>
-          <%= f.hidden_field :company, :value=> @search_facility %>
-          <%= f.hidden_field :service_id, :value=> @search_service %>
+          <%= f.hidden_field :company, :value=> @facility %>
+          <%= f.hidden_field :service_id, :value=> @service %>
         <% end %>
         <script>
           $('#sort').change(function() {
@@ -72,7 +71,7 @@
             <%= image_tag user.get_profile_image(200, 300), class: "border" %>
             <div class="card-body m-2">
               <h5 class="card-title p-1 text-center"><%= user.name %></h5>
-              <p class="card-text p-2 text-center"><%= user.employee %></p>
+              <p class="card-text p-2 text-center"><%= User.employees_i18n[user.employee] %></p>
               <p class="text-center"><%= link_to "詳細ページへ", facility_path(user.id), class: "btn btn-warning " %></p>
             </div>
           </div>
@@ -82,8 +81,10 @@
   </div>
 
   <div class="container">
-    <div class="row">
-      <%= paginate @users %>
+    <div class="row justify-content-center">
+      <div class="col-2">
+        <%= paginate @users %>
+      </div>
     </div>
   </div>
 </div> 

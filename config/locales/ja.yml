@@ -1,7 +1,7 @@
   ja:
     enums:
       user:
-        employee_method: 
+        employee: 
           less_than_thirty: "30人未満"
           thirty_less_than_fifty: "30人以上50人未満"
           fifty_less_than_hundred: "50人以上100人未満"

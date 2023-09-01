@@ -7,12 +7,14 @@
       <div class="col-8">
       </div>
       <div class="col-2">
-        <%= form_with model: @softs, url: admin_softs_path, method: :get do |f| %>
+        <%= form_with url: admin_softs_path, method: :get do |f| %>
           <%= f.select :ordered, [  ['投稿が新しい順', 'new'],
-                                    ['閲覧数が多い', 'view']
+                                    ['閲覧数が多い', 'view'],
+                                    ['公開のみ', 'true'],
+                                    ['非公開のみ', 'false']
           ], {prompt: '選択してください' }, class: "form-select form-select-sm border border-secondary", id: "sort" %>
-          <%= f.hidden_field :company, :value=> @search_soft %>
-          <%= f.hidden_field :work_id, :value=> params[:work_id] %>
+          <%= f.hidden_field :company, :value=> @soft %>
+          <%= f.hidden_field :work_id, :value=> @work %>
         <% end %>
         <script>
           $('#sort').change(function() {
@@ -49,12 +51,12 @@
  </div>
  
  
-<div class="container mt-5 p-2 rounded enclosure_color">
-  <div class="row justify-content-center">
+<div class="container mt-5 mb-3 p-2 text-center rounded bg-dark-subtle">
+  <div class="row mt-2 justify-content-center">
     <% @works.each do |work| %>
-    <div class="col-3">
-      <%= link_to work.kind, admin_softs_path( company: @search_soft, work_id: work.id) %>
-    </div>
+      <div class="col-3 align-self-center border-start border-end border-secondary">
+        <%= link_to work.kind, admin_softs_path( company: @soft, work_id: work.id), class: "text-dark" %>
+      </div>
     <% end %>
   </div>
   <div>
@@ -103,7 +105,9 @@
       </tr>
     </table>
   </div>
-  <div class="row">
-    <%= paginate @softs %>
+  <div class="row justify-content-center">
+    <div class="col-2">
+      <%= paginate @softs %>
+    </div>
   </div>
 </div>

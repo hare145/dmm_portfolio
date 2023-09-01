@@ -1,4 +1,6 @@
 class Admin::ServicesController < ApplicationController
+  before_action :authenticate_admin!
+  
   def index
     @service = Service.new
     @search_service = params[:content]

@@ -22,7 +22,7 @@ class User < ApplicationRecord
   # ---Impressionistを用いてPV数取得---
   is_impressionable counter_cache: true
   
-  enum employee_method: { less_than_thirty: 0, thirty_less_than_fifty: 1, fifty_less_than_hundred: 2, hundred_more: 3 }
+  enum employee: { less_than_thirty: 0, thirty_less_than_fifty: 1, fifty_less_than_hundred: 2, hundred_more: 3 }
   
   scope :create_search, -> { order(created_at: :desc) }
   scope :view_search, -> { order(impressions_count: :desc) }
@@ -36,11 +36,6 @@ class User < ApplicationRecord
   scope :service_search, -> (service) do
     ids = Userservice.where(service_id: service).pluck(:user_id)
     where(id: ids)
-  end
-  
-  
-  def employee_enum(user)
-    employee_methods_i18n[User.employee_methods.key(user.employee)]
   end
   
   def get_profile_image(width, height)

@@ -1,4 +1,6 @@
 class Public::SoftmarksController < ApplicationController
+  before_action :authenticate_user!, only: [:create, :update]
+  
   def create
     @softmark = current_user.softmarks.build(softmark_params)
     if @softmark.save

@@ -1,7 +1,9 @@
 class Admin::ContactsController < ApplicationController
+  before_action :authenticate_admin!
+  
   def index
-    if params[:is_cheacked] == false
-      @contacts = Contact.where(is_cheacked: false).page(params[:page]).per(20)
+    if params[:is_checked] == "false"
+      @contacts = Contact.where(is_cheacke: false).page(params[:page]).per(15)
     else
       @contacts = Contact.all.page(params[:page]).per(20)
     end
@@ -10,7 +12,7 @@ class Admin::ContactsController < ApplicationController
   def update
     @contact = Contact.find(params[:id])
      if @contact.update!(contact_params)
-      redirect_to admin_contacts
+      redirect_to admin_contacts_path
      end
   end
   
@@ -19,6 +21,6 @@ class Admin::ContactsController < ApplicationController
   private
   
   def contact_params
-    params.require(:contact).permit(:is_cheacked)
+    params.permit(:is_cheacke)
   end
 end

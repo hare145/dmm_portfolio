@@ -13,8 +13,8 @@
   </div>
 </div>
 
-<div class="container mt-5">
-  <div class="row p-2 enclosure_color">
+<div class="container text-center mt-5">
+  <div class="row p-2 bg-dark-subtle">
     <table class="table m-0">
       <thead class="table-dark text-center">
         <tr>
@@ -28,16 +28,16 @@
       <% @contacts.each do |contact| %>
         <tbody class="text-center">
           <tr>
-          <td></td>
+          <td><%= contact.created_at %></td>
           <td><%= link_to contact.user.name, admin_facility_path(contact.user_id), class: "text-dark" %></td>
           <td><%= contact.user.email %></td>
-          <% if contact.is_checked == true %>
+          <% if contact.is_cheacke == true %>
             <td>
-              <%= link_to "確認済み", admin_contact_path(contact.id, is_checked: false), method: :patch, data: {confirm: "未確認に変更しますか？"}, class: "text-secondary"%>
+              <%= link_to "確認済み", admin_contact_path(contact.id, is_cheacke: false), method: :patch, data: {confirm: "未確認に変更しますか？"}, class: "text-secondary"%>
             </td>
-          <% elsif contact.is_checked == false %>
+          <% elsif contact.is_cheacke == false %>
             <td>
-               <%= link_to "未確認", admin_contact_path(contact.id, is_checked: true), method: :patch, data: {confirm: "確認済みに変更しますか？"}, class: "text-success"%>
+               <%= link_to "未確認", admin_contact_path(contact.id, is_cheacke: true), method: :patch, data: {confirm: "確認済みに変更しますか？"}, class: "text-success"%>
             </td>
           <% else %>
             <td>なし</td>
@@ -46,5 +46,10 @@
         </tbody>
       <% end %>
     </table>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-2">
+      <%= paginate @contacts %>
+    </div>
   </div>
 </div>

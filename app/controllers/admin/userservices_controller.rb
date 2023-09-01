@@ -1,4 +1,6 @@
 class Admin::UserservicesController < ApplicationController
+  before_action :authenticate_admin!
+  
   def show
     @user = User.find(params[:facility_id])
     @userservice = @user.userservices.new

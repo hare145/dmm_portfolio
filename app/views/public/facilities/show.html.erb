@@ -7,7 +7,7 @@
       <div class="col-7">
       </div>
       <div class="col-3 text-center">
-        <% if user_signed_in? %>
+        <% if user_signed_in? && @facility.id != current_user.id %>
           <% if Usermark.where(user_id: current_user.id, page_id: @facility.id).exists? %>
             <%= link_to "お気に入りを解除", user_usermark_path(Usermark.where(user_id: current_user.id, page_id: @facility.id)), method: :delete, class: "btn btn-outline-success" %>
           <% else %>
@@ -45,7 +45,7 @@
               従業員数
             </div>
             <div class="col-5 text-center m-4 p-2">
-              <%= @facility.employee %>
+              <%= User.employees_i18n[@facility.employee] %>
             </div>
           </div>
         </div>
@@ -190,7 +190,7 @@
           </div>
           <div class="col-3">
             <% if user_signed_in? %>
-              <% if @facility.id = current_user.id && comment.is_public == false %>
+              <% if comment.user_id == current_user.id && comment.is_public == false %>
                 <%= link_to "非公開にする", user_usercomment_path(@facility, comment_id: comment.id, usercomment: { is_public: true}), method: :patch,
                     class: "m-1 btn btn-secondary btn-sm" %>
               <% end %>
@@ -199,7 +199,7 @@
         </div>
         <div class="row mx-3 p-2 bg-warning-subtle">
           <div class="col-10">
-            <%= comment.content %>
+            <%= safe_join(comment.content.split("\n"),tag(:br))%>
           </div>
         </div>
       <% end %>

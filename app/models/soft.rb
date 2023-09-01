@@ -13,6 +13,7 @@ class Soft < ApplicationRecord
   
 
   scope :public_true, -> { where(is_public: true) }
+  scope :public_false, -> { where(is_public: false) }
   scope :create_search, -> { order(created_at: :desc) }
   scope :view_search, -> { order(impressions_count: :desc) }
   scope :company_search, -> (company) do

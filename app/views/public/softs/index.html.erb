@@ -13,7 +13,7 @@
 </div>
 
 
-<div class="bg_image_white vh-100">
+<div class="bg_image_white">
   <div class="container mt-5 rounded-pill bg-dark">
     <div class="row p-3 d-flex text-center text-light">
       <spam>ソフト情報の新規登録は</span>
@@ -31,8 +31,8 @@
           <%= f.select :ordered, [  ['投稿が新しい順', 'new'],
                                     ['閲覧数が多い', 'view']
           ], {prompt: '選択してください' }, class: "form-select form-select-sm border border-secondary", id: "sort" %>
-          <%= f.hidden_field :company, :value=> @search_soft %>
-          <%= f.hidden_field :work_id, :value=> @search_work %>
+          <%= f.hidden_field :company, :value=> @soft %>
+          <%= f.hidden_field :work_id, :value=> @work %>
         <% end %>
         <script>
           $('#sort').change(function() {
@@ -45,25 +45,25 @@
  
  
   <div class="container mt-5 p-4 rounded bg-primary-subtle">
-    <% if @search_work == "1" %>
+    <% if @work == "1" %>
     <div>
-      <%= render partial: 'public/shared/work/1works', locals: { search_soft: @search_soft } %>  
+      <%= render partial: 'public/shared/work/1works', locals: { search_soft: @soft } %>  
     </div>
-    <% elsif @search_work == "2" %>
+    <% elsif @work == "2" %>
       <div>
-        <%= render partial: 'public/shared/work/2works', locals: { search_soft: @search_soft } %>  
+        <%= render partial: 'public/shared/work/2works', locals: { search_soft: @soft } %>  
       </div>
-    <% elsif @search_work == "3" %>
+    <% elsif @work == "3" %>
       <div>
-        <%= render partial: 'public/shared/work/3works', locals: { search_soft: @search_soft } %>  
+        <%= render partial: 'public/shared/work/3works', locals: { search_soft: @soft } %>  
       </div>
     <% else %>
       <div>
-        <%= render partial: 'public/shared/work/works', locals: { works: @works, search_soft: @search_soft } %>  
+        <%= render partial: 'public/shared/work/works', locals: { works: @works, search_soft: @soft } %>  
       </div>
     <% end %>
     
-    <% if @search_work.present? %>
+    <% if @work.present? %>
       <div class="bg-light mx-5 pt-4 rounded">
         <%= render partial: 'public/shared/soft_cards', locals: { softs: @softs } %>  
       </div>
@@ -75,8 +75,10 @@
   </div>
 
   <div class="container">
-    <div class="row">
-      <%= paginate @softs %>
+    <div class="row justify-content-center">
+      <div class="col-2">
+        <%= paginate @softs %>
+      </div>
     </div>
   </div>
 </div>

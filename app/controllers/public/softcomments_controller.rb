@@ -1,4 +1,6 @@
 class Public::SoftcommentsController < ApplicationController
+  before_action :authenticate_user!, only: [:ceate, :update]
+  
   def show
     @soft = Soft.find(params[:id])
     @softcomments = Softcomment.where(soft_id: params[:soft_id], is_public: false)

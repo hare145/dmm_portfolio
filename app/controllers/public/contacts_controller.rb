@@ -1,4 +1,5 @@
 class Public::ContactsController < ApplicationController
+  before_action :authenticate_user!, only: [:create, :notice]
   
   def new
     if user_signed_in?

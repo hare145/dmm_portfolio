@@ -1,4 +1,5 @@
 class Public::UserservicesController < ApplicationController
+  before_action :authenticate_user!
     
   def show
     @userservice = current_user.userservices.new
