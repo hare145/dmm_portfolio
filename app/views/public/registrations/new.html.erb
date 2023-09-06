@@ -18,7 +18,8 @@
         
         <div class="field m-4">
           <%= f.label :employee, "従業員数", class: "text-right col-form-label" %><br />
-          <%= f.select :employee, User.employees.keys.map.with_index {|k, i| [I18n.t("enums.user.employee.#{k}"), i]}, {}, class: 'form-control' %>
+          <%= f.select :employee, { "30人未満": "less_than_thirty", "30人以上から50人未満": "thirty_less_than_fifty", 
+                                    "50人以上100人未満": "fifty_less_than_hundred", "100人以上": "hundred_more"}, {}, class: 'form-control' %>
         </div>
         
         <div class="field m-4">

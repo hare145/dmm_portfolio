@@ -156,6 +156,15 @@
         </div>
       </div>
     </div>
+    
+    <% if flash[:notice_usercomment].present? %>
+      <div class="container mt-5 mb-5">
+        <div class="row justify-content-center">
+          <%= flash[:notice_usercomment] %>
+        </div>
+      </div>
+    <% end %>
+    
     <% if user_signed_in? %>
       <div class="container mt-4 mb-4">
         <%=form_with model: @usercomment, url: user_usercomments_path(@facility.id), method: :post do |f| %>

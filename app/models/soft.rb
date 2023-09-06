@@ -1,5 +1,9 @@
 class Soft < ApplicationRecord
   
+  validates :company, presence: true
+  validates :address, presence: true
+  validates :introduction, presence: true
+  
   has_many :softmarks, dependent: :destroy
   has_many :softcomments, dependent: :destroy
   has_many :notifications, dependent: :destroy

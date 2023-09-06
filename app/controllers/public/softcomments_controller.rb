@@ -10,9 +10,10 @@ class Public::SoftcommentsController < ApplicationController
   def create
     @soft = Soft.find(params[:soft_id])
     @softcomment = @soft.softcomments.build(softcomment_params.merge(user: current_user))
-    if @softcomment.save!
+    if @softcomment.save
       redirect_to request.referer
     else
+      flash[:notice_softcomment] = "投稿に失敗しました。"
       redirect_to request.referer
     end
   end

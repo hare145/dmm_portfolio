@@ -73,11 +73,12 @@ class Public::SoftsController < ApplicationController
   def create
     @soft = Soft.new(soft_params)
     @soft.user_id = current_user.id
-    if @soft.save!
+    if @soft.save
       @soft.save_notification!(current_user, @soft.id)
       redirect_to softs_notice_path
     else
-      redirect_to soft_path(@soft)
+      flash[:notice_soft] = "投稿に失敗しました。"
+      redirect_to softs_path
     end
   end
 

@@ -10,6 +10,14 @@
   </div>
 </div>
 
+<% if flash[:notice_contact].present? %>
+  <div class="container mt-5 mb-5">
+    <div class="row justify-content-center">
+      <%= flash[:notice_contact] %>
+    </div>
+  </div>
+<% end %>
+
 <div class="container mt-5 mb-5">
   <div class="row text-center">
     <p>迷惑行為や誤った情報などについてのお問い合わせは</p>

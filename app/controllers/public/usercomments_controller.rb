@@ -8,9 +8,10 @@ class Public::UsercommentsController < ApplicationController
   
   def create
     @usercomment = current_user.usercomments.build(usercomment_params)
-    if @usercomment.save!
+    if @usercomment.save
       redirect_to request.referer
     else
+      flash[:notice_usercomment] = "投稿に失敗しました。"
       redirect_to request.referer
     end
   end

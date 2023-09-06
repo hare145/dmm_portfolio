@@ -121,6 +121,14 @@
       </div>
     </div>
     
+    <% if flash[:notice_softcomment].present? %>
+      <div class="container mt-5 mb-5">
+        <div class="row justify-content-center">
+          <%= flash[:notice_softcomment] %>
+        </div>
+      </div>
+    <% end %>
+    
     <% if user_signed_in? %>
       <div class="container mt-4 mb-4">
         <%=form_with model: @softcomment, url: soft_softcomments_path(@soft.id), method: :post do |f| %>

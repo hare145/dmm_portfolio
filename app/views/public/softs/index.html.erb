@@ -12,6 +12,13 @@
   </div>
 </div>
 
+<% if flash[:notice_soft].present? %>
+  <div class="container mt-5 mb-5">
+    <div class="row justify-content-center">
+      <%= flash[:notice_soft] %>
+    </div>
+  </div>
+<% end %>
 
 <div class="bg_image_white">
   <div class="container mt-5 rounded-pill bg-dark">
