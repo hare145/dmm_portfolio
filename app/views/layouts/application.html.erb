@@ -20,14 +20,14 @@
         <div class="container-fluid">
           <% if admin_signed_in? %>
             <% if request.fullpath.include? "/admin" %>
-              <p class ="navbar-brand pt-3"><%= image_tag 'sitelogo.png', size: '90x35'%></p>
+              <p class ="navbar-brand pt-3"><%= image_tag asset_path("sitelogo.png"),size: "30x90" %></p>
             <% else %>
-              <a class ="navbar-brand p-3" href='<%= root_path %>'><img height="30" src="assets/sitelogo.png" width="90"></a>
+              <a class ="navbar-brand p-3" href='<%= root_path %>'><%= image_tag asset_path("sitelogo.png"),size: "30x90" %></a>
             <% end %>
           <% elsif user_signed_in? %>
-            <a class ="navbar-brand p-3" href='<%= root_path %>'><img height="30" src="assets/sitelogo.png" width="90"></a>
+            <a class ="navbar-brand p-3" href='<%= root_path %>'><%= image_tag asset_path("sitelogo.png"),size: "30x90" %></a>
           <% else %>
-            <a class ="navbar-brand p-3" href='<%= root_path %>'><img height="30" src="assets/sitelogo.png" width="90"></a>
+            <a class ="navbar-brand p-3" href='<%= root_path %>'><%= image_tag asset_path("sitelogo.png"),size: "30x90" %></a>
           <% end %>  
           <button class ="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
                   aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation" >
