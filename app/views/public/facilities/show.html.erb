@@ -62,7 +62,11 @@
               <%= safe_join(@facility.account_soft.split("\n"),tag(:br)) %>
             </th>
             <td class="col-8">
-              <%= safe_join(@facility.account_reason.split("\n"),tag(:br)) %>
+              <% if not @facility.account_reason.nil? %>
+                <%= safe_join(@facility.account_reason.split("\n"),tag(:br)) %>
+              <% else %>
+               <%= @facility.account_reason %>
+              <% end %>
             </td>
           </tr>
           <tr>
@@ -70,7 +74,11 @@
               <%= safe_join(@facility.accounting_soft.split("\n"),tag(:br)) %>
             </th>
             <td class="col-8">
-              <%= safe_join(@facility.accounting_reason.split("\n"),tag(:br)) %>
+              <% if not @facility.accounting_reason.nil? %>
+                <%= safe_join(@facility.accounting_reason.split("\n"),tag(:br)) %>
+              <% else %>
+               <%= @facility.accounting_reason %>
+              <% end %>
             </td>
           </tr>
           <tr>
@@ -78,7 +86,11 @@
               <%= safe_join(@facility.other_soft.split("\n"),tag(:br)) %>
             </th>
             <td class="col-8">
-              <%= safe_join(@facility.other_reason.split("\n"),tag(:br)) %>
+              <% if not @facility.other_reason.nil? %>
+                <%= safe_join(@facility.other_reason.split("\n"),tag(:br)) %>
+              <% else %>
+               <%= @facility.other_reason %>
+              <% end %>
             </td>
           </tr>
         </table>
@@ -91,7 +103,11 @@
               <%= safe_join(@facility.salary_soft.split("\n"),tag(:br)) %>
             </th>
             <td class="col-8">
-              <%= safe_join(@facility.salary_reason.split("\n"),tag(:br)) %>
+              <% if not @facility.salary_reason.nil? %>
+                <%= safe_join(@facility.salary_reason.split("\n"),tag(:br)) %>
+              <% else %>
+                <%= @facility.salary_reason %>
+              <% end %>
             </td>
           </tr>
           <tr>
@@ -99,7 +115,11 @@
               <%= safe_join(@facility.working_hours_soft.split("\n"),tag(:br)) %>
             </th>
             <td class="col-8">
-              <%= safe_join(@facility.working_hours_reason.split("\n"),tag(:br)) %>
+              <% if not @facility.working_hours_reason.nil? %>
+                <%= safe_join(@facility.working_hours_reason.split("\n"),tag(:br)) %>
+              <% else %>
+                <%= @facility.working_hours_reason %>
+              <% end %>
             </td>
           </tr>
           <tr>
@@ -107,7 +127,11 @@
               <%= safe_join(@facility.communication_soft.split("\n"),tag(:br)) %>
             </th>
             <td class="col-8">
-              <%= safe_join(@facility.communication_reason.split("\n"),tag(:br)) %>
+              <% if not @facility.communication_reason.nil? %>
+                <%= safe_join(@facility.communication_reason.split("\n"),tag(:br)) %>
+              <% else %>
+                <%= @facility.communication_reason %>
+              <% end %>
             </td>
           </tr>
         </table>
@@ -120,7 +144,11 @@
               <%= safe_join(@facility.customer_info_soft.split("\n"),tag(:br)) %>
             </th>
             <td class="col-8">
-              <%= safe_join(@facility.customer_info_reason.split("\n"),tag(:br)) %>
+              <% if not @facility.customer_info_reason.nil? %>
+                <%= safe_join(@facility.customer_info_reason.split("\n"),tag(:br)) %>
+              <% else %>
+                <%= @facility.customer_info_reason %>
+              <% end %>
             </td>
           </tr>
           <tr>
@@ -128,7 +156,11 @@
               <%= safe_join(@facility.customer_deposit_soft.split("\n"),tag(:br)) %>
             </th>
             <td class="col-8">
-              <%= safe_join(@facility.customer_deposit_reason.split("\n"),tag(:br)) %>
+              <% if not @facility.customer_deposit_reason.nil? %>
+                <%= safe_join(@facility.customer_deposit_reason.split("\n"),tag(:br)) %>
+              <% else %>
+                <%= @facility.customer_deposit_reason %>
+              <% end %>
             </td>
           </tr>
           <tr>
@@ -136,7 +168,11 @@
               <%= safe_join(@facility.customer_billing_soft.split("\n"),tag(:br)) %>
             </th>
             <td class="col-8">
-              <%= safe_join(@facility.customer_billing_reason.split("\n"),tag(:br)) %>
+              <% if not @facility.customer_billing_reason.nil? %>
+                <%= safe_join(@facility.customer_billing_reason.split("\n"),tag(:br)) %>
+              <% else %>
+                <%= @facility.customer_billing_reason %>
+              <% end %>
             </td>
           </tr>
         </table>

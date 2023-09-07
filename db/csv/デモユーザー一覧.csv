@@ -1,8 +1,16 @@
-name,email,password,employee
-あいうえお,123456@gmail.com,123456,1
-123456,aaaaaa@gmail.com,123456,2
-abcdef,bbbbbb@gmail.com,123456,3
-@@@@@@,cccccc@gmail.com,123456,0
-かきくけこ,1234567@gmail.com,123456,0
-78910,12345678@gmail.com,123456,3
-ghijklm,123456789@gmail.com,123456,2
+name,email,employee,password
+グリーンヘブン リゾート,sample1@sample.com,thirty_less_than_fifty,123456
+サンセットビーチ ホテル＆スパ,sample2@sample.com,less_than_thirty,123456
+メトロポリスコンファレンスセンター,sample3@sample.com,fifty_less_than_hundred,123456
+ナチュラルスプリングス リトリート,sample4@sample.com,fifty_less_than_hundred,123456
+エコワールド パーク＆ウィルドライフセンター,sample5@sample.com,less_than_thirty,123456
+メディカルウェルネスセンター,sample6@sample.com,thirty_less_than_fifty,123456
+アクアプレイス スポーツクラブ,sample7@sample.com,hundred_more,123456
+アーバンアート ギャラリー,sample8@sample.com,less_than_thirty,123456
+ヒルトップ カントリークラブ,sample9@sample.com,fifty_less_than_hundred,123456
+ペットフレンドリー ペンション,sample10@sample.com,thirty_less_than_fifty,123456
+ゴールデンメドウ ホームケア,sample11@sample.com,less_than_thirty,123456
+シャインスター ダンススタジオ,sample12@sample.com,fifty_less_than_hundred,123456
+メモリアルガーデン 墓地,sample13@sample.com,fifty_less_than_hundred,123456
+キッズジャングル アミューズメントパーク,sample14@sample.com,less_than_thirty,123456
+サイバーコミュニティセンター,sample15@sample.com,hundred_more,123456
