@@ -8,7 +8,7 @@
 
 Admin.create!(
    email: 'admin@gmail.com',
-   password: '123456',
+   password: "#{ENV['SECRET_KEY']}",
 )
 
 
