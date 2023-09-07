@@ -19,7 +19,3 @@ Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
-
-$(function () {
-    $('#select_box').select2();
-});
