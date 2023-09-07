@@ -35,23 +35,23 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
       t.integer :employee,                null: false
       t.integer :impressions_count,       default: 0
       t.string  :account_soft,            default: "会計使用ソフト"
-      t.text    :account_reason,          default: "そのソフトを使用している理由"
+      t.text    :account_reason
       t.string  :accounting_soft,         default: "経理使用ソフト"
-      t.text    :accounting_reason,       default: "そのソフトを使用している理由"
+      t.text    :accounting_reason
       t.string  :other_soft,              default: 'その他会計・経理使用ソフト'
-      t.text    :other_reason,            default: 'そのソフトを使用している理由'
+      t.text    :other_reason
       t.string  :salary_soft,             default: "給料計算使用ソフト"
-      t.text    :salary_reason,           default: "そのソフトを使用している理由"
+      t.text    :salary_reason
       t.string  :working_hours_soft,      default: "出退勤管理使用ソフト"
-      t.text    :working_hours_reason,    default: "そのソフトを使用している理由"
+      t.text    :working_hours_reason
       t.string  :communication_soft,      default: "法人内コミュニケーションツール"
-      t.text    :communication_reason,    default: "そのツールを使用している理由"
+      t.text    :communication_reason
       t.string  :customer_info_soft,      default: "利用者情報管理ソフト"
-      t.text    :customer_info_reason,    default: "そのソフトを使用している理由"
+      t.text    :customer_info_reason
       t.string  :customer_deposit_soft,   default: "利用者預り金管理ソフト"
-      t.text    :customer_deposit_reason, default: "そのソフトを使用している理由"
+      t.text    :customer_deposit_reason
       t.string  :customer_billing_soft,   default: "利用者請求ソフト"
-      t.text    :customer_billing_reason, default: "そのソフトを使用している理由"
+      t.text    :customer_billing_reason
       t.boolean :is_public,               default: false
       t.boolean :is_deleted,              default: false
       # t.integer :impressions_count,       default: 0 閲覧数を数えるカラム
