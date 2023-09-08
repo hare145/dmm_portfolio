@@ -25,7 +25,7 @@ Rails.application.routes.draw do
       get '/users/information/edit' => "users#edit"
       patch '/users/information' => "users#update"
       get 'users/unsubscribe' => "users#unsubscribe"
-      patch 'users/withdraw' => "user#withdraw"
+      patch 'users/withdraw' => "users#withdraw"
       get 'users/bookmark' => "users#bookmark"
       get 'users/mycomment' => "users#mycomment"
       resources :users do
@@ -98,7 +98,7 @@ Rails.application.routes.draw do
     end
     
     controller :contacts do
-      resources :contacts, only: [:index, :update]
+      resources :contacts, only: [:show, :index, :update]
     end
     
     controller :notifications do

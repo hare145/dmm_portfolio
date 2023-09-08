@@ -20,6 +20,7 @@
         <tr>
           <th>投稿日時</th>
           <th>投稿施設名</th>
+          <th>投稿内容</th>
           <th>登録メールアドレス</th>
           <th>確認ステータス</th>
         </tr>
@@ -28,8 +29,9 @@
       <% @contacts.each do |contact| %>
         <tbody class="text-center">
           <tr>
-          <td><%= contact.created_at %></td>
+          <td><%= contact.created_at.strftime('%Y/%m/%d') %></td>
           <td><%= link_to contact.user.name, admin_facility_path(contact.user_id), class: "text-dark" %></td>
+          <td><%= link_to truncate("#{contact.content}", length: 10, omission: "..."), admin_contact_path(contact.id), class: "text-dark" %></td>
           <td><%= contact.user.email %></td>
           <% if contact.is_cheacke == true %>
             <td>

@@ -14,7 +14,7 @@
                                     ['非公開のみ', 'private']
           ], {prompt: '選択してください' }, class: "form-select form-select-sm border border-secondary", id: "sort" %>
           <%= f.hidden_field :company, :value=> @search_facility %>
-          <%= f.hidden_field :service_id, :value=> params[:service_id] %>
+          <%= f.hidden_field :service_id, :value=> @search_service %>
         <% end %>
         <script>
           $('#sort').change(function() {

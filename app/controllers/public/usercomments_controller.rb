@@ -18,7 +18,7 @@ class Public::UsercommentsController < ApplicationController
   
   def update
     @user = User.find(params[:user_id])
-    @usercomment = @user.usercomments.find(params[:comment_id])
+    @usercomment = Usercomment.find(params[:comment_id])
     if @usercomment.update!(usercomment_params)
       redirect_to request.referer
     else

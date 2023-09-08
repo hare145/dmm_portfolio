@@ -52,7 +52,6 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
       t.text    :customer_deposit_reason
       t.string  :customer_billing_soft,   default: "利用者請求ソフト"
       t.text    :customer_billing_reason
-      t.boolean :is_public,               default: false
       t.boolean :is_deleted,              default: false
       t.timestamps null: false
     end

@@ -142,10 +142,10 @@
   <div class="container mt-5 mb-5 text-center">
     <div class="row d-flex justify-content-center">
       <div class="col-3 align-self-center bg-dark-subtle shadow">
-          <%= f.radio_button :is_public, :false, class: "form-check-input" %>
-          <%= f.label :is_public, "非公開", {value: :false, class: "form-check-label me-5", style: "display: inline-block;"} %>
-          <%= f.radio_button :is_public, :true, class: "form-check-input" %>
-          <%= f.label :is_public, "公開", {value: :true, class: "form-check-label", style: "display: inline-block;"} %>
+          <%= f.radio_button :is_deleted, :true, class: "form-check-input" %>
+          <%= f.label :is_deleted, "非公開", {value: :true, class: "form-check-label me-5", style: "display: inline-block;"} %>
+          <%= f.radio_button :is_deleted, :false, class: "form-check-input" %>
+          <%= f.label :is_deleted, "公開", {value: :false, class: "form-check-label", style: "display: inline-block;"} %>
       </div>
     </div>
   </div>

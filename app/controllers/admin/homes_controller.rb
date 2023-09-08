@@ -9,11 +9,11 @@ class Admin::HomesController < ApplicationController
     if @search_ficility.present? && @search_service.present? && @search_order.present?
       if @search_order == "new"
         @users = User.name_search(@search_ficility).service_search(@search_service).create_search.page(params[:page]).per(12)
-      elsif @search_oreder == "view" 
+      elsif @search_order == "view" 
         @users = User.name_search(@search_ficility).service_search(@search_service).view_search.page(params[:page]).per(12)
-      elsif @search_oreder == "release"
+      elsif @search_order == "release"
         @users = User.name_search(@search_ficility).service_search(@search_service).release_search.page(params[:page]).per(12)
-      elsif @search_oreder == "private" 
+      elsif @search_order == "private" 
         @users = User.name_search(@search_ficility).service_search(@search_service).private_search.page(params[:page]).per(12)
       else
         @users = user_all
@@ -25,11 +25,11 @@ class Admin::HomesController < ApplicationController
     elsif @search_ficility.present? && @search_order.present?
       if @search_order == "new"
         @users = User.name_search(@search_ficility).create_search.page(params[:page]).per(12)
-      elsif @search_oreder == "view"
+      elsif @search_order == "view"
         @users = User.name_search(@search_ficility).view_search.page(params[:page]).per(12)
-      elsif @search_oreder == "release"
+      elsif @search_order == "release"
         @users = User.name_search(@search_ficility).release_search.page(params[:page]).per(12)
-      elsif @search_oreder == "private" 
+      elsif @search_order == "private" 
         @users = User.name_search(@search_ficility).private_search.page(params[:page]).per(12)
       else
         @users = user_all
@@ -38,11 +38,11 @@ class Admin::HomesController < ApplicationController
     elsif @search_service.present? && @search_order.present?
       if @search_order == "new"
         @users = User.service_search(@search_service).create_search.page(params[:page]).per(12)
-      elsif @search_oreder == "view" 
+      elsif @search_order == "view" 
         @users = User.service_search(@search_service).view_search.page(params[:page]).per(12)
-      elsif @search_oreder == "release"
+      elsif @search_order == "release"
         @users = User.service_search(@search_service).release_search.page(params[:page]).per(12)
-      elsif @search_oreder == "private" 
+      elsif @search_order == "private" 
         @users = User.service_search(@search_service).private_search.page(params[:page]).per(12)
       else
         @users = user_all
@@ -57,11 +57,11 @@ class Admin::HomesController < ApplicationController
     elsif @search_order.present?
       if @search_order == "new"
         @users = User.create_search.page(params[:page]).per(12)
-      elsif @search_oreder == "view" 
+      elsif @search_order == "view" 
         @users = User.view_search.page(params[:page]).per(12)
-      elsif @search_oreder == "release"
+      elsif @search_order == "release"
         @users = User.release_search.page(params[:page]).per(12)
-      elsif @search_oreder == "private" 
+      elsif @search_order == "private" 
         @users = User.private_search.page(params[:page]).per(12)
       else
         @users = user_all

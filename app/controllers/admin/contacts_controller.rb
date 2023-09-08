@@ -1,6 +1,10 @@
 class Admin::ContactsController < ApplicationController
   before_action :authenticate_admin!
   
+  def show
+    @contact = Contact.find(params[:id])
+  end
+  
   def index
     if params[:is_checked] == "false"
       @contacts = Contact.where(is_cheacke: false).page(params[:page]).per(15)
