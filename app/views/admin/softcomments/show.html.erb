@@ -16,7 +16,10 @@
           <div class="col-3">
             <%= comment.name %>
           </div>
-          <div class="col-5">
+          <div class="col-3">
+            <%= comment.created_at.strftime('%Y/%m/%d') %>
+          </div>
+          <div class="col-3">
           </div>
           <div class="col-2">
             <% if comment.is_public == false %>
