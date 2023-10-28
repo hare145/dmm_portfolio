@@ -1,4 +1,5 @@
 class Service < ApplicationRecord
+  validates :content, presence: true
   
   has_many :userservices, dependent: :destroy
   
