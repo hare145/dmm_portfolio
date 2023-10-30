@@ -50,7 +50,7 @@
                                     ['雇用人数が多い順','many'],
                                     ['雇用人数が少ない順','few']
           ], {prompt: '選択してください' }, class: "form-select form-select-sm border border-secondary", id: "sort" %>
-          <%= f.hidden_field :company, :value=> @facility %>
+          <%= f.hidden_field :name, :value=> @facility %> %>
           <%= f.hidden_field :service_id, :value=> @service %>
         <% end %>
         <script>
