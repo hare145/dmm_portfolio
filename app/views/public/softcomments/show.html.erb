@@ -23,8 +23,8 @@
           </div>
           <div class="col-3">
             <% if user_signed_in? %>
-              <% if params[:user_id] = current_user.id && comment.is_public == false %>
-                <%= link_to "非公開にする", soft_softcomment_path(@soft, id: comment.id, softcomment: {is_public: true}), method: :patch,
+              <% if params[:user_id] = current_user.id && comment.is_public == true %>
+                <%= link_to "非公開にする", soft_softcomment_path(@soft, id: comment.id, softcomment: {is_public: false}), method: :patch,
                     class: "m-1 btn btn-secondary btn-sm" %>
               <% end %>
             <% end %>

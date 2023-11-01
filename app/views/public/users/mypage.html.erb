@@ -212,11 +212,11 @@
             <div class="col-8">
             </div>
             <div class="col-2">
-              <% if usercomment.is_public == false %>
-                <%= link_to "非公開にする", user_usercomment_path(usercomment.page_id, usercomment.user_id, comment_id: usercomment.id, usercomment: {is_public: true}), method: :patch,
+              <% if usercomment.is_public == true %>
+                <%= link_to "非公開にする", user_usercomment_path(usercomment.page_id, usercomment.user_id, comment_id: usercomment.id, usercomment: {is_public: false}), method: :patch,
                     class: "m-1 btn btn-secondary btn-sm" %>
-              <% else usercomment.is_public == true %>
-                <%= link_to "公開にする", user_usercomment_path(usercomment.page_id, usercomment.user_id, comment_id: usercomment.id, usercomment: {is_public: false}), method: :patch,
+              <% else usercomment.is_public == false %>
+                <%= link_to "公開にする", user_usercomment_path(usercomment.page_id, usercomment.user_id, comment_id: usercomment.id, usercomment: {is_public: true}), method: :patch,
                   class: "m-1 btn btn-success btn-sm" %>
               <% end %>
             </div>
@@ -242,12 +242,12 @@
             <div class="col-8">
             </div>
             <div class="col-2">
-              <% if softcomment.is_public == false %>
+              <% if softcomment.is_public == true %>
                 <%= link_to "非公開にする", soft_softcomment_path(softcomment.soft_id, id: softcomment.id,
-                    softcomment: {is_public: true}), method: :patch, class: "m-1 btn btn-secondary btn-sm" %>
-              <% else softcomment.is_public == true %>
+                    softcomment: {is_public: false}), method: :patch, class: "m-1 btn btn-secondary btn-sm" %>
+              <% else softcomment.is_public == false %>
                 <%= link_to "公開にする", soft_softcomment_path(softcomment.soft_id, id: softcomment.id,
-                    softcomment: {is_public: false}), method: :patch, class: "m-1 btn btn-success btn-sm" %>
+                    softcomment: {is_public: true}), method: :patch, class: "m-1 btn btn-success btn-sm" %>
               <% end %>
             </div>
           </div>

@@ -22,11 +22,11 @@
           <div class="col-3">
           </div>
           <div class="col-2">
-            <% if comment.is_public == false %>
-              <%= link_to "非公開にする", soft_softcomment_path(@soft, id: comment.id, softcomment: {is_public: true}), method: :patch,
+            <% if comment.is_public == true %>
+              <%= link_to "非公開にする", soft_softcomment_path(@soft, id: comment.id, softcomment: {is_public: false}), method: :patch,
                   class: "m-1 btn btn-secondary btn-sm" %>
             <% else %>
-              <%= link_to "公開する", soft_softcomment_path(@soft, id: comment.id, softcomment: {is_public: false}), method: :patch,
+              <%= link_to "公開する", soft_softcomment_path(@soft, id: comment.id, softcomment: {is_public: true}), method: :patch,
                   class: "m-1 btn btn-success btn-sm" %>
             <% end %>
           </div>

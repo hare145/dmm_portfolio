@@ -3,7 +3,7 @@ class Public::UsercommentsController < ApplicationController
   
   def show
     @user = User.find(params[:id])
-    @usercomments = Usercomment.where(page_id: params[:id], is_public: false )
+    @usercomments = Usercomment.where(page_id: params[:id], is_public: true)
   end
   
   def create

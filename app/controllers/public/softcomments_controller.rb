@@ -3,7 +3,7 @@ class Public::SoftcommentsController < ApplicationController
   
   def show
     @soft = Soft.find(params[:id])
-    @softcomments = Softcomment.where(soft_id: params[:soft_id], is_public: false)
+    @softcomments = Softcomment.where(soft_id: params[:soft_id], is_public: true)
   end
   
   
