@@ -24,10 +24,12 @@ class User < ApplicationRecord
   
   enum employee: { less_than_thirty: 0, thirty_less_than_fifty: 1, fifty_less_than_hundred: 2, hundred_more: 3 }
   
-  scope :create_search, -> { order(created_at: :desc) }
-  scope :view_search, -> { order(impressions_count: :desc) }
-  scope :many_search, -> { order(employee: :desc) }
-  scope :few_search, -> { order(employee: :asc) }
+  scope :new_search, -> { order(created_at: :desc) }
+  scope :old_search, -> { order(created_at: :asc) }
+  scope :view_many_search, -> { order(impressions_count: :desc) }
+  scope :view_few_search, -> { order(impressions_count: :asc) }
+  scope :employee_many_search, -> { order(employee: :desc) }
+  scope :employee_few_search, -> { order(employee: :asc) }
   scope :private_search, -> { where(is_public: true) }
   scope :release_search, -> { where(is_public: false) }
   scope :name_search, -> (name) do

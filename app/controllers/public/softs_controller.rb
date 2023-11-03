@@ -11,53 +11,23 @@ class Public::SoftsController < ApplicationController
     @work = params[:work_id]
     @order = params[:ordered]
     
-    if @soft.present? && @work.present? && @order.present?
+    @softs = soft_all
+    if @soft.present?
+      @softs = @softs.company_search(@soft)
+    end
+    if @work.present?
+      @softs = @softs.work_search(@work)
+    end
+    if @order.present?
       if @order == "new"
-        @softs = Soft.company_search(@soft).work_search(@work).create_search.public_true.page(params[:page]).per(10)
-      elsif @order == "view" 
-        @softs = Soft.company_search(@soft).work_search(@work).view_search.public_true.page(params[:page]).per(10)
-      else
-        @softs = soft_all
+        @softs = @softs.new_search
+      elsif @order == "old"
+        @softs = @softs.old_search
+      elsif @order == "view_many"
+        @softs = @softs.view_many_search
+      elsif @order == "view_few"
+        @softs = @softs.view_few_search
       end
-      
-    elsif @soft.present? && @work.present?
-      @softs = Soft.company_search(@soft).work_search(@work).public_true.page(params[:page]).per(10)
-      
-    elsif @soft.present? && @order.present?
-      if @order == "new"
-        @softs = Soft.company_search(@soft).create_search.public_true.page(params[:page]).per(10)
-      elsif @order == "view" 
-        @softs = Soft.company_search(@soft).view_search.public_true.page(params[:page]).per(10)
-      else
-        @softs = soft_all
-      end
-      
-    elsif @work.present? && @order.present?
-      if @order == "new"
-        @softs = Soft.work_search(@work).create_search.public_true.page(params[:page]).per(10)
-      elsif @order == "view" 
-        @softs = Soft.work_search(@work).view_search.public_true.page(params[:page]).per(10)
-      else
-        @softs = soft_all
-      end
-    
-    elsif @soft.present?
-      @softs = Soft.company_search(@soft).public_true.page(params[:page]).per(10)
-      
-    elsif @work.present?
-      @softs = Soft.work_search(@work).public_true.page(params[:page]).per(10)
-      
-    elsif @order.present?
-      if @order == "new"
-        @softs = Soft.create_search.public_true.page(params[:page]).per(10)
-      elsif @order == "view" 
-        @softs = Soft.view_search.public_true.page(params[:page]).per(10)
-      else
-        @softs = soft_all
-      end
-    
-    else
-      @softs = soft_all
     end
   end
 

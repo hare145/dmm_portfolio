@@ -20,13 +20,17 @@ class Public::FacilitiesController < ApplicationController
     end
     if @order.present?
       if @order == "new"
-        @users = @users.create_search
-      elsif @order == "view"
-        @users = @users.view_search
-      elsif @order == "many"
-        @users = @users.many_search
-      elsif @order == "few" 
-        @users = @users.few_search
+        @users = @users.new_search
+      elsif @order == "old" 
+        @users = @users.old_search
+      elsif @order == "view_many"
+        @users = @users.view_many_search
+      elsif @order == "view_few"
+        @users = @users.view_few_search
+      elsif @order == "employee_many"
+        @users = @users.employee_many_search
+      elsif @order == "employee_few" 
+        @users = @users.employee_few_search
       end
     end
   end

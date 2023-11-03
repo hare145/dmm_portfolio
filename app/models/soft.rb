@@ -18,8 +18,10 @@ class Soft < ApplicationRecord
 
   scope :public_true, -> { where(is_public: true) }
   scope :public_false, -> { where(is_public: false) }
-  scope :create_search, -> { order(created_at: :desc) }
-  scope :view_search, -> { order(impressions_count: :desc) }
+  scope :new_search, -> { order(created_at: :desc) }
+  scope :old_search, -> { order(created_at: :asc) }
+  scope :view_many_search, -> { order(impressions_count: :desc) }
+  scope :view_few_search, -> { order(impressions_count: :asc) }
   scope :company_search, -> (company) do
     where("company LIKE?","%#{company}%")
   end

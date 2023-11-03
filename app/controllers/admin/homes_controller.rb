@@ -1,74 +1,33 @@
 class Admin::HomesController < ApplicationController
   before_action :authenticate_admin!
   
-  def top
-    @search_ficility = params[:name]
-    @search_service = params[:service_id]
-    @search_order = params[:ordered]
+  def index
     
-    if @search_ficility.present? && @search_service.present? && @search_order.present?
-      if @search_order == "new"
-        @users = User.name_search(@search_ficility).service_search(@search_service).create_search.page(params[:page]).per(12)
-      elsif @search_order == "view" 
-        @users = User.name_search(@search_ficility).service_search(@search_service).view_search.page(params[:page]).per(12)
-      elsif @search_order == "release"
-        @users = User.name_search(@search_ficility).service_search(@search_service).release_search.page(params[:page]).per(12)
-      elsif @search_order == "private" 
-        @users = User.name_search(@search_ficility).service_search(@search_service).private_search.page(params[:page]).per(12)
-      else
-        @users = user_all
+    @facility = params[:name]
+    @service = params[:service_id]
+    @order = params[:ordered]
+    
+    @users = user_all
+    if @facility.present?
+      @users = @users.name_search(@facility)
+    end
+    if @service.present?
+      @users = @users.service_search(@service)
+    end
+    if @order.present?
+      if @order == "new"
+        @users = @users.new_search
+      elsif @order == "old" 
+        @users = @users.old_search
+      elsif @order == "view_many"
+        @users = @users.view_many_search
+      elsif @order == "view_few"
+        @users = @users.view_few_search
+      elsif @order == "release"
+        @users = @users.release_search
+      elsif @order == "private" 
+        @users = @users.private_search
       end
-      
-    elsif @search_ficility.present? && @search_service.present?
-      @users = User.name_search(@search_ficility).service_search(@search_service).page(params[:page]).per(12)
-      
-    elsif @search_ficility.present? && @search_order.present?
-      if @search_order == "new"
-        @users = User.name_search(@search_ficility).create_search.page(params[:page]).per(12)
-      elsif @search_order == "view"
-        @users = User.name_search(@search_ficility).view_search.page(params[:page]).per(12)
-      elsif @search_order == "release"
-        @users = User.name_search(@search_ficility).release_search.page(params[:page]).per(12)
-      elsif @search_order == "private" 
-        @users = User.name_search(@search_ficility).private_search.page(params[:page]).per(12)
-      else
-        @users = user_all
-      end
-      
-    elsif @search_service.present? && @search_order.present?
-      if @search_order == "new"
-        @users = User.service_search(@search_service).create_search.page(params[:page]).per(12)
-      elsif @search_order == "view" 
-        @users = User.service_search(@search_service).view_search.page(params[:page]).per(12)
-      elsif @search_order == "release"
-        @users = User.service_search(@search_service).release_search.page(params[:page]).per(12)
-      elsif @search_order == "private" 
-        @users = User.service_search(@search_service).private_search.page(params[:page]).per(12)
-      else
-        @users = user_all
-      end
-      
-    elsif @search_ficility.present?
-      @users = User.name_search(@search_ficility).page(params[:page]).per(12)
-      
-    elsif @search_service.present?
-      @users = User.service_search(@search_service).page(params[:page]).per(12)
-      
-    elsif @search_order.present?
-      if @search_order == "new"
-        @users = User.create_search.page(params[:page]).per(12)
-      elsif @search_order == "view" 
-        @users = User.view_search.page(params[:page]).per(12)
-      elsif @search_order == "release"
-        @users = User.release_search.page(params[:page]).per(12)
-      elsif @search_order == "private" 
-        @users = User.private_search.page(params[:page]).per(12)
-      else
-        @users = user_all
-      end
-      
-    else
-      @users = User.all.page(params[:page]).per(10)
     end
   end
   

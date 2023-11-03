@@ -36,7 +36,9 @@
       <div class ="col-2">
         <%= form_with url: softs_path, method: :get do |f| %>
           <%= f.select :ordered, [  ['投稿が新しい順', 'new'],
-                                    ['閲覧数が多い', 'view']
+                                    ['投稿が古い順', 'old'],
+                                    ['閲覧数が多い', 'view_many'],
+                                    ['閲覧数が少ない', 'view_few']
           ], {prompt: '選択してください' }, class: "form-select form-select-sm border border-secondary", id: "sort" %>
           <%= f.hidden_field :company, :value=> @soft %>
           <%= f.hidden_field :work_id, :value=> @work %>
