@@ -57,7 +57,6 @@ class Admin::SoftsController < ApplicationController
     @soft.update(soft_params)
     redirect_to admin_soft_path(@soft)
   end
-
   
   
   private

@@ -44,6 +44,7 @@ Rails.application.routes.draw do
     controller :softs do
       get 'softs/new' => "softs#new"
       get 'softs/notice' => "softs#notice"
+      get 'softs/index_a' => "softs#index_a"
       resources :softs, only: [:show, :index, :create, :update] do
         controller :softcomments do
           resources :softcomments, only: [:show, :create, :update, :destroy]
