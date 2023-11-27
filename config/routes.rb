@@ -12,10 +12,6 @@ Rails.application.routes.draw do
 
   scope module: :public do
    
-    controller :dammes do
-      resources :dammes, only: [:index]
-    end
-   
     controller :homes do
       root to: "homes#top"
     end
@@ -66,6 +62,10 @@ Rails.application.routes.draw do
     
     controller :services do
       resources :services, only: [:index]
+    end
+    
+    controller :dammes do
+      resources :dammes, only: [:index]
     end
     
   end

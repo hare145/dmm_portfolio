@@ -1,4 +1,4 @@
-class DammeController < ApplicationController
+class Public::DammesController < ApplicationController
   
   def index
     @works = Work.all
@@ -29,4 +29,11 @@ class DammeController < ApplicationController
       end
     end
   end
+
+private
+  
+  def soft_all
+    Soft.all.public_true.page(params[:page]).per(10)
+  end
+
 end
