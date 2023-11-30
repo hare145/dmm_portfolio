@@ -55,17 +55,17 @@
  <div class="container">
     <div class="row">
       <ul id="tab-menu">
-        <li>
-          <div class="pt-1 text-center border border-bottom-0 border-secondary-subtle bg-light">
+        <li class="col-4">
+          <div class="pt-1 text-center">
             <%= link_to "会計経理関係", softs_path( company: @soft, work_id: 1), class: "text-dark text-decoration-none" %>
           </div>
         </li>
-        <li>
+        <li class="col-4">
           <div class="pt-1 text-center">
             <%= link_to "労務関係", softs_path(company: @soft, work_id: 2), class: "text-decoration-none" %>
           </div>
         </li>
-        <li>
+        <li class="col-4">
           <div class="pt-1 text-center">
             <%= link_to "利用者関係", softs_path(company: @soft, work_id: 3), class: "text-decoration-none" %>
           </div>
@@ -73,7 +73,7 @@
       </ul>
     </div>
     
-    <div class="row">
+    <div class="row pb-2 bg-primary-subtle">
       <div id="tab-contents">
         <div id="tab1" class="tab">
           <%= render partial: 'public/shared/soft_cards', locals: { softs: @softs } %> 
