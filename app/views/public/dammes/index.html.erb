@@ -52,22 +52,22 @@
     </div>
   </div>
  
- <div class="container">
+ <div class="container bg-primary-subtle">
     <div class="row">
       <ul id="tab-menu">
         <li class="col-4">
           <div class="pt-1 text-center">
-            <%= link_to "会計経理関係", softs_path( company: @soft, work_id: 1), class: "text-dark text-decoration-none" %>
+            <%= link_to "会計経理関係", dammes_path( company: @soft, work_id: 1), class: "text-dark text-decoration-none" %>
           </div>
         </li>
         <li class="col-4">
           <div class="pt-1 text-center">
-            <%= link_to "労務関係", softs_path(company: @soft, work_id: 2), class: "text-decoration-none" %>
+            <%= link_to "労務関係", dammes_path(company: @soft, work_id: 2), class: "text-decoration-none" %>
           </div>
         </li>
         <li class="col-4">
           <div class="pt-1 text-center">
-            <%= link_to "利用者関係", softs_path(company: @soft, work_id: 3), class: "text-decoration-none" %>
+            <%= link_to "利用者関係", dammes_path(company: @soft, work_id: 3), class: "text-decoration-none" %>
           </div>
         </li>
       </ul>

@@ -21,11 +21,8 @@ h1 {
   color: #fff;
   text-decoration: none;
   display: block;
-  padding: 20px;
   text-align: center;
-  background: #000;
   border: 1px solid #000;
-  border-bottom: none;
 }
 
 #tab-menu .active {
@@ -40,10 +37,9 @@ h1 {
 
 #tab-contents .tab {
   width: 100%;
-  padding: 30px;
+  
   background: #fff;
   border: 1px solid #000;
-  border-top: none;
 }
 
 #tab-contents p {
