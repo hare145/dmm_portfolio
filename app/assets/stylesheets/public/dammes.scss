@@ -28,6 +28,7 @@ h1 {
 #tab-menu .active {
   background: #fff;
   color: #000;
+  border-bottom: none;
 }
 
 #tab-contents {
@@ -37,7 +38,6 @@ h1 {
 
 #tab-contents .tab {
   width: 100%;
-  
   background: #fff;
   border: 1px solid #000;
 }
