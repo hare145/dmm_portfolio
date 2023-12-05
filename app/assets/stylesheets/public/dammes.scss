@@ -18,11 +18,8 @@ h1 {
 }
 
 #tab-menu li a {
-  color: #fff;
-  text-decoration: none;
   display: block;
   text-align: center;
-  border: 1px solid #000;
 }
 
 #tab-menu .active {
@@ -39,7 +36,6 @@ h1 {
 #tab-contents .tab {
   width: 100%;
   background: #fff;
-  border: 1px solid #000;
 }
 
 #tab-contents p {
