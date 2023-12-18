@@ -28,6 +28,11 @@ class Public::DammesController < ApplicationController
         @softs = @softs.public_false
       end
     end
+    
+    @softs_1 = @softs.work_search(1)
+    @softs_2 = @softs.work_search(2)
+    @softs_3 = @softs.work_search(3)
+    
   end
 
 private

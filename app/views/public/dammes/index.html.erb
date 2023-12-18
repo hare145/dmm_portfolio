@@ -29,28 +29,7 @@
     </div>
   </div>
 
-  <div class="container mt-5">
-    <div class ="row mt-3">
-      <div class="col-10">
-      </div>
-      <div class ="col-2">
-        <%= form_with url: softs_path, method: :get do |f| %>
-          <%= f.select :ordered, [  ['投稿が新しい順', 'new'],
-                                    ['投稿が古い順', 'old'],
-                                    ['閲覧数が多い', 'view_many'],
-                                    ['閲覧数が少ない', 'view_few']
-          ], {prompt: '選択してください' }, class: "form-select form-select-sm border border-secondary", id: "sort" %>
-          <%= f.hidden_field :company, :value=> @soft %>
-          <%= f.hidden_field :work_id, :value=> @work %>
-        <% end %>
-        <script>
-          $('#sort').change(function() {
-          $(this).parent().submit();
-        });
-        </script>
-      </div>
-    </div>
-  </div>
+
  
  <div class="mt-4 container bg-primary-subtle">
     <div class="row">
@@ -58,22 +37,20 @@
         <li class="col-4">
           <a href="#tab1" class="">
             <div class="pt-1 text-center">
-              <%= link_to "会計経理関係", dammes_path( company: @soft, work_id: 1), class: "p-1" %>
-            </div>
+              会計経理関係
           </a>
         </li>
         <li class="col-4">
           <a href="#tab2" class="">
             <div class="pt-1 text-center">
-              <%= link_to "労務関係", dammes_path(company: @soft, work_id: 2), class: "p-1" %>
+              労務関係
             </div>
           </a>
         </li>
         <li class="col-4">
           <a href="#tab3" class="">
             <div class="pt-1 text-center">
-              <%= link_to "利用者関係", dammes_path(company: @soft, work_id: 3), class: "p-1" %>
-            </div>
+              利用者関係
           </a>
         </li>
       </ul>
@@ -82,15 +59,36 @@
     <div class="row pb-2 bg-primary-subtle">
       <div id="tab-contents">
         <div id="tab1" class="tab">
-          <%= render partial: 'public/shared/soft_cards', locals: { softs: @softs } %> 
+            <div class="container mt-5">
+              <div class ="row mt-3">
+                <div class="col-10">
+                </div>
+                <div class ="col-2">
+                  <%= form_with url: dammes_path(local: false), method: :get do |f| %>
+                    <%= f.select :ordered, [  ['投稿が新しい順', 'new'],
+                                              ['投稿が古い順', 'old'],
+                                              ['閲覧数が多い', 'view_many'],
+                                              ['閲覧数が少ない', 'view_few']
+                    ], {prompt: '選択してください' }, class: "form-select form-select-sm border border-secondary", id: "sort" %>
+                    <%= f.hidden_field :company, :value=> @soft %>
+                  <% end %>
+                  <script>
+                    $('#sort').change(function() {
+                    $(this).parent().submit();
+                  });
+                  </script>
+                </div>
+              </div>
+            </div>
+          <%= render partial: 'public/shared/soft_cards', locals: { softs: @softs_1 } %> 
         </div>
     
         <div id="tab2" class="tab">
-          <%= render partial: 'public/shared/soft_cards', locals: { softs: @softs } %> 
+          <%= render partial: 'public/shared/soft_cards', locals: { softs: @softs_2 } %> 
         </div>
     
         <div id="tab3" class="tab">
-          <%= render partial: 'public/shared/soft_cards', locals: { softs: @softs } %> 
+          <%= render partial: 'public/shared/soft_cards', locals: { softs: @softs_3 } %> 
         </div>
       </div>
     </div>
