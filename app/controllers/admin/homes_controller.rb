@@ -1,18 +1,14 @@
 class Admin::HomesController < ApplicationController
   before_action :authenticate_admin!
   
-  def index
+  def top
     
     @facility = params[:name]
-    @service = params[:service_id]
     @order = params[:ordered]
     
     @users = user_all
     if @facility.present?
       @users = @users.name_search(@facility)
-    end
-    if @service.present?
-      @users = @users.service_search(@service)
     end
     if @order.present?
       if @order == "new"
@@ -35,7 +31,7 @@ class Admin::HomesController < ApplicationController
   private
   
   def user_all
-    User.where(is_deleted: false).page(params[:page]).per(12)
+    User.all.page(params[:page]).per(12)
   end
   
 end

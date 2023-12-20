@@ -7,15 +7,6 @@ class Admin::UserservicesController < ApplicationController
     @current_user_services = Userservice.where(user_id: @user.id).pluck(:service_id)
   end
   
-  def create
-    @user = User.find(params[:facility_id])
-    params[:userservice][:service_id].each do |service| 
-      @userservice = @user.userservices.build(service_id: service)
-      @userservice.save!
-    end
-    redirect_to edit_admin_facility_path(@user)
-  end
-
   def update
     @user = User.find(params[:facility_id])
     @userservice = Userservice.where(user_id: @user.id)

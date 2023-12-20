@@ -33,11 +33,11 @@
           <td><%= link_to contact.user.name, admin_facility_path(contact.user_id), class: "text-dark" %></td>
           <td><%= link_to truncate("#{contact.content}", length: 10, omission: "..."), admin_contact_path(contact.id), class: "text-dark" %></td>
           <td><%= contact.user.email %></td>
-          <% if contact.is_cheacke == true %>
+          <% if contact.is_checked == true %>
             <td>
               <%= link_to "確認済み", admin_contact_path(contact.id, is_cheacke: false), method: :patch, data: {confirm: "未確認に変更しますか？"}, class: "text-secondary"%>
             </td>
-          <% elsif contact.is_cheacke == false %>
+          <% elsif contact.is_checked == false %>
             <td>
                <%= link_to "未確認", admin_contact_path(contact.id, is_cheacke: true), method: :patch, data: {confirm: "確認済みに変更しますか？"}, class: "text-success"%>
             </td>

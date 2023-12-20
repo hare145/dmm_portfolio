@@ -30,8 +30,8 @@ class User < ApplicationRecord
   scope :view_few_search, -> { order(impressions_count: :asc) }
   scope :employee_many_search, -> { order(employee: :desc) }
   scope :employee_few_search, -> { order(employee: :asc) }
-  scope :private_search, -> { where(is_public: true) }
-  scope :release_search, -> { where(is_public: false) }
+  scope :private_search, -> { where(is_deleted: true) }
+  scope :release_search, -> { where(is_deleted: false) }
   scope :name_search, -> (name) do
     where("name LIKE?","%#{name}%")
   end

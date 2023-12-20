@@ -7,7 +7,7 @@ class Admin::ContactsController < ApplicationController
   
   def index
     if params[:is_checked] == "false"
-      @contacts = Contact.where(is_cheacke: false).page(params[:page]).per(15)
+      @contacts = Contact.where(is_checked: false).page(params[:page]).per(15)
     else
       @contacts = Contact.all.page(params[:page]).per(20)
     end
@@ -25,6 +25,6 @@ class Admin::ContactsController < ApplicationController
   private
   
   def contact_params
-    params.permit(:is_cheacke)
+    params.permit(:is_checked)
   end
 end

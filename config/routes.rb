@@ -64,10 +64,6 @@ Rails.application.routes.draw do
       resources :services, only: [:index]
     end
     
-    controller :dammes do
-      resources :dammes, only: [:index]
-    end
-    
   end
 
 
@@ -83,7 +79,7 @@ Rails.application.routes.draw do
           resources :usercomments, only: [:show, :update, :destroy]
         end
         controller :userservices do
-          resources :userservices, only: [:show, :create, :update, :destroy]
+          resources :userservices, only: [:show, :update, :destroy]
         end
       end
     end

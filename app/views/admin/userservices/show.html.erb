@@ -10,7 +10,6 @@
   </div>
 </div>
 
-<% if Userservice.exists?(user_id: params[:id]) %>
   <%=form_with model: @userservice, url: admin_facility_userservice_path, method: :patch do |f| %>
   <div class="container mt-5">
     <div class="row justify-content-around">
@@ -31,24 +30,4 @@
   </div>
   <% end %>
 
-<% else %>
-  <%=form_with model: @userservice, url: admin_facility_userservice_path, method: :post do |f| %>
-  <div class="container mt-5">
-    <div class="row justify-content-around">
-      <div class="col-12">
-        <%= f.collection_check_boxes :service_id, Service.all, :id, :content, {include_hidden: false}, class: "form-check-input me-2", multiple: true do |tag| %>
-         <%= tag.label(class: "form-check-label m-1 me-5"){tag.check_box + tag.text } %>
-        <% end %>
-      </div>
-    </div>
-  </div>
-  
-  <div class="container mt-4 mb-4">
-    <div class="row d-flex justify-content-center">
-      <div class="col-3">
-        <%=f.submit "サービスを登録する", class: "form-control btn btn-outline-primary btn-lg" %>
-      </div>
-    </div>
-  </div>
-  <% end %>
-<% end %>
+

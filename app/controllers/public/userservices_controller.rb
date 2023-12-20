@@ -7,12 +7,24 @@ class Public::UserservicesController < ApplicationController
   end
   
   def create
-    current_user.update(userservice_service_ids: params[:userservice][:service_id])
+    params[:userservice][:service_id].each do |service| 
+      @userservice = current_user.userservices.build(service_id: service)
+      @userservice.save!
+    end
     redirect_to users_mypage_path
   end
 
   def update
-    current_user.update(userservice_service_ids: params[:userservice][:service_id])
+    @userservice = Userservice.where(user_id: params[:user_id])
+    old_service = @userservice.pluck(:service_id)
+      old_service.each do | destroy_service |
+        service = Userservice.find_by(user_id: current_user.id, service_id: destroy_service)
+        service.destroy
+      end
+    params[:userservice][:service_id].each do |service| 
+    @userservice = current_user.userservices.build(service_id: service)
+    @userservice.save!
+    end
     redirect_to users_mypage_path
   end
 

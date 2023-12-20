@@ -30,9 +30,14 @@
             <div class="col-4 text-center h-25 m-4 p-2 fw-bold">
               提供サービス
             </div>
-            <div class="col-5 text-center m-4 p-2">
-            <%= link_to "サービスを選択する", admin_facility_userservice_path(@user,{user_id: @user}), class: "text-dark" %>
-            </div>
+            <% if Userservice.exists?(user_id: params[:id]) %>
+              <div class="col-5 text-center m-4 p-2">
+              <%= link_to "サービスを選択する", admin_facility_userservice_path(@user,{user_id: @user}), class: "text-dark" %>
+              </div>
+            <% else %>
+              <div class="col-5 text-center m-4 p-2">
+              </div>
+            <% end %>
           </div>
           <div class="row justify-content-center">
             <div class="col-4 text-center m-4 p-2 fw-bold">

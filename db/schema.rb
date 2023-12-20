@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 2023_08_14_125703) do
   create_table "contacts", force: :cascade do |t|
     t.integer "user_id", null: false
     t.text "content", null: false
-    t.boolean "is_cheacke", default: false
+    t.boolean "is_checked", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_contacts_on_user_id"
@@ -188,7 +188,6 @@ ActiveRecord::Schema.define(version: 2023_08_14_125703) do
     t.text "customer_deposit_reason"
     t.string "customer_billing_soft", default: "利用者請求ソフト"
     t.text "customer_billing_reason"
-    t.boolean "is_public", default: false
     t.boolean "is_deleted", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
