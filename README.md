@@ -20,8 +20,14 @@
 ​
 
 ## 設計書
-<!--テーマを設定・提出する時点では不要です-->
-​
+- URL
+​https://docs.google.com/spreadsheets/d/10dcRscvcTwOfcpNBRtT3syGCxfcd3-OUEdSiTJGgbYo/edit?usp=sharing
+
+-テーブル図
+https://docs.google.com/spreadsheets/d/1LV4ogM2-TV8_Z-joYTkM7Z3cwBcjIi0qFgrqdxE959M/edit?usp=sharing
+
+-ER図
+https://drive.google.com/file/d/17F5NqLyI9d-6pIi_0EBATahx_VeM4jZt/view?usp=drive_link
 
 ## 開発環境
 - OS：Linux(CentOS)
