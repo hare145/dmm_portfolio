@@ -20,13 +20,13 @@
 ​
 
 ## 設計書
-- URL
+- URL</br>
 ​https://docs.google.com/spreadsheets/d/10dcRscvcTwOfcpNBRtT3syGCxfcd3-OUEdSiTJGgbYo/edit?usp=sharing
 
-- テーブル図
+- テーブル図</br>
 https://docs.google.com/spreadsheets/d/1LV4ogM2-TV8_Z-joYTkM7Z3cwBcjIi0qFgrqdxE959M/edit?usp=sharing
 
-- ER図
+- ER図</br>
 https://drive.google.com/file/d/17F5NqLyI9d-6pIi_0EBATahx_VeM4jZt/view?usp=drive_link
 
 ## 開発環境
